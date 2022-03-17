@@ -103,3 +103,12 @@ Don't forget to refactor the uses of uuencode! (reporting script)
 2. USB 2.0 2 ports hub https://www.ebay.co.uk/itm/USB-2-0-2-Dual-Port-Hub-For-Laptop-Macbook-Notebook-PC-Mouse-Flash-Disk/273070654192
 2. Generic RT5370 adapter
 3. Please support Hak5 work and buy the original hardware
+
+## If you want to collaborate with hardware 
+To develop the next versions of this project I need:
+
+For TETRA clone project:
+https://www.gl-inet.com/products/gl-ar750s/#specs
+
+For "WiFi Pineapple Mark 6.5" project:
+https://www.gl-inet.com/products/gl-mt1300/#specs
