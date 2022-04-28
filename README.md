@@ -87,13 +87,13 @@ Diferences with Openwrt Busybox build
 ```
 Nano build
 --------------------
-Remove: zcat bzcat traceroute6 bunzip2 strings
-Add: bash uuencode fdisk
+Remove: bunzip2 bzcat nc ps strings traceroute6 zcat
+Add: bash fdisk uuencode
 
 Tetra build
 --------------------
-Remove: NONE
-Add: uuencode fdisk
+Remove: nc ps
+Add: fdisk uuencode
 ```
 If you don't want to do a custom Busybox build you can install fdisk and mpack.
 Don't forget to refactor the uses of uuencode! (reporting script) 
