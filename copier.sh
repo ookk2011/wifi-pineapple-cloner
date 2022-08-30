@@ -6,9 +6,9 @@ if [[ "$1" == "" || "$2" == "" ]]; then
     exit 1
 fi
 
-FILE_LIST=$1
-FROM_FOLDER=$2
-TO_FOLDER=files
+FILE_LIST="$1"
+FROM_FOLDER="$2"
+TO_FOLDER="rootfs"
 COUNTER=0
 
 rm -rf "$TO_FOLDER"

@@ -1,4 +1,5 @@
-# Based on original file
+#!/bin/bash
+# Based on original file 
 
 # -- Set up Networking configuration
 uci set network.lan.type='bridge'
@@ -22,6 +23,9 @@ uci set network.wan.dns='8.8.8.8, 8.8.4.4'
 
 uci set network.wan6.proto='dhcpv6'
 
+# copy from ripper repo, not tested yet!
+uci set wireless.@wifi-iface[1].ifname='wlan1'
 uci commit network
+uci commit wireless
 
 exit 0
