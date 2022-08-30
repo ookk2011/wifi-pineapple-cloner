@@ -53,6 +53,30 @@ cp bin/targets/ar71xx/generic/openwrt-19.07.2-ar71xx-generic-gl-ar150-squashfs-s
 5. Flash the target hardware with this custom firmware!
 
 
+## Supported devices
+
+Brand       | Device         | CPU (MHZ)         | Flash MB| RAM MB | More info|
+-------------|-------------| -----------| -----------| -----------| -----------|
+HAK5  | Pineapple Tetra | 580 |32 + 2GB eMMC|64|https://openwrt.org/toh/hwdata/hak5/hak5_wifi_pineapple_mark_7
+Buffalo  | WZR450HP2 | 400 |32|64|https://openwrt.org/toh/buffalo/wzr-450hp2
+Buffalo  | WZR600DHP | 680 |32|128|https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-600dhp
+Buffalo  | WZRHPAG300H | 680 |32|128|https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-ag300h_v1
+Buffalo  | WZRHPG300NH | 400 |32|64|https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-g300nh_v1
+Buffalo  | WZRHPG300NH2 | 400 |32|64|https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-g300nh2_v2
+Buffalo  | WZRHPG450H | 400 |32|64|https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-g450h_v1
+D-Link   | DGL5500A1 | 720 |16|128|https://openwrt.org/toh/hwdata/d-link/d-link_dgl-5500_a1
+D-Link   | DIR835A1 | 560 |16|128|https://openwrt.org/toh/d-link/dir-835_a1
+D-Link   | dir-869-a1 | 750 |16|64|https://openwrt.org/toh/hwdata/d-link/d-link_dir-869_a1
+GL.iNet  | gl-ar300 | 560 |16|128|https://openwrt.org/toh/hwdata/gl.inet/gl.inet_gl-ar300
+GL.iNet  | gl-ar300m | 650 |16|128|https://openwrt.org/toh/gl.inet/gl-ar300m
+GL.iNet  | gl-ar750 | 650 |16|128|https://openwrt.org/toh/hwdata/gl.inet/gl.inet_gl-ar750
+GL.iNet  | gl-ar750s | 775 |16|128|https://openwrt.org/toh/hwdata/gl.inet/gl.inet_gl-ar750s
+TP-Link  | archer-c7-v2 | 720 |16|128|https://openwrt.org/toh/hwdata/tp-link/tp-link_archer_c7_ac1750_v2.0
+TP-Link  | archer-c7-v4 | 775 |16|128|https://openwrt.org/toh/hwdata/tp-link/tp-link_archer_c7_v4
+TP-Link  | archer-c7-v5 | 750 |16|128|https://openwrt.org/toh/hwdata/tp-link/tp-link_archer_c7_v5
+<br>
+
+
 ## Important notes
 
 1. The original pineapple binaries are compiled with mips24kc and BE endianness.
