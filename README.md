@@ -6,6 +6,8 @@ So to give a new life to this platform in more modern hardware, I've made these 
 
 ## Build steps
 
+You can read the steps to do it with [tetra here](tetra.md)
+
 1. Unpack firmware for get file system
 ```bash
 # get fmk tool
