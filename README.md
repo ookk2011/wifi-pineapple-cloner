@@ -4,6 +4,12 @@ The Pineapple NANO and TETRA were excellent security hardware but in 2020 they r
 So to give a new life to this platform in more modern hardware, I've made these scripts. 
 
 
+## Builds
+
+I made a [second repo](https://github.com/xchwarze/wifi-pineapple-cloner-builds) where you can find the firmwares already made for the devices of the "Supported devices"
+If you want to collaborate by adding a new device to the list or adding improvements to them, you can do so through a pull request to this repo.
+
+
 ## Build steps
 
 You can read the steps to do it with [tetra here](tetra.md)
@@ -57,9 +63,10 @@ cp bin/targets/ar71xx/generic/openwrt-19.07.2-ar71xx-generic-gl-ar150-squashfs-s
 
 ## Supported devices
 
+This is a uncomplete list!
+
 Brand       | Device         | CPU (MHZ)         | Flash MB| RAM MB | More info|
 -------------|-------------| -----------| -----------| -----------| -----------|
-HAK5  | Pineapple Tetra | 580 |32 + 2GB eMMC|64|https://openwrt.org/toh/hwdata/hak5/hak5_wifi_pineapple_mark_7
 Buffalo  | WZR450HP2 | 400 |32|64|https://openwrt.org/toh/buffalo/wzr-450hp2
 Buffalo  | WZR600DHP | 680 |32|128|https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-600dhp
 Buffalo  | WZRHPAG300H | 680 |32|128|https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-ag300h_v1
@@ -124,8 +131,9 @@ Add: fdisk uuencode
 If you don't want to do a custom Busybox build you can install fdisk and mpack.
 Don't forget to refactor the uses of uuencode! (reporting script) 
 
+
 ## Recomended setup
-1. GL-AR150 https://www.gl-inet.com/products/gl-ar150/
+1. GL-AR150 https://www.gl-inet.com/products/gl-ar150/ or TPLink Archer C7
 2. USB 2.0 2 ports hub https://www.ebay.co.uk/itm/USB-2-0-2-Dual-Port-Hub-For-Laptop-Macbook-Notebook-PC-Mouse-Flash-Disk/273070654192
 2. Generic RT5370 adapter
 3. Please support Hak5 work and buy the original hardware

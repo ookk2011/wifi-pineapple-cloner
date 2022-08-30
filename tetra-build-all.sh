@@ -168,8 +168,9 @@ build_loop () {
   done
 
   # fix uggly names
-  rename "s/openwrt-19.07.2-ar71xx-generic-//" "tetra-releases/*.bin"
-  rename "s/squashfs/tetra/" "tetra-releases/*.bin"
+  cd ..
+  rename "s/openwrt-19.07.2-ar71xx-generic-//" tetra-releases/*.bin
+  rename "s/squashfs/tetra/" tetra-releases/*.bin
 
   printf "Build loop end!\n"
 }
