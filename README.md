@@ -1,7 +1,11 @@
+![Project Logo](https://i.imgur.com/a1HXxMm.png)
+
 # Universal Wifi pineapple hardware cloner
 
 The Pineapple NANO and TETRA were excellent security hardware but in 2020 they reached their end of life.
-So to give a new life to this platform in more modern hardware, I've made these scripts. 
+So to give a new life to this platform in more modern hardware, I've made these scripts.
+
+Sometime between 2019 and 2020 we started using the private beta of this project which we called "Pineapple Termidor" 🤣
 
 
 ## Builds
