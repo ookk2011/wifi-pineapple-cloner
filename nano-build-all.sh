@@ -93,7 +93,7 @@ build () {
 
   # clean
   #make clean
-  rm -rf tmp/ build_dir/ bin/
+  rm -rf tmp/ build_dir/target-mips_24kc_musl/root-ar71xx bin/targets/ar71xx/generic
 
   # build
   make image PROFILE="$1" PACKAGES="$2" FILES=rootfs/
@@ -115,12 +115,12 @@ build_loop () {
     printf "******************************\n"
 
     prepare_rootfs
-    custom_fixs $target
+    custom_fixs "$target"
 
-    build $target $OPENWRT_PACKAGES
+    build "$target" "$OPENWRT_PACKAGES"
     rename "s/squashfs/nano/" ../nano-releases/*.bin
 
-    build $target $OPENWRT_PACKAGES_MINI
+    build "$target" "$OPENWRT_PACKAGES_MINI"
     rename "s/squashfs/nano-mini/" ../nano-releases/*.bin
   done
 
