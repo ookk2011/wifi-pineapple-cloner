@@ -91,13 +91,16 @@ build () {
   printf "\nBuild\n"
   printf "******************************\n"
 
+  # clean
+  #make clean
+  rm -rf tmp/ build_dir/ bin/
+
   # build
   make image PROFILE="$1" PACKAGES="$2" FILES=rootfs/
-  cp bin/targets/*/generic/openwrt-*-generic-*-squashfs-sysupgrade.bin ../nano-releases
 
-  # fix uggly names
-  rename "s/openwrt-19.07.2-ar71xx-generic-//" ../nano-releases/*.bin
-  #rename "s/squashfs/nano/" ../nano-releases/*.bin
+  # fix uggly names and copy
+  rename "s/openwrt-19.07.2-ar71xx-generic-//" bin/targets/*/generic/*-squashfs-sysupgrade.bin
+  cp bin/targets/*/generic/*-squashfs-sysupgrade.bin ../nano-releases
 }
 
 
