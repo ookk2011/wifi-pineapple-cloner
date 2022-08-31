@@ -72,12 +72,12 @@ This is a uncomplete list!
 
 Brand       | Device         | CPU (MHZ)         | Flash MB| RAM MB | More info | Download build |
 -------------|-------------| -----------| -----------| -----------| -----------| -----------|
-Buffalo  | WZR-450HP2 | 400 | 32 | 64 | [docs link](https://openwrt.org/toh/buffalo/wzr-450hp2) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/wzr-450hp2-tetra-sysupgrade.bin)
-Buffalo  | WZR-HP-G300NH v1 | 400 | 32 | 64 | [docs link](https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-g300nh_v1) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/wzr-hp-g300nh-tetra-sysupgrade.bin)
-Buffalo  | WZR-HP-G450H v1 | 400 | 32 | 64 | [docs link](https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-g450h_v1) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/wzr-hp-g450h-tetra-sysupgrade.bin)
-GL.iNet  | GL-AR150 | 400 | 16 | 64 | [docs link](https://openwrt.org/toh/hwdata/gl.inet/gl.inet_gl-ar150) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/gl-ar300-tetra-sysupgrade.bin)
-GL.iNet  | GL-AR300 v3 | 560 | 16 | 128 | [docs link](https://openwrt.org/toh/hwdata/gl.inet/gl.inet_gl-ar300) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/gl-ar300-tetra-sysupgrade.bin)
-GL.iNet  | GL-AR300M | 650 | 16 | 128 | [docs link](https://openwrt.org/toh/gl.inet/gl-ar300m) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/gl-ar300m-tetra-sysupgrade.bin)
+Buffalo  | WZR-450HP2 | 400 | 32 | 64 | [docs link](https://openwrt.org/toh/buffalo/wzr-450hp2) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/nano-releases/wzr-450hp2-nano-sysupgrade.bin)
+Buffalo  | WZR-HP-G300NH v1 | 400 | 32 | 64 | [docs link](https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-g300nh_v1) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/nano-releases/wzr-hp-g300nh-nano-sysupgrade.bin)
+Buffalo  | WZR-HP-G450H v1 | 400 | 32 | 64 | [docs link](https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-g450h_v1) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/nano-releases/wzr-hp-g450h-nano-sysupgrade.bin)
+GL.iNet  | GL-AR150 | 400 | 16 | 64 | [docs link](https://openwrt.org/toh/hwdata/gl.inet/gl.inet_gl-ar150) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/nano-releases/gl-ar300-nano-sysupgrade.bin)
+GL.iNet  | GL-AR300 v3 | 560 | 16 | 128 | [docs link](https://openwrt.org/toh/hwdata/gl.inet/gl.inet_gl-ar300) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/nano-releases/gl-ar300-nano-sysupgrade.bin)
+GL.iNet  | GL-AR300M | 650 | 16 | 128 | [docs link](https://openwrt.org/toh/gl.inet/gl-ar300m) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/nano-releases/gl-ar300m-nano-sysupgrade.bin)
 <br>
 
 
@@ -98,6 +98,37 @@ TP-Link  | Archer C7 v2 | 720 | 16 | 128 | [docs link](https://openwrt.org/toh/h
 TP-Link  | Archer C7 v4 | 775 | 16 | 128 | [docs link](https://openwrt.org/toh/hwdata/tp-link/tp-link_archer_c7_v4) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/archer-c7-v4-tetra-sysupgrade.bin)
 TP-Link  | Archer C7 v5 | 750 | 16 | 128 | [docs link](https://openwrt.org/toh/hwdata/tp-link/tp-link_archer_c7_v5) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/archer-c7-v5-tetra-sysupgrade.bin)
 <br>
+
+
+## Install steps
+
+1. Install OpenWrt version 19.07.2 on your router
+
+2. Use SCP to upload the image in your device
+```bash
+scp archer-c7-v5-tetra-sysupgrade.bin root@192.168.1.1:/tmp 
+root@192.168.1.1's password: 
+archer-c7-v5-tetra-sysupgrade.bin                                                                        100%   13MB   2.2MB/s   00:05 
+```
+
+3. Once the image is uploaded execute sysupgrade command to update firmware
+```bash
+ssh root@192.168.1.1
+sysupgrade -F /tmp/archer-c7-v5-tetra-sysupgrade.bin
+```
+Now wait few minutes until the device install the new firmware
+
+4. Enter to pineapple panel and enjoy! `http://172.16.42.1:1471/`
+
+Note: 
+If you are stuck at the message "The WiFi Pineapple is still booting" don't panic.
+All you have to do is SSH into the AR150 with the username root and password you set originally
+```bash
+ssh root@172.16.42.1
+jffs2reset -y && reboot
+```
+(Note the IP address must have change and the default password is root).
+
 
 ## Important notes
 
