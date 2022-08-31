@@ -10,7 +10,7 @@ Sometime between 2019 and 2020 we started using the private beta of this project
 
 ## Builds
 
-I made a [second repo](https://github.com/xchwarze/wifi-pineapple-cloner-builds) where you can find the firmwares already made for the devices of the "Supported devices"
+I made a [second repo](https://github.com/xchwarze/wifi-pineapple-cloner-builds) where you can find the firmwares already made for the devices of the "Supported devices"<br>
 If you want to collaborate by adding a new device to the list or adding improvements to them, you can do so through a pull request to this repo.
 
 
