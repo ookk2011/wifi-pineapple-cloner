@@ -133,8 +133,8 @@ Don't forget to refactor the uses of uuencode! (reporting script)
 
 
 ## Recomended setup
-1. GL-AR150 https://www.gl-inet.com/products/gl-ar150/ or TPLink Archer C7
-2. USB 2.0 2 ports hub https://www.ebay.co.uk/itm/USB-2-0-2-Dual-Port-Hub-For-Laptop-Macbook-Notebook-PC-Mouse-Flash-Disk/273070654192
+1. [GL-AR150](https://www.gl-inet.com/products/gl-ar150/) or TPLink Archer C7
+2. USB 2.0 [2 ports hub](https://www.ebay.co.uk/itm/USB-2-0-2-Dual-Port-Hub-For-Laptop-Macbook-Notebook-PC-Mouse-Flash-Disk/273070654192)
 2. Generic RT5370 adapter
 3. Please support Hak5 work and buy the original hardware
 
