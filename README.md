@@ -1,12 +1,16 @@
+![Project Logo](https://i.imgur.com/a1HXxMm.png)
+
 # Universal Wifi pineapple hardware cloner
 
 The Pineapple NANO and TETRA were excellent security hardware but in 2020 they reached their end of life.
-So to give a new life to this platform in more modern hardware, I've made these scripts. 
+So to give a new life to this platform in more modern hardware, I've made these scripts.
+
+Sometime between 2019 and 2020 we started using the private beta of this project which we called "Pineapple Termidor" 🤣
 
 
 ## Builds
 
-I made a [second repo](https://github.com/xchwarze/wifi-pineapple-cloner-builds) where you can find the firmwares already made for the devices of the "Supported devices"
+I made a [second repo](https://github.com/xchwarze/wifi-pineapple-cloner-builds) where you can find the firmwares already made for the devices of the "Supported devices"<br>
 If you want to collaborate by adding a new device to the list or adding improvements to them, you can do so through a pull request to this repo.
 
 
@@ -65,24 +69,24 @@ cp bin/targets/ar71xx/generic/openwrt-19.07.2-ar71xx-generic-gl-ar150-squashfs-s
 
 This is a uncomplete list!
 
-Brand       | Device         | CPU (MHZ)         | Flash MB| RAM MB | More info|
--------------|-------------| -----------| -----------| -----------| -----------|
-Buffalo  | WZR450HP2 | 400 |32|64|https://openwrt.org/toh/buffalo/wzr-450hp2
-Buffalo  | WZR600DHP | 680 |32|128|https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-600dhp
-Buffalo  | WZRHPAG300H | 680 |32|128|https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-ag300h_v1
-Buffalo  | WZRHPG300NH | 400 |32|64|https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-g300nh_v1
-Buffalo  | WZRHPG300NH2 | 400 |32|64|https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-g300nh2_v2
-Buffalo  | WZRHPG450H | 400 |32|64|https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-g450h_v1
-D-Link   | DGL5500A1 | 720 |16|128|https://openwrt.org/toh/hwdata/d-link/d-link_dgl-5500_a1
-D-Link   | DIR835A1 | 560 |16|128|https://openwrt.org/toh/d-link/dir-835_a1
-D-Link   | dir-869-a1 | 750 |16|64|https://openwrt.org/toh/hwdata/d-link/d-link_dir-869_a1
-GL.iNet  | gl-ar300 | 560 |16|128|https://openwrt.org/toh/hwdata/gl.inet/gl.inet_gl-ar300
-GL.iNet  | gl-ar300m | 650 |16|128|https://openwrt.org/toh/gl.inet/gl-ar300m
-GL.iNet  | gl-ar750 | 650 |16|128|https://openwrt.org/toh/hwdata/gl.inet/gl.inet_gl-ar750
-GL.iNet  | gl-ar750s | 775 |16|128|https://openwrt.org/toh/hwdata/gl.inet/gl.inet_gl-ar750s
-TP-Link  | archer-c7-v2 | 720 |16|128|https://openwrt.org/toh/hwdata/tp-link/tp-link_archer_c7_ac1750_v2.0
-TP-Link  | archer-c7-v4 | 775 |16|128|https://openwrt.org/toh/hwdata/tp-link/tp-link_archer_c7_v4
-TP-Link  | archer-c7-v5 | 750 |16|128|https://openwrt.org/toh/hwdata/tp-link/tp-link_archer_c7_v5
+Brand       | Device         | CPU (MHZ)         | Flash MB| RAM MB | More info | Download build |
+-------------|-------------| -----------| -----------| -----------| -----------| -----------|
+Buffalo  | WZR450HP2 | 400 | 32 | 64 | [docs link](https://openwrt.org/toh/buffalo/wzr-450hp2) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/wzr-450hp2-tetra-sysupgrade.bin)
+Buffalo  | WZR600DHP | 680 | 32 | 128 | [docs link](https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-600dhp) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/wzr-600dhp-tetra-sysupgrade.bin)
+Buffalo  | WZRHPAG300H | 680 | 32 | 128 | [docs link](https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-ag300h_v1) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/wzr-hp-ag300h-tetra-sysupgrade.bin)
+Buffalo  | WZRHPG300NH | 400 | 32 | 64 | [docs link](https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-g300nh_v1) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/wzr-hp-g300nh-tetra-sysupgrade.bin)
+Buffalo  | WZRHPG300NH2 | 400 | 32 | 64 | [docs link](https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-g300nh2_v2) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/wzr-hp-g300nh2-tetra-sysupgrade.bin)
+Buffalo  | WZRHPG450H | 400 | 32 | 64 | [docs link](https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-g450h_v1) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/wzr-hp-g450h-tetra-sysupgrade.bin)
+D-Link   | DGL5500A1 | 720 | 16 | 128 | [docs link](https://openwrt.org/toh/hwdata/d-link/d-link_dgl-5500_a1) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/dgl-5500-a1-tetra-sysupgrade.bin)
+D-Link   | DIR835A1 | 560 | 16 | 128 | [docs link](https://openwrt.org/toh/d-link/dir-835_a1) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/dir-835-a1-tetra-sysupgrade.bin)
+D-Link   | dir-869-a1 | 750 | 16 | 64 | [docs link](https://openwrt.org/toh/hwdata/d-link/d-link_dir-869_a1) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/dir-869-a1-tetra-sysupgrade.bin)
+GL.iNet  | gl-ar300 | 560 | 16 | 128 | [docs link](https://openwrt.org/toh/hwdata/gl.inet/gl.inet_gl-ar300) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/gl-ar300-tetra-sysupgrade.bin)
+GL.iNet  | gl-ar300m | 650 | 16 | 128 | [docs link](https://openwrt.org/toh/gl.inet/gl-ar300m) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/gl-ar300m-tetra-sysupgrade.bin)
+GL.iNet  | gl-ar750 | 650 | 16 | 128 | [docs link](https://openwrt.org/toh/hwdata/gl.inet/gl.inet_gl-ar750) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/gl-ar750-tetra-sysupgrade.bin)
+GL.iNet  | gl-ar750s | 775 | 16 | 128 | [docs link](https://openwrt.org/toh/hwdata/gl.inet/gl.inet_gl-ar750s) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/gl-ar750s-tetra-sysupgrade.bin)
+TP-Link  | archer-c7-v2 | 720 | 16 | 128 | [docs link](https://openwrt.org/toh/hwdata/tp-link/tp-link_archer_c7_ac1750_v2.0) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/archer-c7-v2-tetra-sysupgrade.bin)
+TP-Link  | archer-c7-v4 | 775 | 16 | 128 | [docs link](https://openwrt.org/toh/hwdata/tp-link/tp-link_archer_c7_v4) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/archer-c7-v4-tetra-sysupgrade.bin)
+TP-Link  | archer-c7-v5 | 750 | 16 | 128 | [docs link](https://openwrt.org/toh/hwdata/tp-link/tp-link_archer_c7_v5) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/archer-c7-v5-tetra-sysupgrade.bin)
 <br>
 
 
@@ -133,10 +137,11 @@ Don't forget to refactor the uses of uuencode! (reporting script)
 
 
 ## Recomended setup
-1. GL-AR150 https://www.gl-inet.com/products/gl-ar150/ or TPLink Archer C7
-2. USB 2.0 2 ports hub https://www.ebay.co.uk/itm/USB-2-0-2-Dual-Port-Hub-For-Laptop-Macbook-Notebook-PC-Mouse-Flash-Disk/273070654192
+1. [GL-AR150](https://www.gl-inet.com/products/gl-ar150/) or TPLink Archer C7
+2. USB 2.0 [2 ports hub](https://www.ebay.co.uk/itm/USB-2-0-2-Dual-Port-Hub-For-Laptop-Macbook-Notebook-PC-Mouse-Flash-Disk/273070654192)
 2. Generic RT5370 adapter
 3. Please support Hak5 work and buy the original hardware
+
 
 ## If you want to collaborate with hardware 
 To develop the next versions of this project I need:
