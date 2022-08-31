@@ -65,7 +65,7 @@ cp bin/targets/ar71xx/generic/openwrt-19.07.2-ar71xx-generic-gl-ar150-squashfs-s
 
 This is a uncomplete list!
 
-Brand       | Device         | CPU (MHZ)         | Flash MB| RAM MB | More info | Download |
+Brand       | Device         | CPU (MHZ)         | Flash MB| RAM MB | More info | Download build |
 -------------|-------------| -----------| -----------| -----------| -----------| -----------|
 Buffalo  | WZR450HP2 | 400 | 32 | 64 | [docs link](https://openwrt.org/toh/buffalo/wzr-450hp2) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/wzr-450hp2-tetra-sysupgrade.bin)
 Buffalo  | WZR600DHP | 680 | 32 | 128 | [docs link](https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-600dhp) | [lastest version](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/wzr-600dhp-tetra-sysupgrade.bin)
