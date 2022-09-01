@@ -80,7 +80,6 @@ GL.iNet  | GL-AR300 v3 | 560 | 16 | 128 | [[openwrt]](https://openwrt.org/toh/hw
 GL.iNet  | GL-AR300M | 650 | 16 | 128 | [[openwrt]](https://openwrt.org/toh/gl.inet/gl-ar300m) | [[normal]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/nano-releases/gl-ar300m-nano-sysupgrade.bin) [[mini]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/nano-releases/gl-ar300m-nano-mini-sysupgrade.bin)
 <br>
 
-
 Pineapple TETRA compatible hardware.
 This is a uncomplete list!
 
@@ -103,6 +102,7 @@ TP-Link  | Archer C7 v5 | 750 | 16 | 128 | [[openwrt]](https://openwrt.org/toh/h
 ## Install steps
 
 1. Install OpenWrt version 19.07.2 on your router
+<br>
 
 2. Use SCP to upload the image in your device
 ```bash
@@ -110,6 +110,7 @@ scp archer-c7-v5-tetra-sysupgrade.bin root@192.168.1.1:/tmp
 root@192.168.1.1's password: 
 archer-c7-v5-tetra-sysupgrade.bin                                                                        100%   13MB   2.2MB/s   00:05 
 ```
+<br>
 
 3. Once the image is uploaded execute sysupgrade command to update firmware
 ```bash
@@ -117,6 +118,7 @@ ssh root@192.168.1.1
 sysupgrade -F /tmp/archer-c7-v5-tetra-sysupgrade.bin
 ```
 Now wait few minutes until the device install the new firmware
+<br>
 
 4. Enter to pineapple panel and enjoy! `http://172.16.42.1:1471/`
 
@@ -133,7 +135,8 @@ jffs2reset -y && reboot
 ## Important notes
 
 1. The original pineapple binaries are compiled with mips24kc and BE endianness.
-So your target hardware must support the instructionset with this endianness. [List of hardware](https://openwrt.org/docs/techref/instructionset/mips_24kc).
+So your target hardware must support the instructionset with this endianness. Check this in the [openwrt list of hardware](https://openwrt.org/docs/techref/instructionset/mips_24kc).
+<br>
 
 2. The original pineapple binaries are compiled with SSP ([Stack-Smashing Protection](https://openwrt.org/docs/guide-user/security/security-features)) 
 Your version has to support it, so as not to have this type of errors:
@@ -142,6 +145,7 @@ Your version has to support it, so as not to have this type of errors:
 [    8.052737] crypto_hash: Unknown symbol __stack_chk_guard (err 0)
 [    8.057461] crypto_hash: Unknown symbol __stack_chk_fail (err 0)
 ```
+<br>
 
 3. WiFi Pineapple use a modified version of:
 ```bash
@@ -150,6 +154,7 @@ Your version has to support it, so as not to have this type of errors:
 /lib/wifi/mac80211.sh
 ```
 You may have to make yours based on these.
+<br>
 
 4. Busybox applets list:
 ```
@@ -175,7 +180,7 @@ Remove: nc ps
 Add: fdisk uuencode
 ```
 If you don't want to do a custom Busybox build you can install fdisk and mpack.
-Don't forget to refactor the uses of uuencode! (reporting script) 
+Don't forget to refactor the uses of uuencode! (reporting script)<br>
 
 5. As the tetra is intended to be used on hardware with 32MB of flash it is recommended to use it with a pendrive.
 The steps for this would be:
