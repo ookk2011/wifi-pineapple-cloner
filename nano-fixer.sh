@@ -77,6 +77,15 @@ chmod +x rootfs/pineapple/modules/PineAP/executable/executable
 chmod +x rootfs/pineapple/modules/Reporting/files/reporting
 rm -f rootfs/pineapple/fix-executables.sh
 
+cp fixs/common/panel/favicon.ico rootfs/pineapple/img/favicon.ico
+cp fixs/common/panel/favicon-16x16.png rootfs/pineapple/img/favicon-16x16.png
+cp fixs/common/panel/favicon-32x32.png rootfs/pineapple/img/favicon-32x32.png
+
+sed -i 's/>Bulletins</>News</' rootfs/pineapple/modules/Dashboard/module.html
+sed -i 's/Load Bulletins from Hak5/Load project news!/' rootfs/pineapple/modules/Dashboard/module.html
+sed -i 's/www.wifipineapple.com\/{$device}\/bulletin/raw.githubusercontent.com\/xchwarze\/wifi-pineapple-cloner\/master\/updates.json/' rootfs/pineapple/modules/Dashboard/api/module.php
+sed -i 's/Error connecting to WiFiPineapple.com/Error connecting to GitHub!/' rootfs/pineapple/modules/Dashboard/api/module.php
+
 # Panel changes
 sed -i 's/unknown/nano/' rootfs/pineapple/api/pineapple.php
 sed -i "s/cat \/proc\/cpuinfo | grep 'machine'/echo 'nano'/" rootfs/usr/bin/pineapple/site_survey
