@@ -25,7 +25,7 @@ do
     FILE=$(echo $FILE | sed $'s/\r//')
 
     # check exist
-    if [[ ! -f "$FROM_FOLDER$FILE" ]]; then
+    if [[ ! -f "$FROM_FOLDER$FILE" ]] && [[ ! -d "$FROM_FOLDER$FILE" ]]; then
         printf "[!] File does not exist: %s\n" "$FROM_FOLDER$FILE"
         continue
     fi
