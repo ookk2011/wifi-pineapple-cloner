@@ -1,5 +1,6 @@
 /bin/bash
 /bin/busybox
+
 /etc/config/autossh
 /etc/hotplug.d/block/20-sd
 /etc/hotplug.d/iface/20-autossh
@@ -42,13 +43,17 @@
 /etc/php7-fpm.conf
 /etc/rc.local
 /etc/shadow
+
 /lib/preinit/30_failsafe_wait
 /lib/preinit/40_run_failsafe_hook
 /lib/upgrade/keep.d/busybox
 /lib/wifi/mac80211.sh
+
 /pineapple
+
 /sbin/fdisk
 /sbin/led
+
 /usr/bin/pineapple
 /usr/bin/aircrack-ng
 /usr/bin/pineap
@@ -75,4 +80,5 @@
 /usr/sbin/http_sniffer
 /usr/sbin/pineapd
 /usr/sbin/resetssids
+
 /www

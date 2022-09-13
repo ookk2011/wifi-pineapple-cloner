@@ -33,7 +33,6 @@ sed -i 's/..Get Version and Device/device="NANO"/' rootfs/etc/uci-defaults/97-pi
 sed -i 's/..Get device type/device="NANO"/' rootfs/etc/uci-defaults/92-system.sh
 
 
-
 printf "Leds path fix\n"
 sed -i 's/..led (C) Hak5 2018/device="NANO"/' rootfs/sbin/led
 #sed -i 's/wifi-pineapple-nano:blue:system/gl-ar150:orange:wlan/' rootfs/sbin/led

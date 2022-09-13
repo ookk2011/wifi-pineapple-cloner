@@ -30,8 +30,8 @@ sed -i 's/..Get Version and Device/device="TETRA"/' rootfs/etc/uci-defaults/90-f
 sed -i 's/..Get Version and Device/device="NANO"/' rootfs/etc/uci-defaults/91-fstab.sh
 sed -i 's/..Get Version and Device/device="TETRA"/' rootfs/etc/uci-defaults/95-network.sh
 sed -i 's/..Get Version and Device/device="NANO"/' rootfs/etc/uci-defaults/97-pineapple.sh
-
 sed -i 's/..Get device type/device="NANO"/' rootfs/etc/uci-defaults/92-system.sh
+
 
 printf "Leds path fix\n"
 sed -i 's/..led (C) Hak5 2018/device="NANO"/' rootfs/sbin/led
@@ -107,13 +107,13 @@ cp fixs/common/shadow rootfs/etc/shadow
 # universal network config
 cp fixs/common/95-network.sh rootfs/etc/uci-defaults/95-network.sh
 
-# fix default wifi config for use multiple wifi cards
-cp fixs/common/mac80211.sh rootfs/lib/wifi/mac80211.sh
-
 # fix pendrive hotplug
 cp fixs/tetra/20-sd-tetra-fix rootfs/etc/hotplug.d/block/20-sd-tetra-fix
 rm rootfs/etc/hotplug.d/block/20-sd
 rm rootfs/etc/hotplug.d/usb/30-sd
+
+# fix default wifi config for use multiple wifi cards
+cp fixs/common/mac80211.sh rootfs/lib/wifi/mac80211.sh
 
 # fix hardware name in banner
 sed -i 's/DEVICE\/$device/DEVICE\/TETRA/' rootfs/etc/uci-defaults/97-pineapple.sh
