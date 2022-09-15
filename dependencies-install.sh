@@ -39,8 +39,8 @@ install_openwrt_deps () {
   # fix imagebuilder problems
   #sed -i 's/downloads.openwrt.org/archive.openwrt.org/' imagebuilder-19.07.2-ar71xx/repositories.conf
   #sed -i 's/downloads.openwrt.org/archive.openwrt.org/' imagebuilder-19.07.2-ar71xx-nand/repositories.conf
-  wget https://archive.openwrt.org/releases/19.07.7/packages/mips_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk -O imagebuilder-19.07.2-ar71xx/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk
-  wget https://archive.openwrt.org/releases/19.07.7/packages/mips_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk -O imagebuilder-19.07.2-ar71xx-nand/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk
+  wget https://archive.openwrt.org/releases/19.07.2/packages/mips_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk -O imagebuilder-19.07.2-ar71xx/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk
+  wget https://archive.openwrt.org/releases/19.07.2/packages/mips_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk -O imagebuilder-19.07.2-ar71xx-nand/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk
 
   printf "Install script end!\n"
 }
