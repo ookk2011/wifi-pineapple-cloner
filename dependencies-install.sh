@@ -28,7 +28,7 @@ install_openwrt_deps () {
   tar xJf imagebuilder-19.07.2-ar71xx.tar.xz
   mv openwrt-imagebuilder-19.07.2-ar71xx-generic.Linux-x86_64 imagebuilder-19.07.2-ar71xx
 
-  if [ ! -f "imagebuilder-19.07.2-ar71xx.tar.xz" ]; then
+  if [ ! -f "imagebuilder-19.07.2-ar71xx-nand.tar.xz" ]; then
     wget https://downloads.openwrt.org/releases/19.07.2/targets/ar71xx/nand/openwrt-imagebuilder-19.07.2-ar71xx-nand.Linux-x86_64.tar.xz -O imagebuilder-19.07.2-ar71xx-nand.tar.xz
   fi
 
