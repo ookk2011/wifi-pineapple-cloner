@@ -66,7 +66,7 @@ custom_fixs () {
 
     # fix LAN and WAN ports. No more swapped ports on ar150 
     printf "Fix LAN and WAN ports\n"  
-    cp fixs/nano/02-network-ar150-fix rootfs/etc/uci-defaults/02-network-ar150-fix
+    cp "$CWD/fixs/nano/02-network-ar150-fix" rootfs/etc/uci-defaults/02-network-ar150-fix
   fi
 
   if [[ $1 = "gl-ar300" ]]; then
