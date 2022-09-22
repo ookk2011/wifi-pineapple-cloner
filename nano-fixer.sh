@@ -119,5 +119,9 @@ cp fixs/nano/python/encodings/aliases.pyc rootfs/usr/lib/python2.7/encodings/ali
 cp fixs/nano/python/encodings/base64_codec.pyc rootfs/usr/lib/python2.7/encodings/base64_codec.pyc
 cp fixs/nano/python/encodings/hex_codec.pyc rootfs/usr/lib/python2.7/encodings/hex_codec.pyc
 
+# fix banner info
+sed -i 's/VERSION/2.7.0+/g' rootfs/etc/banner
+sed -i 's/\/       /\/ by DSR!/g' rootfs/etc/banner
+
 
 printf "\nDone!\n"
