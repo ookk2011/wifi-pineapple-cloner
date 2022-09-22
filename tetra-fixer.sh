@@ -115,8 +115,10 @@ rm rootfs/etc/hotplug.d/usb/30-sd
 # fix default wifi config for use multiple wifi cards
 cp fixs/common/mac80211.sh rootfs/lib/wifi/mac80211.sh
 
-# fix hardware name in banner
-sed -i 's/DEVICE\/$device/DEVICE\/TETRA/' rootfs/etc/uci-defaults/97-pineapple.sh
+# fix banner info
+sed -i 's/DEVICE/TETRA/' rootfs/etc/banner
+sed -i 's/VERSION/2.7.0+/g' rootfs/etc/banner
+sed -i 's/\/       /\/ by DSR!/g' rootfs/etc/banner
 
 
 printf "\nDone!\n"
