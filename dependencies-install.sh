@@ -20,27 +20,27 @@ install_openwrt_deps () {
   printf "******************************\n"
 
   # download imagebuilder
-  if [ ! -f "imagebuilder-19.07.2-ar71xx.tar.xz" ]; then
-    wget https://downloads.openwrt.org/releases/19.07.2/targets/ar71xx/generic/openwrt-imagebuilder-19.07.2-ar71xx-generic.Linux-x86_64.tar.xz -O imagebuilder-19.07.2-ar71xx.tar.xz
+  if [ ! -f "imagebuilder-19.07.7-ar71xx.tar.xz" ]; then
+    wget https://downloads.openwrt.org/releases/19.07.7/targets/ar71xx/generic/openwrt-imagebuilder-19.07.7-ar71xx-generic.Linux-x86_64.tar.xz -O imagebuilder-19.07.7-ar71xx.tar.xz
   fi
 
-  rm -rf imagebuilder-19.07.2-ar71xx
-  tar xJf imagebuilder-19.07.2-ar71xx.tar.xz
-  mv openwrt-imagebuilder-19.07.2-ar71xx-generic.Linux-x86_64 imagebuilder-19.07.2-ar71xx
+  rm -rf imagebuilder-19.07.7-ar71xx
+  tar xJf imagebuilder-19.07.7-ar71xx.tar.xz
+  mv openwrt-imagebuilder-19.07.7-ar71xx-generic.Linux-x86_64 imagebuilder-19.07.7-ar71xx
 
-  if [ ! -f "imagebuilder-19.07.2-ar71xx-nand.tar.xz" ]; then
-    wget https://downloads.openwrt.org/releases/19.07.2/targets/ar71xx/nand/openwrt-imagebuilder-19.07.2-ar71xx-nand.Linux-x86_64.tar.xz -O imagebuilder-19.07.2-ar71xx-nand.tar.xz
+  if [ ! -f "imagebuilder-19.07.7-ar71xx-nand.tar.xz" ]; then
+    wget https://downloads.openwrt.org/releases/19.07.7/targets/ar71xx/nand/openwrt-imagebuilder-19.07.7-ar71xx-nand.Linux-x86_64.tar.xz -O imagebuilder-19.07.7-ar71xx-nand.tar.xz
   fi
 
-  rm -rf imagebuilder-19.07.2-ar71xx-nand
-  tar xJf imagebuilder-19.07.2-ar71xx-nand.tar.xz
-  mv openwrt-imagebuilder-19.07.2-ar71xx-nand.Linux-x86_64 imagebuilder-19.07.2-ar71xx-nand
+  rm -rf imagebuilder-19.07.7-ar71xx-nand
+  tar xJf imagebuilder-19.07.7-ar71xx-nand.tar.xz
+  mv openwrt-imagebuilder-19.07.7-ar71xx-nand.Linux-x86_64 imagebuilder-19.07.7-ar71xx-nand
 
   # fix imagebuilder problems
-  #sed -i 's/downloads.openwrt.org/archive.openwrt.org/' imagebuilder-19.07.2-ar71xx/repositories.conf
-  #sed -i 's/downloads.openwrt.org/archive.openwrt.org/' imagebuilder-19.07.2-ar71xx-nand/repositories.conf
-  wget https://archive.openwrt.org/releases/19.07.2/packages/mips_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk -O imagebuilder-19.07.2-ar71xx/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk
-  wget https://archive.openwrt.org/releases/19.07.2/packages/mips_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk -O imagebuilder-19.07.2-ar71xx-nand/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk
+  #sed -i 's/downloads.openwrt.org/archive.openwrt.org/' imagebuilder-19.07.7-ar71xx/repositories.conf
+  #sed -i 's/downloads.openwrt.org/archive.openwrt.org/' imagebuilder-19.07.7-ar71xx-nand/repositories.conf
+  wget https://archive.openwrt.org/releases/19.07.7/packages/mips_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk -O imagebuilder-19.07.7-ar71xx/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk
+  wget https://archive.openwrt.org/releases/19.07.7/packages/mips_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk -O imagebuilder-19.07.7-ar71xx-nand/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk
 
   printf "Install script end!\n"
 }
