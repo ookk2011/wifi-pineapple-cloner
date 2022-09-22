@@ -122,6 +122,7 @@ cp fixs/nano/python/encodings/hex_codec.pyc rootfs/usr/lib/python2.7/encodings/h
 # fix banner info
 sed -i 's/VERSION/2.7.0+/g' rootfs/etc/banner
 sed -i 's/\/       /\/ by DSR!/g' rootfs/etc/banner
+sed -i 's/19.07.2/19.07.7/g' rootfs/etc/banner
 
 
 printf "\nDone!\n"

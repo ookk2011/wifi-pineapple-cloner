@@ -119,6 +119,7 @@ cp fixs/common/mac80211.sh rootfs/lib/wifi/mac80211.sh
 sed -i 's/DEVICE/TETRA/' rootfs/etc/banner
 sed -i 's/VERSION/2.7.0+/g' rootfs/etc/banner
 sed -i 's/\/       /\/ by DSR!/g' rootfs/etc/banner
+sed -i 's/19.07.2/19.07.7/g' rootfs/etc/banner
 
 
 printf "\nDone!\n"
