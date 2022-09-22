@@ -1,5 +1,10 @@
 [
    {
+      "title":"Update OpenWrt version",
+      "date":"2022-09-22",
+      "content":"<p>Update OpenWrt version to 19.02.7! 🚀<\/p>"
+   },
+   {
       "title":"New targets",
       "date":"2022-09-05",
       "content":"<p>Add support for:<\/p><ul>\r\n<li>Zyxel NBG6716<\/li>\r\n<li>NETGEAR R6100, WNDR3700 V4 and WNDR4300 V1<\/li>\r\n<\/ul>"
