@@ -95,7 +95,7 @@ build () {
 
 
 # implement this shitty logic
-printf "WiFi Pineapple Tetra builder!\n"
+printf "Universal Wifi pineapple hardware cloner - builder\n"
 printf "************************************** by DSR!\n\n"
 
 prepare_build
