@@ -43,7 +43,7 @@ php tools/opkg-parser.php rootfs-base/usr/lib/opkg/status
 ```bash
 # copy pineapple files
 chmod +x tools/copier.sh
-tools/copier.sh lists/$FLAVOR.filelist rootfs-base rootfs
+tools/copier.sh lists/nano.filelist rootfs-base rootfs
 
 # fix files
 chmod +x tools/fs-patcher.sh
