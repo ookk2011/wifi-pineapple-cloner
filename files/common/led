@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# led (C) Hak5 2018
+# Usage: led <color|reset> [on|off]
+
+usage() {
+	echo "Usage: led <color|reset> [on|off]"
+	echo " "
+	echo "Available colors are: BLUE"
+}
+
+resetLEDs() {
+	/etc/init.d/led restart
+}
+
+enableLED() {
+	led=$1
+	if [[ $led == "blue" ]] || [[ $led == "BLUE" ]] || [[ $led == "all" ]] || [[ $led == "ALL" ]]; then
+		echo "255" > /sys/class/leds/wifi-pineapple-nano:blue:system/brightness
+	else
+		usage
+	fi
+}
+
+disableLED() {
+	led=$1
+	if [[ $led == "blue" ]] || [[ $led == "BLUE" ]] || [[ $led == "all" ]] || [[ $led == "ALL" ]]; then
+		echo "0" > /sys/class/leds/wifi-pineapple-nano:blue:system/brightness
+	else
+		usage
+	fi
+}
+
+run() {
+	color=$1
+	mode=$2
+
+	if [[ $color == "reset" ]] || [[ $mode == "RESET" ]]; then
+		resetLEDs
+		echo "Done."
+		exit 0
+	fi
+
+	if [[ $mode == "on" ]] || [[ $mode == "ON" ]]; then
+		enableLED $color
+	elif [[ $mode == "off" ]] || [[ $mode == "OFF" ]]; then
+		disableLED $color
+	else
+		usage
+	fi
+}
+
+run $1 $2
+echo "Done."
+exit 0

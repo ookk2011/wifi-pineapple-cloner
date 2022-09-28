@@ -33,6 +33,12 @@ devNum=$(echo $device | awk -F "" '{print $4}')
                     fi
                 done
             fi
+
+            # autoinstall python in universal build
+            if [[ ! -d "/usr/lib/python2.7" && ! -d "/sd/usr/lib/python2.7" ]]; then
+                logger "== Fix Python install - Connect internet first!"
+                opkg update && opkg --dest sd install python-logging python-openssl python-sqlite3 python-codecs && python -m compileall
+            fi
         }
 
         [[ $devNum == "2" ]] && {

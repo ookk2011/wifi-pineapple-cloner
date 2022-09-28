@@ -16,36 +16,38 @@ If you want to collaborate by adding a new device to the list or adding improvem
 
 ## Build steps
 
-You can read the steps to do it with [tetra here](tetra.md)
-
 1. Unpack firmware for get file system
 ```bash
-# get fmk tool
-git clone https://github.com/rampageX/firmware-mod-kit fmk-tool
+# install last version of binwalk first!
+# https://github.com/ReFirmLabs/binwalk
 
-# get target firmware (example pineapple nano)
-wget https://www.wifipineapple.com/downloads/nano/latest -O nanofw.bin
-fmk-tool/extract-firmware.sh nanofw.bin
-sudo chown -R $USER fmk
-mv fmk/rootfs rootfs-nano
-rm -rf fmk
+# tetra
+#wget https://www.wifipineapple.com/downloads/tetra/latest -O basefw.bin
+#binwalk basefw.bin -e 
+#binwalk _basefw.bin.extracted/sysupgrade-pineapple-tetra/root -e --preserve-symlinks
+#mv _basefw.bin.extracted/sysupgrade-pineapple-tetra/_root.extracted/squashfs-root/ rootfs-base
+
+# nano
+wget https://www.wifipineapple.com/downloads/nano/latest -O basefw.bin
+binwalk basefw.bin -e --preserve-symlinks
+mv _basefw.bin.extracted/squashfs-root/ rootfs-base
 ```
 
 2. Get opkg packages list from openwrt file system
 ```bash
 # get packages list
-php opkg_statusdb_parser.php rootfs-nano/usr/lib/opkg/status
+php tools/opkg-parser.php rootfs-base/usr/lib/opkg/status
 ```
 
 3. Generate openwrt extra files
 ```bash
 # copy pineapple files
-chmod +x copier.sh
-./copier.sh nano.filelist rootfs-nano
+chmod +x tools/copier.sh
+tools/copier.sh lists/$FLAVOR.filelist rootfs-base rootfs
 
 # fix files
-chmod +x nano-fixer.sh
-./nano-fixer.sh
+chmod +x tools/fs-patcher.sh
+tools/fs-patcher.sh rootfs nano
 ```
 
 4. Build your custom build
@@ -58,11 +60,21 @@ cd openwrt-imagebuilder-19.07.2-ar71xx-generic.Linux-x86_64
 # based on step 2 data!
 # ar71xx profile name: gl-ar150
 # ath79 profile name: glinet_gl-ar150
-make image PROFILE=gl-ar150 PACKAGES="at autossh base-files block-mount ca-certificates chat dnsmasq e2fsprogs ethtool firewall hostapd-utils ip6tables iperf3 iwinfo kmod-crypto-manager kmod-fs-ext4 kmod-fs-nfs kmod-fs-vfat kmod-gpio-button-hotplug kmod-ipt-offload kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-netdev kmod-ledtrig-timer kmod-mt76x2u kmod-nf-nathelper kmod-rt2800-usb kmod-rtl8187 kmod-rtl8192cu kmod-scsi-generic kmod-usb-acm kmod-usb-net-asix kmod-usb-net-asix-ax88179 kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-net-smsc95xx kmod-usb-ohci kmod-usb-storage-extras kmod-usb-uhci kmod-usb2 libbz2-1.0 libcurl4 libelf1 libffi libgmp10 libiconv-full2 libintl libltdl7 libnet-1.2.x libnl200 libreadline8 libustream-mbedtls20150806 libxml2 logd macchanger mt7601u-firmware mtd nano ncat netcat nginx odhcp6c odhcpd-ipv6only openssh-client openssh-server openssh-sftp-server openssl-util php7-cgi php7-fpm php7-mod-hash php7-mod-json php7-mod-mbstring php7-mod-openssl php7-mod-session php7-mod-sockets php7-mod-sqlite3 ppp ppp-mod-pppoe procps-ng-pkill procps-ng-ps python-logging python-openssl python-sqlite3 rtl-sdr ssmtp tcpdump uboot-envtools uci uclibcxx uclient-fetch urandom-seed urngd usb-modeswitch usbreset usbutils wget wireless-tools wpad busybox libatomic1 libstdcpp6 -wpad-basic -dropbear" FILES=../files/
+make image PROFILE=gl-ar150 PACKAGES="at autossh base-files block-mount ca-certificates chat dnsmasq e2fsprogs ethtool firewall hostapd-utils ip6tables iperf3 iwinfo kmod-crypto-manager kmod-fs-ext4 kmod-fs-nfs kmod-fs-vfat kmod-gpio-button-hotplug kmod-ipt-offload kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-netdev kmod-ledtrig-timer kmod-mt76x2u kmod-nf-nathelper kmod-rt2800-usb kmod-rtl8187 kmod-rtl8192cu kmod-scsi-generic kmod-usb-acm kmod-usb-net-asix kmod-usb-net-asix-ax88179 kmod-usb-net-qmi-wwan kmod-usb-net-rndis kmod-usb-net-sierrawireless kmod-usb-net-smsc95xx kmod-usb-ohci kmod-usb-storage-extras kmod-usb-uhci kmod-usb2 libbz2-1.0 libcurl4 libelf1 libffi libgmp10 libiconv-full2 libintl libltdl7 libnet-1.2.x libnl200 libreadline8 libustream-mbedtls20150806 libxml2 logd macchanger mt7601u-firmware mtd nano ncat netcat nginx odhcp6c odhcpd-ipv6only openssh-client openssh-server openssh-sftp-server openssl-util php7-cgi php7-fpm php7-mod-hash php7-mod-json php7-mod-mbstring php7-mod-openssl php7-mod-session php7-mod-sockets php7-mod-sqlite3 ppp ppp-mod-pppoe procps-ng-pkill procps-ng-ps python-logging python-openssl python-sqlite3 rtl-sdr ssmtp tcpdump uboot-envtools uci uclibcxx uclient-fetch urandom-seed urngd usb-modeswitch usbreset usbutils wget wireless-tools wpad busybox libatomic1 libstdcpp6 -wpad-basic -dropbear" FILES=../rootfs
 cp bin/targets/ar71xx/generic/openwrt-19.07.2-ar71xx-generic-gl-ar150-squashfs-sysupgrade.bin ../gl-ar150-pineapple-nano.bin
 ```
 
 5. Flash the target hardware with this custom firmware!
+```bash
+# Use SCP to upload the image in your device
+scp gl-ar150-pineapple-nano.bin root@192.168.1.1:/tmp 
+root@192.168.1.1's password: 
+gl-ar150-pineapple-nano.bin                                                                        100%   13MB   2.2MB/s   00:05 
+
+# Once the image is uploaded execute sysupgrade command to update firmware
+ssh root@192.168.1.1
+sysupgrade -n -F /tmp/gl-ar150-pineapple-nano.bin
+```
 
 
 ## Supported devices
@@ -75,9 +87,8 @@ Brand       | Device         | CPU (MHz)         | Flash (MB) | RAM (MB) | More 
 Buffalo  | WZR-450HP2 | 400 | 32 | 64 | [[openwrt]](https://openwrt.org/toh/buffalo/wzr-450hp2) | [[normal]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/nano-releases/wzr-450hp2-nano-sysupgrade.bin) [[mini]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/nano-releases/wzr-450hp2-nano-mini-sysupgrade.bin)
 Buffalo  | WZR-HP-G300NH v1 | 400 | 32 | 64 | [[openwrt]](https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-g300nh_v1) | [[normal]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/nano-releases/wzr-hp-g300nh-nano-sysupgrade.bin) [[mini]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/nano-releases/wzr-hp-g300nh-nano-mini-sysupgrade.bin)
 Buffalo  | WZR-HP-G450H v1 | 400 | 32 | 64 | [[openwrt]](https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-g450h_v1) | [[normal]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/nano-releases/wzr-hp-g450h-nano-sysupgrade.bin) [[mini]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/nano-releases/wzr-hp-g450h-nano-mini-sysupgrade.bin)
+Buffalo  | WZR-HP-G300NH2 | 400 | 32 | 64 | [[openwrt]](https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-g300nh2_v2) | [[normal]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/nano-releases/wzr-hp-g300nh2-nano-sysupgrade.bin) [[mini]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/nano-releases/wzr-hp-g300nh2-nano-mini-sysupgrade.bin)
 GL.iNet  | GL-AR150 | 400 | 16 | 64 | [[openwrt]](https://openwrt.org/toh/hwdata/gl.inet/gl.inet_gl-ar150) | [[normal]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/nano-releases/gl-ar150-nano-sysupgrade.bin) [[mini]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/nano-releases/gl-ar150-nano-mini-sysupgrade.bin)
-GL.iNet  | GL-AR300 v3 | 560 | 16 | 128 | [[openwrt]](https://openwrt.org/toh/hwdata/gl.inet/gl.inet_gl-ar300) | [[normal]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/nano-releases/gl-ar300-nano-sysupgrade.bin) [[mini]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/nano-releases/gl-ar300-nano-mini-sysupgrade.bin)
-GL.iNet  | GL-AR300M | 650 | 16 | 128 | [[openwrt]](https://openwrt.org/toh/gl.inet/gl-ar300m) | [[normal]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/nano-releases/gl-ar300m-nano-sysupgrade.bin) [[mini]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/nano-releases/gl-ar300m-nano-mini-sysupgrade.bin)
 <br>
 
 Pineapple TETRA compatible hardware.
@@ -87,10 +98,11 @@ Brand       | Device         | CPU (MHz)         | Flash (MB) | RAM (MB) | More 
 -------------|-------------|-----------|-----------|-----------|-----------|-----------|
 Buffalo  | WZR-600DHP | 680 | 32 | 128 | [[openwrt]](https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-600dhp) | [[normal]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/wzr-600dhp-tetra-sysupgrade.bin) [[mini]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/wzr-600dhp-tetra-mini-sysupgrade.bin)
 Buffalo  | WZR-HP-AG300H v1 | 680 | 32 | 128 | [[openwrt]](https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-ag300h_v1) | [[normal]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/wzr-hp-ag300h-tetra-sysupgrade.bin) [[mini]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/wzr-hp-ag300h-tetra-mini-sysupgrade.bin)
-Buffalo  | WZR-HP-G300NH2 | 400 | 32 | 64 | [[openwrt]](https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-g300nh2_v2) | [[normal]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/wzr-hp-g300nh2-tetra-sysupgrade.bin) [[mini]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/wzr-hp-g300nh2-tetra-mini-sysupgrade.bin)
 D-Link   | DGL-5500 A1 | 720 | 16 | 128 | [[openwrt]](https://openwrt.org/toh/hwdata/d-link/d-link_dgl-5500_a1) | [[normal]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/dgl-5500-a1-tetra-sysupgrade.bin) [[mini]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/dgl-5500-a1-tetra-mini-sysupgrade.bin)
 D-Link   | DIR-835 A1 | 560 | 16 | 128 | [[openwrt]](https://openwrt.org/toh/d-link/dir-835_a1) | [[normal]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/dir-835-a1-tetra-sysupgrade.bin) [[mini]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/dir-835-a1-tetra-mini-sysupgrade.bin)
 D-Link   | DIR-869 A1 | 750 | 16 | 64 | [[openwrt]](https://openwrt.org/toh/hwdata/d-link/d-link_dir-869_a1) | [[normal]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/dir-869-a1-tetra-sysupgrade.bin) [[mini]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/dir-869-a1-tetra-mini-sysupgrade.bin)
+GL.iNet  | GL-AR300 v3 | 560 | 16 | 128 | [[openwrt]](https://openwrt.org/toh/hwdata/gl.inet/gl.inet_gl-ar300) | [[normal]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/gl-ar300-tetra-sysupgrade.bin) [[mini]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/gl-ar300-tetra-mini-sysupgrade.bin)
+GL.iNet  | GL-AR300M | 650 | 16 | 128 | [[openwrt]](https://openwrt.org/toh/gl.inet/gl-ar300m) | [[normal]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/gl-ar300m-tetra-sysupgrade.bin) [[mini]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/gl-ar300m-tetra-mini-sysupgrade.bin)
 GL.iNet  | GL-AR750 | 650 | 16 | 128 | [[openwrt]](https://openwrt.org/toh/hwdata/gl.inet/gl.inet_gl-ar750) | [[normal]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/gl-ar750-tetra-sysupgrade.bin) [[mini]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/gl-ar750-tetra-mini-sysupgrade.bin)
 GL.iNet  | GL-AR750S v1 | 775 | 16 | 128 | [[openwrt]](https://openwrt.org/toh/hwdata/gl.inet/gl.inet_gl-ar750s) | [[normal]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/gl-ar750s-tetra-sysupgrade.bin) [[mini]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/gl-ar750s-tetra-mini-sysupgrade.bin)
 TP-Link  | Archer C7 v2 | 720 | 16 | 128 | [[openwrt]](https://openwrt.org/toh/hwdata/tp-link/tp-link_archer_c7_ac1750_v2.0) | [[normal]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/archer-c7-v2-tetra-sysupgrade.bin) [[mini]](https://github.com/xchwarze/wifi-pineapple-cloner-builds/blob/main/tetra-releases/archer-c7-v2-tetra-mini-sysupgrade.bin)

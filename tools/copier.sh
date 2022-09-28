@@ -1,15 +1,18 @@
 #!/bin/bash
 # by DSR! from https://github.com/xchwarze/wifi-pineapple-cloner
 
-if [[ "$1" == "" || "$2" == "" ]]; then
-    echo "Argument missing! Run with \"copier.sh [FILE_LIST] [FROM_FOLDER]\""
-    exit 1
-fi
-
 FILE_LIST="$1"
 FROM_FOLDER="$2"
-TO_FOLDER="rootfs"
+TO_FOLDER="$3"
 COUNTER=0
+if [[ ! -f "$FILE_LIST" || ! -d "$FROM_FOLDER" || "$TO_FOLDER" == "" ]]; then
+    echo "Run with \"copier.sh [FILE_LIST] [FROM_FOLDER] [TO_FOLDER]\""
+    echo "    FILE_LIST   -> flavor file list"
+    echo "    FROM_FOLDER -> path to base fs"
+    echo "    TO_FOLDER   -> path to new fs"
+
+    exit 1
+fi
 
 echo "[*] Start copy loop"
 rm -rf "$TO_FOLDER"
