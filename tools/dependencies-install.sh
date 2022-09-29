@@ -40,11 +40,28 @@ install_openwrt_deps () {
     tar xJf "imagebuilder-$OPENWRT_VERSION-ar71xx-nand.tar.xz"
     mv "openwrt-imagebuilder-$OPENWRT_VERSION-ar71xx-nand.Linux-x86_64" "imagebuilder-$OPENWRT_VERSION-ar71xx-nand"
 
+    if [ ! -f "imagebuilder-$OPENWRT_VERSION-ath79.tar.xz" ]; then
+        wget "https://downloads.openwrt.org/releases/$OPENWRT_VERSION/targets/ath79/generic/openwrt-imagebuilder-$OPENWRT_VERSION-ath79-generic.Linux-x86_64.tar.xz" -O "imagebuilder-$OPENWRT_VERSION-ath79.tar.xz"
+    fi
+
+    rm -rf "imagebuilder-$OPENWRT_VERSION-ath79"
+    tar xJf "imagebuilder-$OPENWRT_VERSION-ath79.tar.xz"
+    mv "openwrt-imagebuilder-$OPENWRT_VERSION-ath79-generic.Linux-x86_64" "imagebuilder-$OPENWRT_VERSION-ath79"
+
+    if [ ! -f "imagebuilder-$OPENWRT_VERSION-lantiq-xrx200.tar.xz" ]; then
+        wget "https://downloads.openwrt.org/releases/$OPENWRT_VERSION/targets/lantiq/xrx200/openwrt-imagebuilder-$OPENWRT_VERSION-lantiq-xrx200.Linux-x86_64.tar.xz" -O "imagebuilder-$OPENWRT_VERSION-lantiq-xrx200.tar.xz"
+    fi
+
+    rm -rf "imagebuilder-$OPENWRT_VERSION-lantiq-xrx200"
+    tar xJf "imagebuilder-$OPENWRT_VERSION-lantiq-xrx200.tar.xz"
+    mv "openwrt-imagebuilder-$OPENWRT_VERSION-lantiq-xrx200.Linux-x86_64" "imagebuilder-$OPENWRT_VERSION-lantiq-xrx200"
+
+
     # fix imagebuilder problems
-    #sed -i 's/downloads.openwrt.org/archive.openwrt.org/' imagebuilder-$OPENWRT_VERSION-ar71xx/repositories.conf
-    #sed -i 's/downloads.openwrt.org/archive.openwrt.org/' imagebuilder-$OPENWRT_VERSION-ar71xx-nand/repositories.conf
     wget "https://archive.openwrt.org/releases/$OPENWRT_VERSION/packages/mips_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk" -O "imagebuilder-$OPENWRT_VERSION-ar71xx/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk"
     wget "https://archive.openwrt.org/releases/$OPENWRT_VERSION/packages/mips_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk" -O "imagebuilder-$OPENWRT_VERSION-ar71xx-nand/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk"
+    wget "https://archive.openwrt.org/releases/$OPENWRT_VERSION/packages/mips_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk" -O "imagebuilder-$OPENWRT_VERSION-ath79/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk"
+    wget "https://archive.openwrt.org/releases/$OPENWRT_VERSION/packages/mips_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk" -O "imagebuilder-$OPENWRT_VERSION-lantiq-xrx200/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk"
 
     printf "Install script end!\n"
 }
