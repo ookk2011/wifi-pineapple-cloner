@@ -11,7 +11,7 @@ if (!isset($_SERVER['argv']) && !isset($argv)) {
 }
 
 if (!isset($argv[1])) {
-    echo "Run with \"php opkg-parser.sh [PATH] [DIFF_SEPARATOR]\"\n";
+    echo "Run with \"php opkg-parser.php [PATH] [DIFF_SEPARATOR]\"\n";
     echo "    PATH           -> path to opkg status file\n";
     echo "    DIFF_SEPARATOR -> use /n separator\n";
     exit(1);

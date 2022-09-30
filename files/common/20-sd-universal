@@ -1,5 +1,5 @@
 #!/bin/bash
-# this script fix the nano mechanism of 30-sd -> 20-sd
+# this script fix the nano mechanism of 30-sd -> 20-sd - by DSR!
 
 device=`basename $DEVPATH`
 devNum=$(echo $device | awk -F "" '{print $4}')
@@ -34,10 +34,15 @@ devNum=$(echo $device | awk -F "" '{print $4}')
                 done
             fi
 
-            # autoinstall python in universal build
+            # autoinstall python in universal flavor
             if [[ ! -d "/usr/lib/python2.7" && ! -d "/sd/usr/lib/python2.7" ]]; then
-                logger "== Fix Python install - Connect internet first!"
-                opkg update && opkg --dest sd install python-logging python-openssl python-sqlite3 python-codecs && python -m compileall
+                if ping -q -c 1 -W 1 google.com >/dev/null; then
+                    logger "== Fix Python install - Start..."
+                    opkg update && opkg --dest sd install python-logging python-openssl python-sqlite3 python-codecs && python -m compileall
+                    logger "== Fix Python install - Complete!"
+                else
+                    logger "== Fix Python install - Connect to the internet and reboot!"
+                fi
             fi
         }
 
