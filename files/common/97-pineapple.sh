@@ -24,11 +24,11 @@ ln -s /usr/lib/libpcap.so.1 /usr/lib/libpcap.so.1.3
 /etc/init.d/autossh disable
 
 # correct opkg sources
-sed -i "s/src\/gz openwrt_core//" /etc/opkg/distfeeds.conf
-sed -i "s/src\/gz openwrt_kmods//" /etc/opkg/distfeeds.conf
-sed -i "s/src\/gz openwrt_freifunk//" /etc/opkg/distfeeds.conf
-sed -i "s/src\/gz openwrt_luci//" /etc/opkg/distfeeds.conf
-sed -i "s/src\/gz openwrt_telephony//" /etc/opkg/distfeeds.conf
+sed -i "s/src\/gz openwrt_core/#/" /etc/opkg/distfeeds.conf
+sed -i "s/src\/gz openwrt_kmods/#/" /etc/opkg/distfeeds.conf
+sed -i "s/src\/gz openwrt_freifunk/#/" /etc/opkg/distfeeds.conf
+sed -i "s/src\/gz openwrt_luci/#/" /etc/opkg/distfeeds.conf
+sed -i "s/src\/gz openwrt_telephony/#/" /etc/opkg/distfeeds.conf
 
 # get valid led value
 PINE_LED=""
