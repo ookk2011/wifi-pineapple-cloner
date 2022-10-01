@@ -17,7 +17,8 @@ This project is the result of everything I experienced from 2018 to 2022 to succ
 For this I develop:
 * The lists of files to copy and the script to copy them.
 * A script to patch the filesystem so that it works on any hardware.
-* And a completely updated panel with fixes and improvements.
+* A completely [updated panel](https://github.com/xchwarze/wifi-pineapple-panel) with fixes and improvements.
+* And a new [Module Repository](https://github.com/xchwarze/wifi-pineapple-modules).
 
 
 ## Builds
@@ -70,7 +71,7 @@ jffs2reset -y && reboot
 
 
 ## Recomended setup
-1. [GL-AR150](https://www.gl-inet.com/products/gl-ar150/) or [TPLink Archer C7](https://www.tp-link.com/en/home-networking/wifi-router/archer-c7/)
+1. [GL-AR150](https://www.gl-inet.com/products/gl-ar150/) or [TPLink Archer C7](https://www.gl-inet.com/products/gl-ar750s)
 2. USB 2.0 [2 ports hub](https://www.ebay.com/itm/144520475350)
 2. Generic [RT5370 WIFI adapter](https://www.ebay.com/itm/284904442887) **you're really going to need this on hardware that doesn't have two wifis to use**
 3. Please support Hak5 work and buy the original hardware and the new!
