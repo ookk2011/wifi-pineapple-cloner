@@ -71,9 +71,9 @@ jffs2reset -y && reboot
 
 
 ## Recomended setup
-1. [GL-AR150](https://www.gl-inet.com/products/gl-ar150/) or [TPLink Archer C7](https://www.gl-inet.com/products/gl-ar750s)
+1. [GL-AR150](https://www.gl-inet.com/products/gl-ar150/) or [GL-AR750S](https://www.gl-inet.com/products/gl-ar750s)
 2. USB 2.0 [2 ports hub](https://www.ebay.com/itm/144520475350)
-2. Generic [RT5370 WIFI adapter](https://www.ebay.com/itm/284904442887) **you're really going to need this on hardware that doesn't have two wifis to use**
+2. Generic [RT5370 WIFI adapter](https://www.ebay.com/itm/284904442887) **you're really going to need this on hardware that doesn't have two wifi adapters**
 3. Please support Hak5 work and buy the original hardware and the new!
 
 
