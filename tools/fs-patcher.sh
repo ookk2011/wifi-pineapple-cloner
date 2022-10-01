@@ -98,11 +98,20 @@ common_patch () {
     sed -i 's/>Bulletins</>News</' "$ROOT_FS/pineapple/modules/Dashboard/module.html"
     sed -i 's/Load Bulletins from Hak5/Load project news!/' "$ROOT_FS/pineapple/modules/Dashboard/module.html"
     sed -i 's/www.wifipineapple.com\/{$device}\/bulletin/raw.githubusercontent.com\/xchwarze\/wifi-pineapple-cloner\/master\/updates.json/' "$ROOT_FS/pineapple/modules/Dashboard/api/module.php"
-    sed -i 's/Error connecting to WiFiPineapple.com/Error connecting to GitHub!/' "$ROOT_FS/pineapple/modules/Dashboard/api/module.php"
+    sed -i 's/Error connecting to WiFiPineapple.com/Error connecting to GitHub.com!/' "$ROOT_FS/pineapple/modules/Dashboard/api/module.php"
 
     # fix docs size
     truncate -s 0 "$ROOT_FS/pineapple/modules/Setup/eula.txt"
     truncate -s 0 "$ROOT_FS/pineapple/modules/Setup/license.txt"
+
+
+    echo "[*] Change Community Repositories URL"
+
+    sed -i 's/from Hak5 Community Repositories//' "$ROOT_FS/pineapple/modules/ModuleManager/module.html"
+    sed -i 's/www.wifipineapple.com\/{$device}\/modules/raw.githubusercontent.com\/xchwarze\/wifi-pineapple-modules\/master\/build/' "$ROOT_FS/pineapple/modules/ModuleManager/api/module.php"
+    sed -i 's/\/build"/\/build\/modules.json"/' "$ROOT_FS/pineapple/modules/ModuleManager/api/module.php"
+    sed -i 's/WiFiPineapple.com/GitHub.com/' "$ROOT_FS/pineapple/modules/ModuleManager/api/module.php"
+    sed -i "s/moduleName}' -O/moduleName}.tar.gz' -O/" "$ROOT_FS/pineapple/modules/ModuleManager/api/module.php"
 
 
     echo "[*] Other fixs"
