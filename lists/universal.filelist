@@ -16,7 +16,7 @@
 /etc/init.d/resetssids
 
 /etc/nginx/nginx.conf
-/etc/opkg
+/etc/opkg/customfeeds.conf
 /etc/php7-fpm.d/www.conf
 /etc/pineape
 /etc/pineapple
