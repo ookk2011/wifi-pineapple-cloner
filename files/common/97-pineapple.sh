@@ -2,6 +2,7 @@ device="NANO"
 version=$(cat /etc/pineapple/pineapple_version | head -c 5)
 
 # Make SSH banner have the correct version and device
+eval "sed -i s/VERSION/$version/g /etc/banner"
 eval "sed -i s/DEVICE/$device/g /etc/banner"
 
 if [[ $device == "NANO" ]]; then

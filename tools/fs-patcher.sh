@@ -137,7 +137,6 @@ common_patch () {
     chmod +x "$ROOT_FS/sbin/led"
 
     # fix banner info
-    sed -i 's/VERSION/2.7.0+/g' "$ROOT_FS/etc/banner"
     sed -i 's/\/       /\/ by DSR!/g' "$ROOT_FS/etc/banner"
     sed -i 's/19.07.2/19.07.7/g' "$ROOT_FS/etc/banner"
 }
