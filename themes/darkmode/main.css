@@ -8,8 +8,21 @@ pre, .form-control {
     border: 1px solid #000000;
 }
 
-.logout img {
-    filter: invert(100%);
+.form-control::placeholder {
+    color: #c8c8c8;
+}
+
+.form-control[disabled],
+.form-control[readonly],
+fieldset[disabled] .form-control {
+    background-color: #555;
+}
+
+.logout img,
+.module-icon,
+#accordion .panel-heading .panel-title:after {
+    /* https://codepen.io/sosuke/pen/Pjoqqp */
+    filter: invert(88%) sepia(2%) saturate(11%) hue-rotate(332deg) brightness(91%) contrast(94%);
 }
 
 .module-table > * > tr:nth-child(even) {
@@ -140,7 +153,7 @@ pre, .form-control {
 }
 
 .sidebar .active a {
-    color: #bab1e4;
+    color: #878484;
     font-weight: bold;
 }
 
