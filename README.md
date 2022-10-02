@@ -69,6 +69,12 @@ jffs2reset -y && reboot
 ```
 (Note the IP address must have change and the default password is root).
 
+5. Once installed, you can also change the default theme of the panel if you wish:
+```bash
+wget https://raw.githubusercontent.com/xchwarze/wifi-pineapple-cloner/master/themes/install.sh -O /tmp/theme-install.sh
+chmod +x /tmp/theme-install.sh && /tmp/theme-install.sh darkmode
+```
+
 
 ## Recomended setup
 1. [GL-AR150](https://www.gl-inet.com/products/gl-ar150/) or [GL-AR750S](https://www.gl-inet.com/products/gl-ar750s)
