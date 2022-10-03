@@ -114,12 +114,12 @@ common_patch () {
     sed -i "s/moduleName}' -O/moduleName}.tar.gz' -O/" "$ROOT_FS/pineapple/modules/ModuleManager/api/module.php"
 
 
-    echo "[*] Change out.txt URL"
-
-    sed -i 's/www.wifipineapple.com\/oui.txt/raw.githubusercontent.com\/xchwarze\/wifi-pineapple-cloner\/master\/oui\/oui.txt/' "$ROOT_FS/src/pineapple/js/directives.js"
-    sed -i 's/www.wifipineapple.com\/oui.txt/raw.githubusercontent.com\/xchwarze\/wifi-pineapple-cloner\/master\/oui\/oui.txt/' "$ROOT_FS/src/pineapple/modules/Networking/js/module.js"
-    sed -i 's/www.wifipineapple.com\/oui.txt/raw.githubusercontent.com\/xchwarze\/wifi-pineapple-cloner\/master\/oui\/oui.txt/' "$ROOT_FS/src/pineapple/modules/Networking/api/module.php"
-    sed -i 's/WiFiPineapple.com/GitHub.com/' "$ROOT_FS/src/pineapple/modules/Networking/api/module.php"
+    #echo "[*] Change out.txt URL"
+    #
+    #sed -i 's/www.wifipineapple.com\/oui.txt/raw.githubusercontent.com\/xchwarze\/wifi-pineapple-cloner\/master\/oui\/oui.txt/' "$ROOT_FS/pineapple/js/directives.js"
+    #sed -i 's/www.wifipineapple.com\/oui.txt/raw.githubusercontent.com\/xchwarze\/wifi-pineapple-cloner\/master\/oui\/oui.txt/' "$ROOT_FS/pineapple/modules/Networking/js/module.js"
+    #sed -i 's/www.wifipineapple.com\/oui.txt/raw.githubusercontent.com\/xchwarze\/wifi-pineapple-cloner\/master\/oui\/oui.txt/' "$ROOT_FS/pineapple/modules/Networking/api/module.php"
+    #sed -i 's/WiFiPineapple.com/GitHub.com/' "$ROOT_FS/pineapple/modules/Networking/api/module.php"
 
 
     echo "[*] Other fixs"
