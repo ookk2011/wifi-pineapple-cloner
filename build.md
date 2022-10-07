@@ -1,5 +1,13 @@
 ## Build steps
 
+Note: All these steps are automated in dependencies-install.sh and builder.sh
+```bash
+chmod +x tools/dependencies-install.sh tools/builder.sh
+tools/dependencies-install.sh openwrt-deps
+sudo tools/dependencies-install.sh ubuntu-deps
+tools/builder.sh universal imagebuilder-19.07.7-ar71xx gl-ar750s
+```
+
 1. Unpack firmware for get file system
 ```bash
 # install last version of binwalk first!
