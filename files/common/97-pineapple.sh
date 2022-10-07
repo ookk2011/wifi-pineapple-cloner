@@ -24,14 +24,18 @@ ln -s /usr/lib/libpcap.so.1 /usr/lib/libpcap.so.1.3
 /etc/init.d/autossh stop
 /etc/init.d/autossh disable
 
-# correct opkg sources
+# Enable sshd
+/etc/init.d/sshd enable
+/etc/init.d/sshd start
+
+# Correct opkg sources
 sed -i "s/src\/gz openwrt_core/#/" /etc/opkg/distfeeds.conf
 sed -i "s/src\/gz openwrt_kmods/#/" /etc/opkg/distfeeds.conf
 sed -i "s/src\/gz openwrt_freifunk/#/" /etc/opkg/distfeeds.conf
 sed -i "s/src\/gz openwrt_luci/#/" /etc/opkg/distfeeds.conf
 sed -i "s/src\/gz openwrt_telephony/#/" /etc/opkg/distfeeds.conf
 
-# get valid led value
+# Get valid led value
 PINE_LED=""
 LED_TYPES="wps status system wan"
 LED_LIST=$(ls "/sys/class/leds/")

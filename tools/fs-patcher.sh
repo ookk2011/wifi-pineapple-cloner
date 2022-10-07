@@ -122,10 +122,12 @@ common_patch () {
     #sed -i 's/WiFiPineapple.com/GitHub.com/' "$ROOT_FS/pineapple/modules/Networking/api/module.php"
 
 
-    echo "[*] Other fixs"
+    echo "[*] Change root password to: root"
 
-    # fix default password: root
     sed -i 's/^\(root:\)[^:]*\(:.*\)$/\1$1$3DBtk82B$6EPlkFc9GQrtDwmzKsUn31\2/' "$ROOT_FS/etc/shadow"
+
+
+    echo "[*] Other fixs"
 
     # fix uci-defaults
     cp "$FILES_FOLDER/common/92-system.sh" "$ROOT_FS/etc/uci-defaults/92-system.sh"
