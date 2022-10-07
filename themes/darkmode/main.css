@@ -18,11 +18,11 @@ fieldset[disabled] .form-control {
     background-color: #555;
 }
 
-.logout img,
-.module-icon,
+.chevron,
+.navbar-right.navbar-top-links img,
 #accordion .panel-heading .panel-title:after {
-    /* https://codepen.io/sosuke/pen/Pjoqqp */
-    filter: invert(88%) sepia(2%) saturate(11%) hue-rotate(332deg) brightness(91%) contrast(94%);
+    /* https://angel-rs.github.io/css-color-filter-generator/ */
+    filter: brightness(0) saturate(100%) invert(53%) sepia(0%) saturate(0%) hue-rotate(347deg) brightness(94%) contrast(91%);;
 }
 
 .module-table > * > tr:nth-child(even) {

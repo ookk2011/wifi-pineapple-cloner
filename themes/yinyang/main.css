@@ -1,9 +1,9 @@
-.logout img {
+.navbar-right.navbar-top-links img {
     filter: invert(100%);
 }
 
 .module-table > * > tr:nth-child(even) {
-    background-color: #f5f5f5;
+    background-color: #eee;
 }
 
 .default-cursor {

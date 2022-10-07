@@ -6,7 +6,7 @@ FS_FOLDER="$2"
 declare -a TYPES=("default" "yinyang" "darkmode")
 if [[ "$FS_FOLDER" != "" && ! -d "$FS_FOLDER" ]] || [[ "$THEME" == "" ]] || ! grep -q "$THEME" <<< "${TYPES[*]}"; then
     echo "Run with \"install.sh [THEME] [FS_FOLDER]\""
-    echo "    THEME     -> must be one of these values: nano, tetra, universal"
+    echo "    THEME     -> must be one of these values: default, yinyang, darkmode"
     echo "    FS_FOLDER -> folder containing the fs to use"
 
     exit 1
