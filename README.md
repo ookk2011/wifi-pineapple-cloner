@@ -17,8 +17,9 @@ This project is the result of everything I experienced from 2018 to 2022 to succ
 For this I develop:
 * The lists of files to copy and the script to copy them.
 * A script to patch the filesystem so that it works on any hardware.
-* A completely [updated panel](https://github.com/xchwarze/wifi-pineapple-panel) with fixes and improvements.
-* And a new [Module Repository](https://github.com/xchwarze/wifi-pineapple-modules).
+* Completely [updated panel](https://github.com/xchwarze/wifi-pineapple-panel) with fixes and improvements.
+* New [module repository](https://github.com/xchwarze/wifi-pineapple-modules).
+* New modules: [PMKIDAttack](https://github.com/xchwarze/wifi-pineapple-modules/tree/master/src/PMKIDAttack) and [Terminal](https://github.com/xchwarze/wifi-pineapple-modules/tree/master/src/Terminal)
 
 
 ## Builds
