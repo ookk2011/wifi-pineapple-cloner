@@ -1,6 +1,6 @@
 ## Build steps
 
-Note: All these steps are automated in dependencies-install.sh and builder.sh
+Note: All these steps are automated in `dependencies-install.sh` and `builder.sh`
 ```bash
 chmod +x tools/dependencies-install.sh tools/builder.sh
 tools/dependencies-install.sh openwrt-deps
@@ -69,12 +69,12 @@ sysupgrade -n -F /tmp/gl-ar150-pineapple-nano.bin
 
 ## Important notes
 
-0. The original hardware is designed to have 2 Wi-Fi cards and have at least 2 gigabytes of disk space!
+1. The original hardware is designed to have 2 Wi-Fi cards and have at least 2 gigabytes of disk space!
 To meet these requirements you will have to:
 * Add a flash drive
 * In the case of the NANO, add a second Wi-Fi adapter. You can connect both with a usb hub!
 
-1. As the tetra is intended to be used on hardware with 32MB of flash it is recommended to use it with a pendrive.
+2. As the tetra is intended to be used on hardware with 32MB of flash it is recommended to use it with a pendrive.
 The steps for this would be:
 * The pendrive has to be formatted from the pineapple panel `Advanced > USB & Storage > Format SD Card`
 * Connect the pinneaple to the internet and restart it
@@ -89,11 +89,11 @@ opkg update && opkg --dest sd install python-logging python-openssl python-sqlit
 However this is completely optional because pineapple will work fine without those packages.
 Although we would need the pendrive to be able to install the modules...!
 
-2. The original pineapple binaries are compiled with mips24kc and BE endianness.
+3. The original pineapple binaries are compiled with mips24kc and BE endianness.
 So your target hardware must support the instructionset with this endianness. Check this in the [openwrt list of hardware](https://openwrt.org/docs/techref/instructionset/mips_24kc).
 <br>
 
-3. The original pineapple binaries are compiled with SSP ([Stack-Smashing Protection](https://openwrt.org/docs/guide-user/security/security-features)) 
+4. The original pineapple binaries are compiled with SSP ([Stack-Smashing Protection](https://openwrt.org/docs/guide-user/security/security-features)) 
 Your version has to support it, so as not to have this type of errors:
 ```bash
 [    7.383577] kmodloader: loading kernel modules from /etc/modules-boot.d/*
@@ -102,7 +102,7 @@ Your version has to support it, so as not to have this type of errors:
 ```
 <br>
 
-4. WiFi Pineapple use a modified version of:
+5. WiFi Pineapple use a modified version of:
 ```bash
 /lib/netifd/wireless/mac80211.sh
 /lib/netifd/hostapd.sh
@@ -111,7 +111,7 @@ Your version has to support it, so as not to have this type of errors:
 You may have to make yours based on these.
 <br>
 
-5. Busybox applets list:
+6. Busybox applets list:
 ```
 # openwrt: used 118 applets
 [ [[ ash awk basename brctl bunzip2 bzcat cat chgrp chmod chown chroot clear cmp cp crond crontab cut date dd df dirname dmesg du echo egrep env expr false fgrep find flock free fsync grep gunzip gzip halt head hexdump hwclock id ifconfig ip kill killall less ln lock logger login ls md5sum mkdir mkfifo mknod mkswap mktemp mount mv nc netmsg netstat nice nslookup ntpd passwd pgrep pidof ping ping6 pivot_root poweroff printf ps pwd readlink reboot reset rm rmdir route sed seq sh sha256sum sleep sort start-stop-daemon strings swapoff swapon switch_root sync sysctl tail tar tee test time top touch tr traceroute traceroute6 true udhcpc umount uname uniq uptime vi wc which xargs yes zcat
@@ -122,6 +122,7 @@ You may have to make yours based on these.
 # tetra: used 120 applets
 [ [[ ash awk basename brctl bunzip2 bzcat cat chgrp chmod chown chroot clear cmp cp crond crontab cut date dd df dirname dmesg du echo egrep env expr false fdisk fgrep find flock free fsync grep gunzip gzip halt head hexdump hwclock id ifconfig ip kill killall less ln lock logger login ls md5sum mkdir mkfifo mknod mkswap mktemp mount mv nc netmsg netstat nice nslookup ntpd passwd pgrep pidof ping ping6 pivot_root poweroff printf ps pwd readlink reboot reset rm rmdir route sed seq sh sha256sum sleep sort start-stop-daemon strings swapoff swapon switch_root sync sysctl tail tar tee test time top touch tr traceroute traceroute6 true udhcpc umount uname uniq uptime uuencode vi wc which xargs yes zcat
 ```
+
 Diferences with Openwrt Busybox build
 ```
 Nano build
@@ -134,5 +135,6 @@ Tetra build
 Remove: (nothing was removed)
 Add: fdisk uuencode
 ```
+
 If you don't want to do a custom Busybox build you can install `fdisk` and `mpack`.
-Don't forget to refactor the uses of uuencode with mpack! (reporting script)<br>
+Don't forget to refactor the uses of `uuencode` with `mpack`! (reporting script)<br>
