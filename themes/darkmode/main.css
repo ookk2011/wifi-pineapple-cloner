@@ -103,7 +103,7 @@ fieldset[disabled] .form-control {
 }
 
 .log-pre {
-    max-height: 300px;
+    max-height: 30vw;
 }
 
 .btn-fixed-length {

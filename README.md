@@ -77,6 +77,7 @@ chmod +x /tmp/theme-install.sh && /tmp/theme-install.sh darkmode
 
 
 ## Recomended setup
+
 1. [GL-AR150](https://www.gl-inet.com/products/gl-ar150/) or [GL-AR750S](https://www.gl-inet.com/products/gl-ar750s)
 2. USB 2.0 [2 ports hub](https://www.ebay.com/itm/144520475350)
 2. Generic [RT5370 WIFI adapter](https://www.ebay.com/itm/284904442887) or [MT7612U WIFI adapter](https://www.ebay.com/itm/175219205235) **you're really going to need this on hardware that doesn't have two wifi adapters**
@@ -84,10 +85,7 @@ chmod +x /tmp/theme-install.sh && /tmp/theme-install.sh darkmode
 
 
 ## If you want to collaborate with hardware 
-To develop the next versions of this project I need:
 
-For TETRA clone project:
-https://www.gl-inet.com/products/gl-ar750s/#specs
+Those who want to help buy testing hardware or just give me a tip can do so by sending donations to my binance account:
 
-For "WiFi Pineapple Mark 6.5" project:
-https://www.gl-inet.com/products/gl-mt1300/#specs
+![binance-qr](assets/binance-qr.png)
