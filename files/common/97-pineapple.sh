@@ -24,10 +24,6 @@ ln -s /usr/lib/libpcap.so.1 /usr/lib/libpcap.so.1.3
 /etc/init.d/autossh stop
 /etc/init.d/autossh disable
 
-# Enable sshd
-/etc/init.d/sshd enable
-/etc/init.d/sshd start
-
 # Correct opkg sources
 sed -i "s/src\/gz openwrt_core/#/" /etc/opkg/distfeeds.conf
 sed -i "s/src\/gz openwrt_kmods/#/" /etc/opkg/distfeeds.conf

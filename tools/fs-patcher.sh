@@ -122,6 +122,11 @@ common_patch () {
     #sed -i 's/WiFiPineapple.com/GitHub.com/' "$ROOT_FS/pineapple/modules/Networking/api/module.php"
 
 
+    echo "[*] Enable ssh by default"
+
+    sed -i 's/\/etc\/init.d\/sshd/#\/etc\/init.d\/sshd/' "$ROOT_FS/etc/rc.local"
+
+
     echo "[*] Change root password to: root"
 
     sed -i 's/^\(root:\)[^:]*\(:.*\)$/\1$1$3DBtk82B$6EPlkFc9GQrtDwmzKsUn31\2/' "$ROOT_FS/etc/shadow"
