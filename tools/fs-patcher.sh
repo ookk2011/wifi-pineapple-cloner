@@ -129,7 +129,8 @@ common_patch () {
 
     echo "[*] Change root password to: root"
 
-    sed -i 's/^\(root:\)[^:]*\(:.*\)$/\1$1$3DBtk82B$6EPlkFc9GQrtDwmzKsUn31\2/' "$ROOT_FS/etc/shadow"
+    #sed -i 's/^\(root:\)[^:]*\(:.*\)$/\1$1$3DBtk82B$6EPlkFc9GQrtDwmzKsUn31\2/' "$ROOT_FS/etc/shadow"
+    cp "$FILES_FOLDER/common/shadow" "$ROOT_FS/etc/shadow"
 
 
     echo "[*] Other fixs"
