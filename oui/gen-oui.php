@@ -21,11 +21,13 @@ foreach (file('oui.original') as $line) {
 	if (strpos($line, $flag) !== false){
 		$total++;
 		$parts = explode($flag, $line);
-		$output[] = trim($parts[0]) . ucwords(strtolower(trim($parts[1])));
+		$output[] = trim($parts[0]) . ucwords(mb_strtolower(trim($parts[1])));
 	}
 }
 
 sort($output);
+$output[] = '';
+
 file_put_contents('oui.txt', implode("\n", $output));
 unlink('oui.original');
 
