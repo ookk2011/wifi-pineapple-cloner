@@ -107,19 +107,19 @@ common_patch () {
 
     echo "[*] Change Community Repositories URL"
 
-    sed -i 's/from Hak5 Community Repositories//' "$ROOT_FS/pineapple/modules/ModuleManager/module.html"
     sed -i 's/www.wifipineapple.com\/{$device}\/modules/raw.githubusercontent.com\/xchwarze\/wifi-pineapple-modules\/master\/build/' "$ROOT_FS/pineapple/modules/ModuleManager/api/module.php"
     sed -i 's/\/build"/\/build\/modules.json"/' "$ROOT_FS/pineapple/modules/ModuleManager/api/module.php"
-    sed -i 's/WiFiPineapple.com/GitHub.com/' "$ROOT_FS/pineapple/modules/ModuleManager/api/module.php"
     sed -i "s/moduleName}' -O/moduleName}.tar.gz' -O/" "$ROOT_FS/pineapple/modules/ModuleManager/api/module.php"
+    sed -i 's/from Hak5 Community Repositories//' "$ROOT_FS/pineapple/modules/ModuleManager/module.html"
+    sed -i 's/WiFiPineapple.com/GitHub.com/' "$ROOT_FS/pineapple/modules/ModuleManager/api/module.php"
 
 
-    #echo "[*] Change out.txt URL"
-    #
-    #sed -i 's/www.wifipineapple.com\/oui.txt/raw.githubusercontent.com\/xchwarze\/wifi-pineapple-cloner\/master\/oui\/oui.txt/' "$ROOT_FS/pineapple/js/directives.js"
-    #sed -i 's/www.wifipineapple.com\/oui.txt/raw.githubusercontent.com\/xchwarze\/wifi-pineapple-cloner\/master\/oui\/oui.txt/' "$ROOT_FS/pineapple/modules/Networking/js/module.js"
-    #sed -i 's/www.wifipineapple.com\/oui.txt/raw.githubusercontent.com\/xchwarze\/wifi-pineapple-cloner\/master\/oui\/oui.txt/' "$ROOT_FS/pineapple/modules/Networking/api/module.php"
-    #sed -i 's/WiFiPineapple.com/GitHub.com/' "$ROOT_FS/pineapple/modules/Networking/api/module.php"
+    echo "[*] Change out.txt URL"
+
+    sed -i 's/www.wifipineapple.com\/oui.txt/raw.githubusercontent.com\/xchwarze\/wifi-pineapple-cloner\/master\/oui\/oui.txt/' "$ROOT_FS/pineapple/js/services.js"
+    sed -i 's/www.wifipineapple.com\/oui.txt/raw.githubusercontent.com\/xchwarze\/wifi-pineapple-cloner\/master\/oui\/oui.txt/' "$ROOT_FS/pineapple/modules/Networking/api/module.php"
+    sed -i 's/WiFiPineapple.com/GitHub.com/' "$ROOT_FS/pineapple/modules/Networking/module.html"
+    sed -i 's/WiFiPineapple.com/GitHub.com/' "$ROOT_FS/pineapple/modules/Networking/api/module.php"
 
 
     echo "[*] Enable ssh by default"
