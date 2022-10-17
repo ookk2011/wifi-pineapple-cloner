@@ -35,7 +35,7 @@ install_openwrt_deps () {
     echo "    [+] Fix missing dependencies"
     wget -q "https://archive.openwrt.org/releases/$OPENWRT_VERSION/packages/$PACKAGES_ARQ/base/libubus20191227_2019-12-27-041c9d1c-1_$PACKAGES_ARQ.ipk" -O "$FOLDER_NAME/packages/libubus20191227_2019-12-27-041c9d1c-1_$PACKAGES_ARQ.ipk"
 
-    # Correct opkg feeds
+    # correct opkg feeds
     echo "    [+] Correct opkg feeds"
     sed -i "s/src\/gz openwrt_freifunk/#/" "$FOLDER_NAME/repositories.conf"
     sed -i "s/src\/gz openwrt_luci/#/" "$FOLDER_NAME/repositories.conf"

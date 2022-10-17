@@ -43,10 +43,4 @@ if [[ $PINE_LED != "" ]]; then
     echo 255 > "/sys/class/leds/$PINE_LED/brightness"
 fi
 
-# Disable setup in "keep settings" scenario
-SETTINGS=$(ls "/etc/pineapple" | wc -l)
-if [[ "$SETTINGS" -gt 13 ]]; then
-    rm -rf /pineapple/modules/Setup /pineapple/api/Setup.php /etc/pineapple/setupRequired
-fi
-
 exit 0
