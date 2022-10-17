@@ -1,6 +1,6 @@
 ![Project Logo](https://i.imgur.com/a1HXxMm.png)
 
-# Universal Wifi pineapple hardware cloner v2
+# Universal Wifi pineapple hardware cloner v3
 
 The Pineapple NANO and TETRA were excellent security hardware but in 2020 they reached their end of life.<br>
 So to give a new life to this platform in more modern hardware, I've made these scripts.
@@ -18,8 +18,8 @@ For this I develop:
 * The lists of files to copy and the script to copy them.
 * A script to patch the filesystem so that it works on any hardware.
 * Completely [updated panel](https://github.com/xchwarze/wifi-pineapple-panel) with fixes and improvements.
-* New [module repository](https://github.com/xchwarze/wifi-pineapple-modules).
-* New modules: [PMKIDAttack](https://github.com/xchwarze/wifi-pineapple-modules/tree/master/src/PMKIDAttack) and [Terminal](https://github.com/xchwarze/wifi-pineapple-modules/tree/master/src/Terminal)
+* New [module repository](https://github.com/xchwarze/wifi-pineapple-community/tree/main/modules).
+* New modules: [PMKIDAttack](https://github.com/xchwarze/wifi-pineapple-community/tree/main/src/PMKIDAttack) and [Terminal](https://github.com/xchwarze/wifi-pineapple-community/tree/main/src/Terminal)
 
 
 ## Builds
@@ -29,7 +29,7 @@ You can find the complete steps to build this project in [this document](build.m
 
 ## Supported devices
 
-There are 125 devices supported by the project. You can see the full [list here](devices.md).
+There are 211 devices supported by the project. You can see the full [list here](devices.md).
 <br>
 
 Also I made a second repo for [downloads](https://github.com/xchwarze/wifi-pineapple-cloner-builds) where you can find the firmwares already made for the most common devices of the Supported devices list.
@@ -72,7 +72,7 @@ jffs2reset -y && reboot
 
 5. Once installed, you can also change the default theme of the panel if you wish:
 ```bash
-wget https://raw.githubusercontent.com/xchwarze/wifi-pineapple-cloner/master/themes/install.sh -O /tmp/theme-install.sh
+wget https://raw.githubusercontent.com/xchwarze/wifi-pineapple-community/main/themes/install.sh -O /tmp/theme-install.sh
 chmod +x /tmp/theme-install.sh && /tmp/theme-install.sh darkmode
 ```
 

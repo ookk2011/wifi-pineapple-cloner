@@ -2,10 +2,10 @@
 
 Note: All these steps are automated in `dependencies-install.sh` and `builder.sh`
 ```bash
-chmod +x tools/dependencies-install.sh tools/builder.sh
-tools/dependencies-install.sh openwrt-deps
+chmod +x tools/*.sh
+tools/dependencies-install.sh openwrt-deps-mips
 sudo tools/dependencies-install.sh ubuntu-deps
-tools/builder.sh universal imagebuilder-19.07.7-ar71xx gl-ar750s
+tools/builder.sh mips universal imagebuilder-19.07.7-ar71xx-generic gl-ar750s
 ```
 
 1. Unpack firmware for get file system

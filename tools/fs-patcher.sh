@@ -1,15 +1,17 @@
 #!/bin/bash
 # by DSR! from https://github.com/xchwarze/wifi-pineapple-cloner
 
-ROOT_FS="$1"
+ARCHITECTURE="$1"
 FLAVOR="$2"
+ROOT_FS="$3"
+declare -a ARCHITECTURE_TYPES=("mips" "mipsel")
+declare -a FLAVOR_TYPES=("nano" "tetra" "universal")
 FILES_FOLDER="$(realpath $(dirname $0))/../files"
-ARCHITECTURE="mips"
-declare -a TYPES=("nano" "tetra" "universal")
-if [[ ! -d "$ROOT_FS" ]] || ! grep -q "$FLAVOR" <<< "${TYPES[*]}"; then
-    echo "Run with \"fs-patcher.sh [FS_FOLDER] [FLAVOR]\""
-    echo "    FS_FOLDER -> folder containing the fs to use"
-    echo "    FLAVOR    -> must be one of these values: nano, tetra, universal"
+if [[ ! -d "$ROOT_FS" ]] || ! grep -q "$ARCHITECTURE" <<< "${ARCHITECTURE_TYPES[*]}" || ! grep -q "$FLAVOR" <<< "${FLAVOR_TYPES[*]}"; then
+    echo "Run with \"fs-patcher.sh [ARCHITECTURE] [FLAVOR] [FS_FOLDER]\""
+    echo "    ARCHITECTURE  -> must be one of these values: mips, mipsel"
+    echo "    FLAVOR        -> must be one of these values: nano, tetra, universal"
+    echo "    FS_FOLDER     -> folder containing the fs to use"
 
     exit 1
 fi
@@ -45,11 +47,9 @@ common_patch () {
     #sed -i 's/..led (C) Hak5 2018/device="NANO"/' "$ROOT_FS/sbin/led"
 
 
-    #echo "[*] Leds path fix"
-    #
-    #sed -i 's/wifi-pineapple-nano:blue:system/gl-ar150:orange:wlan/' "$ROOT_FS/sbin/led"
-    #sed -i 's/wifi-pineapple-nano:blue:system/gl-ar150:orange:wlan/' "$ROOT_FS/etc/uci-defaults/92-system.sh"
-    #sed -i 's/wifi-pineapple-nano:blue:system/gl-ar150:orange:wlan/' "$ROOT_FS/etc/uci-defaults/97-pineapple.sh"
+    echo "[*] Correct OPKG feed url"
+
+    cp "$FILES_FOLDER/$ARCHITECTURE/customfeeds.conf" "$ROOT_FS/etc/opkg/customfeeds.conf"
 
 
     echo "[*] Pineapd fix"
@@ -73,15 +73,15 @@ common_patch () {
     chmod +x "$ROOT_FS/usr/sbin/wpad"
 
 
-    echo "[*] Panel fixs"
+    echo "[*] Panel fixes and improvements"
 
     # update panel code
     rm -rf "$ROOT_FS/pineapple"
-    wget -q https://github.com/xchwarze/wifi-pineapple-panel/archive/refs/heads/master.zip -O updated-panel.zip
+    wget -q https://github.com/xchwarze/wifi-pineapple-panel/archive/refs/heads/wpc.zip -O updated-panel.zip
     unzip -q updated-panel.zip
 
-    cp -r wifi-pineapple-panel-master/src/* "$ROOT_FS/"
-    rm -rf wifi-pineapple-panel-master updated-panel.zip
+    cp -r wifi-pineapple-panel-wpc/src/* "$ROOT_FS/"
+    rm -rf wifi-pineapple-panel-wpc updated-panel.zip
 
     chmod +x "$ROOT_FS/etc/init.d/pineapd"
     chmod +x "$ROOT_FS/etc/uci-defaults/93-pineap.sh"
@@ -95,31 +95,9 @@ common_patch () {
     cp "$FILES_FOLDER/common/panel/favicon-16x16.png" "$ROOT_FS/pineapple/img/favicon-16x16.png"
     cp "$FILES_FOLDER/common/panel/favicon-32x32.png" "$ROOT_FS/pineapple/img/favicon-32x32.png"
 
-    sed -i 's/>Bulletins</>News</' "$ROOT_FS/pineapple/modules/Dashboard/module.html"
-    sed -i 's/Load Bulletins from Hak5/Load project news!/' "$ROOT_FS/pineapple/modules/Dashboard/module.html"
-    sed -i 's/www.wifipineapple.com\/{$device}\/bulletin/raw.githubusercontent.com\/xchwarze\/wifi-pineapple-cloner\/master\/updates.json/' "$ROOT_FS/pineapple/modules/Dashboard/api/module.php"
-    sed -i 's/Error connecting to WiFiPineapple.com/Error connecting to GitHub.com!/' "$ROOT_FS/pineapple/modules/Dashboard/api/module.php"
-
     # fix docs size
     truncate -s 0 "$ROOT_FS/pineapple/modules/Setup/eula.txt"
     truncate -s 0 "$ROOT_FS/pineapple/modules/Setup/license.txt"
-
-
-    echo "[*] Change Community Repositories URL"
-
-    sed -i 's/www.wifipineapple.com\/{$device}\/modules/raw.githubusercontent.com\/xchwarze\/wifi-pineapple-modules\/master\/build/' "$ROOT_FS/pineapple/modules/ModuleManager/api/module.php"
-    sed -i 's/\/build"/\/build\/modules.json"/' "$ROOT_FS/pineapple/modules/ModuleManager/api/module.php"
-    sed -i "s/moduleName}' -O/moduleName}.tar.gz' -O/" "$ROOT_FS/pineapple/modules/ModuleManager/api/module.php"
-    sed -i 's/from Hak5 Community Repositories//' "$ROOT_FS/pineapple/modules/ModuleManager/module.html"
-    sed -i 's/WiFiPineapple.com/GitHub.com/' "$ROOT_FS/pineapple/modules/ModuleManager/api/module.php"
-
-
-    echo "[*] Change out.txt URL"
-
-    sed -i 's/www.wifipineapple.com\/oui.txt/raw.githubusercontent.com\/xchwarze\/wifi-pineapple-cloner\/master\/oui\/oui.txt/' "$ROOT_FS/pineapple/js/services.js"
-    sed -i 's/www.wifipineapple.com\/oui.txt/raw.githubusercontent.com\/xchwarze\/wifi-pineapple-cloner\/master\/oui\/oui.txt/' "$ROOT_FS/pineapple/modules/Networking/api/module.php"
-    sed -i 's/WiFiPineapple.com/GitHub.com/' "$ROOT_FS/pineapple/modules/Networking/module.html"
-    sed -i 's/WiFiPineapple.com/GitHub.com/' "$ROOT_FS/pineapple/modules/Networking/api/module.php"
 
 
     echo "[*] Enable ssh by default"
@@ -214,7 +192,7 @@ universal_patch () {
 
 
 # implement....
-echo "Universal Wifi pineapple hardware cloner"
+echo "Universal Wifi pineapple hardware cloner v3"
 echo "by DSR!"
 echo ""
 
