@@ -66,6 +66,23 @@ install_openwrt_deps_mips () {
     wget -q "https://archive.openwrt.org/releases/$OPENWRT_VERSION/packages/mips_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk" -O "imagebuilder-$OPENWRT_VERSION-ath79/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk"
     wget -q "https://archive.openwrt.org/releases/$OPENWRT_VERSION/packages/mips_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk" -O "imagebuilder-$OPENWRT_VERSION-lantiq-xrx200/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk"
 
+    # Correct opkg sources
+    sed -i "s/src\/gz openwrt_freifunk/#/" "imagebuilder-$OPENWRT_VERSION-ar71xx-generic/repositories.conf"
+    sed -i "s/src\/gz openwrt_luci/#/" "imagebuilder-$OPENWRT_VERSION-ar71xx-generic/repositories.conf"
+    sed -i "s/src\/gz openwrt_telephony/#/" "imagebuilder-$OPENWRT_VERSION-ar71xx-generic/repositories.conf"
+
+    sed -i "s/src\/gz openwrt_freifunk/#/" "imagebuilder-$OPENWRT_VERSION-ar71xx-nand/repositories.conf"
+    sed -i "s/src\/gz openwrt_luci/#/" "imagebuilder-$OPENWRT_VERSION-ar71xx-nand/repositories.conf"
+    sed -i "s/src\/gz openwrt_telephony/#/" "imagebuilder-$OPENWRT_VERSION-ar71xx-nand/repositories.conf"
+
+    sed -i "s/src\/gz openwrt_freifunk/#/" "imagebuilder-$OPENWRT_VERSION-ath79/repositories.conf"
+    sed -i "s/src\/gz openwrt_luci/#/" "imagebuilder-$OPENWRT_VERSION-ath79/repositories.conf"
+    sed -i "s/src\/gz openwrt_telephony/#/" "imagebuilder-$OPENWRT_VERSION-ath79/repositories.conf"
+
+    sed -i "s/src\/gz openwrt_freifunk/#/" "imagebuilder-$OPENWRT_VERSION-lantiq-xrx200/repositories.conf"
+    sed -i "s/src\/gz openwrt_luci/#/" "imagebuilder-$OPENWRT_VERSION-lantiq-xrx200/repositories.conf"
+    sed -i "s/src\/gz openwrt_telephony/#/" "imagebuilder-$OPENWRT_VERSION-lantiq-xrx200/repositories.conf"
+
     printf "Install script end!\n"
 }
 
@@ -105,6 +122,19 @@ install_openwrt_deps_mipsel () {
     wget -q "https://archive.openwrt.org/releases/$OPENWRT_VERSION/packages/mipsel_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mipsel_24kc.ipk" -O "imagebuilder-$OPENWRT_VERSION-ramips-mt7620/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk"
     wget -q "https://archive.openwrt.org/releases/$OPENWRT_VERSION/packages/mipsel_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mipsel_24kc.ipk" -O "imagebuilder-$OPENWRT_VERSION-ramips-mt7621/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk"
     wget -q "https://archive.openwrt.org/releases/$OPENWRT_VERSION/packages/mipsel_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mipsel_24kc.ipk" -O "imagebuilder-$OPENWRT_VERSION-ramips-mt76x8/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk"
+
+    # Correct opkg sources
+    sed -i "s/src\/gz openwrt_freifunk/#/" "imagebuilder-$OPENWRT_VERSION-ramips-mt7620/repositories.conf"
+    sed -i "s/src\/gz openwrt_luci/#/" "imagebuilder-$OPENWRT_VERSION-ramips-mt7620/repositories.conf"
+    sed -i "s/src\/gz openwrt_telephony/#/" "imagebuilder-$OPENWRT_VERSION-ramips-mt7620/repositories.conf"
+
+    sed -i "s/src\/gz openwrt_freifunk/#/" "imagebuilder-$OPENWRT_VERSION-ramips-mt7621/repositories.conf"
+    sed -i "s/src\/gz openwrt_luci/#/" "imagebuilder-$OPENWRT_VERSION-ramips-mt7621/repositories.conf"
+    sed -i "s/src\/gz openwrt_telephony/#/" "imagebuilder-$OPENWRT_VERSION-ramips-mt7621/repositories.conf"
+
+    sed -i "s/src\/gz openwrt_freifunk/#/" "imagebuilder-$OPENWRT_VERSION-ramips-mt76x8/repositories.conf"
+    sed -i "s/src\/gz openwrt_luci/#/" "imagebuilder-$OPENWRT_VERSION-ramips-mt76x8/repositories.conf"
+    sed -i "s/src\/gz openwrt_telephony/#/" "imagebuilder-$OPENWRT_VERSION-ramips-mt76x8/repositories.conf"
 
     printf "Install script end!\n"
 }

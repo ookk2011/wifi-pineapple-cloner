@@ -67,10 +67,12 @@ common_patch () {
     cp "$FILES_FOLDER/common/karma/hostapd.sh" "$ROOT_FS/lib/netifd/hostapd.sh"
     cp "$FILES_FOLDER/$ARCHITECTURE/hostapd_cli" "$ROOT_FS/usr/sbin/hostapd_cli"
     cp "$FILES_FOLDER/$ARCHITECTURE/wpad" "$ROOT_FS/usr/sbin/wpad"
+    cp "$FILES_FOLDER/$ARCHITECTURE/libwifi.so" "$ROOT_FS/usr/lib/libwifi.so"
     chmod +x "$ROOT_FS/lib/netifd/wireless/mac80211.sh"
     chmod +x "$ROOT_FS/lib/netifd/hostapd.sh"
     chmod +x "$ROOT_FS/usr/sbin/hostapd_cli"
     chmod +x "$ROOT_FS/usr/sbin/wpad"
+    chmod +x "$ROOT_FS/usr/lib/libwifi.so"
 
 
     echo "[*] Panel fixes and improvements"
@@ -146,6 +148,9 @@ nano_patch () {
     # Panel changes
     sed -i "s/\$data = file_get_contents('\/proc\/cpuinfo')/return 'nano'/" "$ROOT_FS/pineapple/api/pineapple.php"
     sed -i "s/exec(\"cat \/proc\/cpuinfo | grep 'machine'\")/'nano'/" "$ROOT_FS/usr/bin/pineapple/site_survey"
+
+    # fix banner info
+    sed -i 's/DEVICE/NANO/' "$ROOT_FS/etc/banner"
 }
 
 tetra_patch () {
