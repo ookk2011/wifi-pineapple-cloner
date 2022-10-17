@@ -2,8 +2,45 @@
 # by DSR! from https://github.com/xchwarze/wifi-pineapple-cloner
 
 OPENWRT_VERSION="19.07.7"
+OPENWRT_BASE_URL="https://downloads.openwrt.org/releases/$OPENWRT_VERSION/targets"
+declare -a OPENWRT_MIPS_TARGET_LIST=(
+    "ar71xx-generic" "ar71xx-nand" "ath79-generic" "lantiq-xrx200"
+)
+declare -a OPENWRT_MIPSEL_TARGET_LIST=(
+    "ramips-mt7620" "ramips-mt7621" "ramips-mt76x8"
+)
 
+install_openwrt_deps () {
+    TARGET="$1"
+    PACKAGES_ARQ="$2"
 
+    FOLDER_NAME="imagebuilder-$OPENWRT_VERSION-$TARGET"
+    ORIGINAL_FOLDER_NAME="openwrt-imagebuilder-$OPENWRT_VERSION-$TARGET.Linux-x86_64"
+    FILE="$FOLDER_NAME.tar.xz"
+
+    # download imagebuilder
+    if [ ! -f "$FILE" ]; then
+        echo "    [+] Downloading imagebuilder..."
+        TYPE=$(echo $TARGET | sed "s/-/\//g")
+        wget -q "$OPENWRT_BASE_URL/$TYPE/$ORIGINAL_FOLDER_NAME.tar.xz" -O "$FILE"
+    fi
+
+    # install...
+    echo "    [+] Install imagebuilder..."
+    rm -rf "$FOLDER_NAME"
+    tar xJf "$FILE"
+    mv "$ORIGINAL_FOLDER_NAME" "$FOLDER_NAME"
+
+    # fix imagebuilder problems
+    echo "    [+] Fix missing dependencies"
+    wget -q "https://archive.openwrt.org/releases/$OPENWRT_VERSION/packages/$PACKAGES_ARQ/base/libubus20191227_2019-12-27-041c9d1c-1_$PACKAGES_ARQ.ipk" -O "$FOLDER_NAME/packages/libubus20191227_2019-12-27-041c9d1c-1_$PACKAGES_ARQ.ipk"
+
+    # Correct opkg feeds
+    echo "    [+] Correct opkg feeds"
+    sed -i "s/src\/gz openwrt_freifunk/#/" "$FOLDER_NAME/repositories.conf"
+    sed -i "s/src\/gz openwrt_luci/#/" "$FOLDER_NAME/repositories.conf"
+    sed -i "s/src\/gz openwrt_telephony/#/" "$FOLDER_NAME/repositories.conf"
+}
 
 install_ubuntu_deps () {
     printf "Install ubuntu deps...\n"
@@ -16,127 +53,31 @@ install_ubuntu_deps () {
     git clone https://github.com/ReFirmLabs/binwalk
     cd binwalk && sudo python3 setup.py install && sudo ./deps.sh
 
-    printf "Install script end!\n"
+    printf "\nInstall script end!\n"
 }
 
 install_openwrt_deps_mips () {
-    printf "Install openwrt deps...\n"
+    printf "Install OpenWrt MIPS deps...\n"
     printf "******************************\n"
 
-    # download imagebuilder
-    if [ ! -f "imagebuilder-$OPENWRT_VERSION-ar71xx-generic.tar.xz" ]; then
-        wget "https://downloads.openwrt.org/releases/$OPENWRT_VERSION/targets/ar71xx/generic/openwrt-imagebuilder-$OPENWRT_VERSION-ar71xx-generic.Linux-x86_64.tar.xz" -O "imagebuilder-$OPENWRT_VERSION-ar71xx-generic.tar.xz"
-    fi
-
-    rm -rf "imagebuilder-$OPENWRT_VERSION-ar71xx-generic"
-    tar xJf "imagebuilder-$OPENWRT_VERSION-ar71xx-generic.tar.xz"
-    mv "openwrt-imagebuilder-$OPENWRT_VERSION-ar71xx-generic.Linux-x86_64" "imagebuilder-$OPENWRT_VERSION-ar71xx-generic"
-
-
-    if [ ! -f "imagebuilder-$OPENWRT_VERSION-ar71xx-nand.tar.xz" ]; then
-        wget "https://downloads.openwrt.org/releases/$OPENWRT_VERSION/targets/ar71xx/nand/openwrt-imagebuilder-$OPENWRT_VERSION-ar71xx-nand.Linux-x86_64.tar.xz" -O "imagebuilder-$OPENWRT_VERSION-ar71xx-nand.tar.xz"
-    fi
-
-    rm -rf "imagebuilder-$OPENWRT_VERSION-ar71xx-nand"
-    tar xJf "imagebuilder-$OPENWRT_VERSION-ar71xx-nand.tar.xz"
-    mv "openwrt-imagebuilder-$OPENWRT_VERSION-ar71xx-nand.Linux-x86_64" "imagebuilder-$OPENWRT_VERSION-ar71xx-nand"
-
-
-    if [ ! -f "imagebuilder-$OPENWRT_VERSION-ath79.tar.xz" ]; then
-        wget "https://downloads.openwrt.org/releases/$OPENWRT_VERSION/targets/ath79/generic/openwrt-imagebuilder-$OPENWRT_VERSION-ath79-generic.Linux-x86_64.tar.xz" -O "imagebuilder-$OPENWRT_VERSION-ath79.tar.xz"
-    fi
-
-    rm -rf "imagebuilder-$OPENWRT_VERSION-ath79"
-    tar xJf "imagebuilder-$OPENWRT_VERSION-ath79.tar.xz"
-    mv "openwrt-imagebuilder-$OPENWRT_VERSION-ath79-generic.Linux-x86_64" "imagebuilder-$OPENWRT_VERSION-ath79"
-
-
-    if [ ! -f "imagebuilder-$OPENWRT_VERSION-lantiq-xrx200.tar.xz" ]; then
-        wget "https://downloads.openwrt.org/releases/$OPENWRT_VERSION/targets/lantiq/xrx200/openwrt-imagebuilder-$OPENWRT_VERSION-lantiq-xrx200.Linux-x86_64.tar.xz" -O "imagebuilder-$OPENWRT_VERSION-lantiq-xrx200.tar.xz"
-    fi
-
-    rm -rf "imagebuilder-$OPENWRT_VERSION-lantiq-xrx200"
-    tar xJf "imagebuilder-$OPENWRT_VERSION-lantiq-xrx200.tar.xz"
-    mv "openwrt-imagebuilder-$OPENWRT_VERSION-lantiq-xrx200.Linux-x86_64" "imagebuilder-$OPENWRT_VERSION-lantiq-xrx200"
-
-
-    # fix imagebuilder problems
-    wget -q "https://archive.openwrt.org/releases/$OPENWRT_VERSION/packages/mips_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk" -O "imagebuilder-$OPENWRT_VERSION-ar71xx-generic/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk"
-    wget -q "https://archive.openwrt.org/releases/$OPENWRT_VERSION/packages/mips_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk" -O "imagebuilder-$OPENWRT_VERSION-ar71xx-nand/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk"
-    wget -q "https://archive.openwrt.org/releases/$OPENWRT_VERSION/packages/mips_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk" -O "imagebuilder-$OPENWRT_VERSION-ath79/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk"
-    wget -q "https://archive.openwrt.org/releases/$OPENWRT_VERSION/packages/mips_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk" -O "imagebuilder-$OPENWRT_VERSION-lantiq-xrx200/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk"
-
-    # Correct opkg sources
-    sed -i "s/src\/gz openwrt_freifunk/#/" "imagebuilder-$OPENWRT_VERSION-ar71xx-generic/repositories.conf"
-    sed -i "s/src\/gz openwrt_luci/#/" "imagebuilder-$OPENWRT_VERSION-ar71xx-generic/repositories.conf"
-    sed -i "s/src\/gz openwrt_telephony/#/" "imagebuilder-$OPENWRT_VERSION-ar71xx-generic/repositories.conf"
-
-    sed -i "s/src\/gz openwrt_freifunk/#/" "imagebuilder-$OPENWRT_VERSION-ar71xx-nand/repositories.conf"
-    sed -i "s/src\/gz openwrt_luci/#/" "imagebuilder-$OPENWRT_VERSION-ar71xx-nand/repositories.conf"
-    sed -i "s/src\/gz openwrt_telephony/#/" "imagebuilder-$OPENWRT_VERSION-ar71xx-nand/repositories.conf"
-
-    sed -i "s/src\/gz openwrt_freifunk/#/" "imagebuilder-$OPENWRT_VERSION-ath79/repositories.conf"
-    sed -i "s/src\/gz openwrt_luci/#/" "imagebuilder-$OPENWRT_VERSION-ath79/repositories.conf"
-    sed -i "s/src\/gz openwrt_telephony/#/" "imagebuilder-$OPENWRT_VERSION-ath79/repositories.conf"
-
-    sed -i "s/src\/gz openwrt_freifunk/#/" "imagebuilder-$OPENWRT_VERSION-lantiq-xrx200/repositories.conf"
-    sed -i "s/src\/gz openwrt_luci/#/" "imagebuilder-$OPENWRT_VERSION-lantiq-xrx200/repositories.conf"
-    sed -i "s/src\/gz openwrt_telephony/#/" "imagebuilder-$OPENWRT_VERSION-lantiq-xrx200/repositories.conf"
+    for TARGET in ${OPENWRT_MIPS_TARGET_LIST[@]}; do
+        printf "\n[*] Install: $TARGET\n"
+        install_openwrt_deps $TARGET "mips_24kc"
+    done
 
     printf "Install script end!\n"
 }
 
 install_openwrt_deps_mipsel () {
-    printf "Install openwrt deps...\n"
+    printf "Install OpenWrt MIPSEL deps...\n"
     printf "******************************\n"
 
-    # download imagebuilder
-    if [ ! -f "imagebuilder-$OPENWRT_VERSION-ramips-mt7620.tar.xz" ]; then
-        wget "https://downloads.openwrt.org/releases/$OPENWRT_VERSION/targets/ramips/mt7620/openwrt-imagebuilder-$OPENWRT_VERSION-ramips-mt7620.Linux-x86_64.tar.xz" -O "imagebuilder-$OPENWRT_VERSION-ramips-mt7620.tar.xz"
-    fi
+    for TARGET in ${OPENWRT_MIPSEL_TARGET_LIST[@]}; do
+        printf "\n[*] Install: $TARGET\n"
+        install_openwrt_deps $TARGET "mipsel_24kc"
+    done
 
-    rm -rf "imagebuilder-$OPENWRT_VERSION-ramips-mt7620"
-    tar xJf "imagebuilder-$OPENWRT_VERSION-ramips-mt7620.tar.xz"
-    mv "openwrt-imagebuilder-$OPENWRT_VERSION-ramips-mt7620.Linux-x86_64" "imagebuilder-$OPENWRT_VERSION-ramips-mt7620"
-
-
-    if [ ! -f "imagebuilder-$OPENWRT_VERSION-ramips-mt7621.tar.xz" ]; then
-        wget "https://downloads.openwrt.org/releases/$OPENWRT_VERSION/targets/ramips/mt7621/openwrt-imagebuilder-$OPENWRT_VERSION-ramips-mt7621.Linux-x86_64.tar.xz" -O "imagebuilder-$OPENWRT_VERSION-ramips-mt7621.tar.xz"
-    fi
-
-    rm -rf "imagebuilder-$OPENWRT_VERSION-ramips-mt7621"
-    tar xJf "imagebuilder-$OPENWRT_VERSION-ramips-mt7621.tar.xz"
-    mv "openwrt-imagebuilder-$OPENWRT_VERSION-ramips-mt7621.Linux-x86_64" "imagebuilder-$OPENWRT_VERSION-ramips-mt7621"
-
-
-    if [ ! -f "imagebuilder-$OPENWRT_VERSION-ramips-mt76x8.tar.xz" ]; then
-        wget "https://downloads.openwrt.org/releases/$OPENWRT_VERSION/targets/ramips/mt76x8/openwrt-imagebuilder-$OPENWRT_VERSION-ramips-mt76x8.Linux-x86_64.tar.xz" -O "imagebuilder-$OPENWRT_VERSION-ramips-mt76x8.tar.xz"
-    fi
-
-    rm -rf "imagebuilder-$OPENWRT_VERSION-ramips-mt76x8"
-    tar xJf "imagebuilder-$OPENWRT_VERSION-ramips-mt76x8.tar.xz"
-    mv "openwrt-imagebuilder-$OPENWRT_VERSION-ramips-mt76x8.Linux-x86_64" "imagebuilder-$OPENWRT_VERSION-ramips-mt76x8"
-
-
-    # fix imagebuilder problems
-    wget -q "https://archive.openwrt.org/releases/$OPENWRT_VERSION/packages/mipsel_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mipsel_24kc.ipk" -O "imagebuilder-$OPENWRT_VERSION-ramips-mt7620/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk"
-    wget -q "https://archive.openwrt.org/releases/$OPENWRT_VERSION/packages/mipsel_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mipsel_24kc.ipk" -O "imagebuilder-$OPENWRT_VERSION-ramips-mt7621/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk"
-    wget -q "https://archive.openwrt.org/releases/$OPENWRT_VERSION/packages/mipsel_24kc/base/libubus20191227_2019-12-27-041c9d1c-1_mipsel_24kc.ipk" -O "imagebuilder-$OPENWRT_VERSION-ramips-mt76x8/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk"
-
-    # Correct opkg sources
-    sed -i "s/src\/gz openwrt_freifunk/#/" "imagebuilder-$OPENWRT_VERSION-ramips-mt7620/repositories.conf"
-    sed -i "s/src\/gz openwrt_luci/#/" "imagebuilder-$OPENWRT_VERSION-ramips-mt7620/repositories.conf"
-    sed -i "s/src\/gz openwrt_telephony/#/" "imagebuilder-$OPENWRT_VERSION-ramips-mt7620/repositories.conf"
-
-    sed -i "s/src\/gz openwrt_freifunk/#/" "imagebuilder-$OPENWRT_VERSION-ramips-mt7621/repositories.conf"
-    sed -i "s/src\/gz openwrt_luci/#/" "imagebuilder-$OPENWRT_VERSION-ramips-mt7621/repositories.conf"
-    sed -i "s/src\/gz openwrt_telephony/#/" "imagebuilder-$OPENWRT_VERSION-ramips-mt7621/repositories.conf"
-
-    sed -i "s/src\/gz openwrt_freifunk/#/" "imagebuilder-$OPENWRT_VERSION-ramips-mt76x8/repositories.conf"
-    sed -i "s/src\/gz openwrt_luci/#/" "imagebuilder-$OPENWRT_VERSION-ramips-mt76x8/repositories.conf"
-    sed -i "s/src\/gz openwrt_telephony/#/" "imagebuilder-$OPENWRT_VERSION-ramips-mt76x8/repositories.conf"
-
-    printf "Install script end!\n"
+    printf "\nInstall script end!\n"
 }
 
 
