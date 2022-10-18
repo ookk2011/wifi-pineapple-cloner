@@ -144,7 +144,7 @@ mipsel_patch () {
     
     cp "$FILES_FOLDER/$ARCHITECTURE/aircrack/aircrack-ng" "$ROOT_FS/usr/bin/aircrack-ng"
     cp "$FILES_FOLDER/$ARCHITECTURE/aircrack/aireplay-ng" "$ROOT_FS/usr/sbin/aireplay-ng"
-    cp "$FILES_FOLDER/$ARCHITECTURE/aircrack/airmon-ng" "$ROOT_FS/usr/sbin/airmon-ng"
+    #cp "$FILES_FOLDER/$ARCHITECTURE/aircrack/airmon-ng" "$ROOT_FS/usr/sbin/airmon-ng"
     cp "$FILES_FOLDER/$ARCHITECTURE/aircrack/airodump-ng" "$ROOT_FS/usr/sbin/airodump-ng"
     cp "$FILES_FOLDER/$ARCHITECTURE/aircrack/airodump-ng-oui-update" "$ROOT_FS/usr/sbin/airodump-ng-oui-update"
     cp "$FILES_FOLDER/$ARCHITECTURE/aircrack/libaircrack-osdep-1.5.2.so" "$ROOT_FS/usr/lib/libaircrack-osdep-1.5.2.so"
@@ -155,7 +155,7 @@ mipsel_patch () {
     cp "$FILES_FOLDER/$ARCHITECTURE/aircrack/libaircrack-osdep.la" "$ROOT_FS/usr/lib/libaircrack-osdep.la"
     chmod +x "$ROOT_FS/usr/bin/aircrack-ng"
     chmod +x "$ROOT_FS/usr/sbin/aireplay-ng"
-    chmod +x "$ROOT_FS/usr/sbin/airmon-ng"
+    #chmod +x "$ROOT_FS/usr/sbin/airmon-ng"
     chmod +x "$ROOT_FS/usr/sbin/airodump-ng"
     chmod +x "$ROOT_FS/usr/sbin/airodump-ng-oui-update"
     chmod +x "$ROOT_FS/usr/lib/libaircrack-osdep-1.5.2.so"
