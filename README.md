@@ -1,4 +1,4 @@
-![Project Logo](https://i.imgur.com/a1HXxMm.png)
+![Project Logo](assets/logo.png)
 
 # Universal Wifi pineapple hardware cloner v3
 
@@ -20,6 +20,8 @@ For this I develop:
 * Completely [updated panel](https://github.com/xchwarze/wifi-pineapple-panel) with fixes and improvements.
 * New [module repository](https://github.com/xchwarze/wifi-pineapple-community/tree/main/modules).
 * New modules: [PMKIDAttack](https://github.com/xchwarze/wifi-pineapple-community/tree/main/src/PMKIDAttack) and [Terminal](https://github.com/xchwarze/wifi-pineapple-community/tree/main/src/Terminal)
+
+![Panel](assets/termidor-mipsel.png)
 
 
 ## Builds
