@@ -77,23 +77,6 @@ common_patch () {
     chmod +x "$ROOT_FS/usr/sbin/wpad"
 
 
-    if [[ "$ARCHITECTURE" == "mipsel" ]]; then
-        echo "[*] Add mipsel support"
-        
-        cp "$FILES_FOLDER/$ARCHITECTURE/airmon/aircrack-ng" "$ROOT_FS/usr/bin/aircrack-ng"
-        cp "$FILES_FOLDER/$ARCHITECTURE/airmon/aireplay-ng" "$ROOT_FS/usr/sbin/aireplay-ng"
-        cp "$FILES_FOLDER/$ARCHITECTURE/airmon/airmon-ng" "$ROOT_FS/usr/sbin/airmon-ng"
-        cp "$FILES_FOLDER/$ARCHITECTURE/airmon/airodump-ng" "$ROOT_FS/usr/sbin/airodump-ng"
-        cp "$FILES_FOLDER/$ARCHITECTURE/airmon/airodump-ng-oui-update" "$ROOT_FS/usr/sbin/airodump-ng-oui-update"
-        cp "$FILES_FOLDER/$ARCHITECTURE/airmon/libaircrack-osdep-1.5.2.so" "$ROOT_FS/usr/lib/libaircrack-osdep-1.5.2.so"
-        cp "$FILES_FOLDER/$ARCHITECTURE/airmon/libaircrack-ce-wpa-1.5.2.so" "$ROOT_FS/usr/lib/libaircrack-ce-wpa-1.5.2.so"
-        cp "$FILES_FOLDER/$ARCHITECTURE/airmon/libaircrack-osdep.so" "$ROOT_FS/usr/lib/libaircrack-osdep.so"
-        cp "$FILES_FOLDER/$ARCHITECTURE/airmon/libaircrack-ce-wpa.la" "$ROOT_FS/usr/lib/libaircrack-ce-wpa.la"
-        cp "$FILES_FOLDER/$ARCHITECTURE/airmon/libaircrack-ce-wpa.so" "$ROOT_FS/usr/lib/libaircrack-ce-wpa.so"
-        cp "$FILES_FOLDER/$ARCHITECTURE/airmon/libaircrack-osdep.la" "$ROOT_FS/usr/lib/libaircrack-osdep.la"
-    fi
-
-
     echo "[*] Panel fixes and improvements"
 
     # update panel code
@@ -154,6 +137,36 @@ common_patch () {
     # fix banner info
     sed -i 's/\/       /\/ by DSR!/g' "$ROOT_FS/etc/banner"
     sed -i 's/19.07.2/19.07.7/g' "$ROOT_FS/etc/banner"
+}
+
+mipsel_patch () {
+    echo "[*] Add mipsel support"
+    
+    cp "$FILES_FOLDER/$ARCHITECTURE/aircrack/aircrack-ng" "$ROOT_FS/usr/bin/aircrack-ng"
+    cp "$FILES_FOLDER/$ARCHITECTURE/aircrack/aireplay-ng" "$ROOT_FS/usr/sbin/aireplay-ng"
+    cp "$FILES_FOLDER/$ARCHITECTURE/aircrack/airmon-ng" "$ROOT_FS/usr/sbin/airmon-ng"
+    cp "$FILES_FOLDER/$ARCHITECTURE/aircrack/airodump-ng" "$ROOT_FS/usr/sbin/airodump-ng"
+    cp "$FILES_FOLDER/$ARCHITECTURE/aircrack/airodump-ng-oui-update" "$ROOT_FS/usr/sbin/airodump-ng-oui-update"
+    cp "$FILES_FOLDER/$ARCHITECTURE/aircrack/libaircrack-osdep-1.5.2.so" "$ROOT_FS/usr/lib/libaircrack-osdep-1.5.2.so"
+    cp "$FILES_FOLDER/$ARCHITECTURE/aircrack/libaircrack-ce-wpa-1.5.2.so" "$ROOT_FS/usr/lib/libaircrack-ce-wpa-1.5.2.so"
+    cp "$FILES_FOLDER/$ARCHITECTURE/aircrack/libaircrack-osdep.so" "$ROOT_FS/usr/lib/libaircrack-osdep.so"
+    cp "$FILES_FOLDER/$ARCHITECTURE/aircrack/libaircrack-ce-wpa.la" "$ROOT_FS/usr/lib/libaircrack-ce-wpa.la"
+    cp "$FILES_FOLDER/$ARCHITECTURE/aircrack/libaircrack-ce-wpa.so" "$ROOT_FS/usr/lib/libaircrack-ce-wpa.so"
+    cp "$FILES_FOLDER/$ARCHITECTURE/aircrack/libaircrack-osdep.la" "$ROOT_FS/usr/lib/libaircrack-osdep.la"
+    chmod +x "$ROOT_FS/usr/bin/aircrack-ng"
+    chmod +x "$ROOT_FS/usr/sbin/aireplay-ng"
+    chmod +x "$ROOT_FS/usr/sbin/airmon-ng"
+    chmod +x "$ROOT_FS/usr/sbin/airodump-ng"
+    chmod +x "$ROOT_FS/usr/sbin/airodump-ng-oui-update"
+    chmod +x "$ROOT_FS/usr/lib/libaircrack-osdep-1.5.2.so"
+    chmod +x "$ROOT_FS/usr/lib/libaircrack-ce-wpa-1.5.2.so"
+    chmod +x "$ROOT_FS/usr/lib/libaircrack-osdep.so"
+    chmod +x "$ROOT_FS/usr/lib/libaircrack-ce-wpa.la"
+    chmod +x "$ROOT_FS/usr/lib/libaircrack-ce-wpa.so"
+    chmod +x "$ROOT_FS/usr/lib/libaircrack-osdep.la"
+
+    cp "$FILES_FOLDER/$ARCHITECTURE/others/http_sniffer" "$ROOT_FS/usr/sbin/http_sniffer"
+    chmod +x "$ROOT_FS/usr/sbin/http_sniffer"
 }
 
 nano_patch () {
@@ -222,6 +235,9 @@ echo ""
 
 # apply patchs in order
 common_patch
+if [[ "$ARCHITECTURE" == "mipsel" ]]; then
+    mipsel_patch
+fi
 
 echo "[*] Setting target as: $FLAVOR"
 if [[ $FLAVOR = 'nano' ]]
