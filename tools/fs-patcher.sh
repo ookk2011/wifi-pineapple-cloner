@@ -6,7 +6,6 @@ FLAVOR="$2"
 ROOT_FS="$3"
 declare -a ARCHITECTURE_TYPES=("mips" "mipsel")
 declare -a FLAVOR_TYPES=("nano" "tetra" "universal")
-FILES_FOLDER="$(realpath $(dirname $0))/../files"
 if [[ ! -d "$ROOT_FS" ]] || ! grep -q "$ARCHITECTURE" <<< "${ARCHITECTURE_TYPES[*]}" || ! grep -q "$FLAVOR" <<< "${FLAVOR_TYPES[*]}"; then
     echo "Run with \"fs-patcher.sh [ARCHITECTURE] [FLAVOR] [FS_FOLDER]\""
     echo "    ARCHITECTURE  -> must be one of these values: mips, mipsel"
@@ -15,6 +14,8 @@ if [[ ! -d "$ROOT_FS" ]] || ! grep -q "$ARCHITECTURE" <<< "${ARCHITECTURE_TYPES[
 
     exit 1
 fi
+
+FILES_FOLDER="$(realpath $(dirname $0)/../files)"
 
 
 
