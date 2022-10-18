@@ -56,12 +56,12 @@ common_patch () {
 
     cp "$FILES_FOLDER/$ARCHITECTURE/pineap/pineapd" "$ROOT_FS/usr/sbin/pineapd"
     cp "$FILES_FOLDER/$ARCHITECTURE/pineap/pineap" "$ROOT_FS/usr/bin/pineap"
-    cp "$FILES_FOLDER/$ARCHITECTURE/pineap/libwifi.so" "$ROOT_FS/usr/lib/libwifi.so"
     cp "$FILES_FOLDER/$ARCHITECTURE/pineap/resetssids" "$ROOT_FS/usr/sbin/resetssids"
+    cp "$FILES_FOLDER/$ARCHITECTURE/pineap/libwifi.so" "$ROOT_FS/usr/lib/libwifi.so"
     chmod +x "$ROOT_FS/usr/sbin/pineapd"
     chmod +x "$ROOT_FS/usr/bin/pineap"
+    chmod +x "$ROOT_FS/usr/sbin/resetssids"
     chmod +x "$ROOT_FS/usr/lib/libwifi.so"
-    chmod +x "$ROOT_FS/usr/sbin/resetssids.so"       
 
 
     echo "[*] Add Karma support"
