@@ -52,12 +52,16 @@ common_patch () {
     cp "$FILES_FOLDER/$ARCHITECTURE/customfeeds.conf" "$ROOT_FS/etc/opkg/customfeeds.conf"
 
 
-    echo "[*] Pineapd fix"
+    echo "[*] Pineap"
 
-    cp "$FILES_FOLDER/$ARCHITECTURE/pineapd" "$ROOT_FS/usr/sbin/pineapd"
-    cp "$FILES_FOLDER/$ARCHITECTURE/pineap" "$ROOT_FS/usr/bin/pineap"
+    cp "$FILES_FOLDER/$ARCHITECTURE/pineap/pineapd" "$ROOT_FS/usr/sbin/pineapd"
+    cp "$FILES_FOLDER/$ARCHITECTURE/pineap/pineap" "$ROOT_FS/usr/bin/pineap"
+    cp "$FILES_FOLDER/$ARCHITECTURE/pineap/libwifi.so" "$ROOT_FS/usr/lib/libwifi.so"
+    cp "$FILES_FOLDER/$ARCHITECTURE/pineap/resetssids" "$ROOT_FS/usr/sbin/resetssids"
     chmod +x "$ROOT_FS/usr/sbin/pineapd"
     chmod +x "$ROOT_FS/usr/bin/pineap"
+    chmod +x "$ROOT_FS/usr/lib/libwifi.so"
+    chmod +x "$ROOT_FS/usr/sbin/resetssids.so"       
 
 
     echo "[*] Add Karma support"
@@ -65,14 +69,29 @@ common_patch () {
     mkdir -p "$ROOT_FS/lib/netifd/wireless"
     cp "$FILES_FOLDER/common/karma/mac80211.sh" "$ROOT_FS/lib/netifd/wireless/mac80211.sh"
     cp "$FILES_FOLDER/common/karma/hostapd.sh" "$ROOT_FS/lib/netifd/hostapd.sh"
-    cp "$FILES_FOLDER/$ARCHITECTURE/hostapd_cli" "$ROOT_FS/usr/sbin/hostapd_cli"
-    cp "$FILES_FOLDER/$ARCHITECTURE/wpad" "$ROOT_FS/usr/sbin/wpad"
-    cp "$FILES_FOLDER/$ARCHITECTURE/libwifi.so" "$ROOT_FS/usr/lib/libwifi.so"
+    cp "$FILES_FOLDER/$ARCHITECTURE/karma/hostapd_cli" "$ROOT_FS/usr/sbin/hostapd_cli"
+    cp "$FILES_FOLDER/$ARCHITECTURE/karma/wpad" "$ROOT_FS/usr/sbin/wpad"
     chmod +x "$ROOT_FS/lib/netifd/wireless/mac80211.sh"
     chmod +x "$ROOT_FS/lib/netifd/hostapd.sh"
     chmod +x "$ROOT_FS/usr/sbin/hostapd_cli"
     chmod +x "$ROOT_FS/usr/sbin/wpad"
-    chmod +x "$ROOT_FS/usr/lib/libwifi.so"
+
+
+    if [[ "$ARCHITECTURE" == "mipsel" ]]; then
+        echo "[*] Add mipsel support"
+        
+        cp "$FILES_FOLDER/$ARCHITECTURE/airmon/aircrack-ng" "$ROOT_FS/usr/bin/aircrack-ng"
+        cp "$FILES_FOLDER/$ARCHITECTURE/airmon/aireplay-ng" "$ROOT_FS/usr/sbin/aireplay-ng"
+        cp "$FILES_FOLDER/$ARCHITECTURE/airmon/airmon-ng" "$ROOT_FS/usr/sbin/airmon-ng"
+        cp "$FILES_FOLDER/$ARCHITECTURE/airmon/airodump-ng" "$ROOT_FS/usr/sbin/airodump-ng"
+        cp "$FILES_FOLDER/$ARCHITECTURE/airmon/airodump-ng-oui-update" "$ROOT_FS/usr/sbin/airodump-ng-oui-update"
+        cp "$FILES_FOLDER/$ARCHITECTURE/airmon/libaircrack-osdep-1.5.2.so" "$ROOT_FS/usr/lib/libaircrack-osdep-1.5.2.so"
+        cp "$FILES_FOLDER/$ARCHITECTURE/airmon/libaircrack-ce-wpa-1.5.2.so" "$ROOT_FS/usr/lib/libaircrack-ce-wpa-1.5.2.so"
+        cp "$FILES_FOLDER/$ARCHITECTURE/airmon/libaircrack-osdep.so" "$ROOT_FS/usr/lib/libaircrack-osdep.so"
+        cp "$FILES_FOLDER/$ARCHITECTURE/airmon/libaircrack-ce-wpa.la" "$ROOT_FS/usr/lib/libaircrack-ce-wpa.la"
+        cp "$FILES_FOLDER/$ARCHITECTURE/airmon/libaircrack-ce-wpa.so" "$ROOT_FS/usr/lib/libaircrack-ce-wpa.so"
+        cp "$FILES_FOLDER/$ARCHITECTURE/airmon/libaircrack-osdep.la" "$ROOT_FS/usr/lib/libaircrack-osdep.la"
+    fi
 
 
     echo "[*] Panel fixes and improvements"
