@@ -17,6 +17,11 @@ ln -s /usr/lib/libpcap.so.1 /usr/lib/libpcap.so.1.3
 /etc/init.d/autossh stop
 /etc/init.d/autossh disable
 
+# Correct opkg sources
+sed -i "s/src\/gz openwrt_freifunk/#src\/gz openwrt_freifunk/" /etc/opkg/distfeeds.conf
+sed -i "s/src\/gz openwrt_luci/#src\/gz openwrt_luci/" /etc/opkg/distfeeds.conf
+sed -i "s/src\/gz openwrt_telephony/#src\/gz openwrt_telephon/" /etc/opkg/distfeeds.conf
+
 # Get valid led value
 PINE_LED=""
 LED_TYPES="wps status system wan"
