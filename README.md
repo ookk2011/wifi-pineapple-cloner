@@ -19,7 +19,7 @@ For this I develop:
 * A script to patch the filesystem so that it works on any hardware.
 * Completely [updated panel](https://github.com/xchwarze/wifi-pineapple-panel) with fixes and improvements.
 * New [module repository](https://github.com/xchwarze/wifi-pineapple-community/tree/main/modules).
-* New modules: [PMKIDAttack](https://github.com/xchwarze/wifi-pineapple-community/tree/main/src/PMKIDAttack) and [Terminal](https://github.com/xchwarze/wifi-pineapple-community/tree/main/src/Terminal)
+* New modules: [PMKIDAttack](https://github.com/xchwarze/wifi-pineapple-community/tree/main/modules/src/PMKIDAttack) and [Terminal](https://github.com/xchwarze/wifi-pineapple-community/tree/main/modules/src/Terminal)
 
 ![Panel](assets/termidor-mipsel.png)
 
