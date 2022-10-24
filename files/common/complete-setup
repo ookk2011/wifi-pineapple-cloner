@@ -11,7 +11,8 @@ to_logger () {
 start() {
     # Correct sd mount
     SD_STATUS=$(/bin/mount | /bin/grep "on /sd" -c)
-    if [[ -d /sd && $SD_STATUS == "0" ]]; then
+    SD_COUNT=$(ls /sd | wc -l)
+    if [[ -d /sd && $SD_STATUS == "0" && $SD_COUNT == "0" ]]; then
         to_logger "== Fix sd status"
         rm -rf /sd
     fi

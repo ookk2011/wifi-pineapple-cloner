@@ -1,5 +1,5 @@
 #!/bin/bash
-# this script fix the nano mechanism of 30-sd -> 20-sd - by DSR!
+# this script fix the nano mechanism of usb\30-sd -> block\20-sd - by DSR!
 
 device=`basename $DEVPATH`
 devNum=$(echo $device | awk -F "" '{print $4}')
