@@ -1,0 +1,42 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2022 DSR!
+
+PACKAGES="python-logging python-openssl python-sqlite3 python-codecs"
+
+to_logger () {
+    logger -s -t wpc "$1"
+}
+
+start() {
+    # Correct sd mount
+    SD_STATUS=$(/bin/mount | /bin/grep "on /sd" -c)
+    if [[ -d /sd && $SD_STATUS == "0" ]]; then
+        to_logger "== Fix sd status"
+        rm -rf /sd
+    fi
+
+    # Install missing packages
+    if [[ ! -d "/usr/lib/python2.7" && ! -d "/sd/usr/lib/python2.7" ]]; then
+        FREE_SPACE=$(df / | tail -1 | awk '{print $4}')
+
+        if [[ ! -d /sd && $FREE_SPACE -lt 10240 ]]; then
+            to_logger "== There is not enough space to install the packages"
+        elif ping -q -c 1 -W 1 google.com >/dev/null; then
+            to_logger "== Install missing packages..."
+            INSTALL_ROUTE="--dest sd"
+            if [[ $FREE_SPACE -gt 10240 ]]; then
+                INSTALL_ROUTE=""
+            fi
+
+            opkg update && opkg $INSTALL_ROUTE install $PACKAGES && python -m compileall
+
+            to_logger "== Install Complete!"
+        else
+            to_logger "== Connect to the internet and run \"/etc/init.d/complete-setup restart\" command!"
+        fi
+    fi
+}
+
+boot() {
+    start
+}

@@ -128,6 +128,12 @@ common_patch () {
     rm "$ROOT_FS/etc/hotplug.d/block/20-sd"
     rm "$ROOT_FS/etc/hotplug.d/usb/30-sd"
 
+    # add complete-setup script
+    mkdir -p "$ROOT_FS/etc/rc.d"
+    cp "$FILES_FOLDER/common/complete-setup" "$ROOT_FS/etc/init.d/complete-setup"
+    cp "$FILES_FOLDER/common/S99complete-setup" "$ROOT_FS/etc/rc.d/S99complete-setup"
+    chmod +x "$ROOT_FS/etc/init.d/complete-setup"
+
     # default wifi config
     cp "$FILES_FOLDER/common/mac80211.sh" "$ROOT_FS/lib/wifi/mac80211.sh"
 
