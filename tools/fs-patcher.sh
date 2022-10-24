@@ -141,6 +141,10 @@ common_patch () {
     cp "$FILES_FOLDER/common/led" "$ROOT_FS/sbin/led"
     chmod +x "$ROOT_FS/sbin/led"
 
+    # add missing keep.d files
+    mkdir -p "$ROOT_FS/lib/upgrade/keep.d"
+    cp "$FILES_FOLDER/common/pineapple" "$ROOT_FS/lib/upgrade/keep.d/pineapple"
+
     # fix banner info
     sed -i 's/\/       /\/ by DSR!/g' "$ROOT_FS/etc/banner"
     sed -i 's/19.07.2/19.07.7/g' "$ROOT_FS/etc/banner"
