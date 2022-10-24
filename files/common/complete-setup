@@ -1,6 +1,7 @@
 #!/bin/sh /etc/rc.common
 # Copyright (C) 2022 DSR!
 
+START=99
 PACKAGES="python-logging python-openssl python-sqlite3 python-codecs"
 
 to_logger () {

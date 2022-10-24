@@ -22,7 +22,7 @@ FILES_FOLDER="$(realpath $(dirname $0)/../files)"
 common_patch () {
     echo "[*] Device detection fix"
 
-    # Fix "unknown operand" error
+    # fix "unknown operand" error
     sed -i 's/print $6/print $1/' "$ROOT_FS/etc/hotplug.d/block/20-sd"
     sed -i 's/print $6/print $1/' "$ROOT_FS/etc/hotplug.d/usb/30-sd"
     sed -i 's/print $6/print $1/' "$ROOT_FS/etc/init.d/pineapple"
@@ -36,7 +36,7 @@ common_patch () {
     sed -i 's/print $6/print $1/' "$ROOT_FS/etc/uci-defaults/97-pineapple.sh"
     sed -i 's/print $6/print $1/' "$ROOT_FS/sbin/led"
 
-    # Force setup
+    # force setup
     sed -i 's/..Get Device/device="NANO"/' "$ROOT_FS/etc/rc.button/BTN_1"
     sed -i 's/..Get Device/device="NANO"/' "$ROOT_FS/etc/rc.button/reset"
     sed -i 's/..Get Device/device="NANO"/' "$ROOT_FS/etc/rc.local"
@@ -129,9 +129,7 @@ common_patch () {
     rm "$ROOT_FS/etc/hotplug.d/usb/30-sd"
 
     # add complete-setup script
-    mkdir -p "$ROOT_FS/etc/rc.d"
     cp "$FILES_FOLDER/common/complete-setup" "$ROOT_FS/etc/init.d/complete-setup"
-    cp "$FILES_FOLDER/common/S99complete-setup" "$ROOT_FS/etc/rc.d/S99complete-setup"
     chmod +x "$ROOT_FS/etc/init.d/complete-setup"
 
     # default wifi config
@@ -186,7 +184,7 @@ nano_patch () {
     cp "$FILES_FOLDER/$ARCHITECTURE/python/encodings/base64_codec.pyc" "$ROOT_FS/usr/lib/python2.7/encodings/base64_codec.pyc"
     cp "$FILES_FOLDER/$ARCHITECTURE/python/encodings/hex_codec.pyc" "$ROOT_FS/usr/lib/python2.7/encodings/hex_codec.pyc"
 
-    # Panel changes
+    # panel changes
     sed -i "s/\$data = file_get_contents('\/proc\/cpuinfo')/return 'nano'/" "$ROOT_FS/pineapple/api/pineapple.php"
     sed -i "s/exec(\"cat \/proc\/cpuinfo | grep 'machine'\")/'nano'/" "$ROOT_FS/usr/bin/pineapple/site_survey"
 
@@ -202,7 +200,7 @@ tetra_patch () {
     cp "$FILES_FOLDER/$ARCHITECTURE/python/encodings/base64_codec.pyc" "$ROOT_FS/usr/lib/python2.7/encodings/base64_codec.pyc"
     cp "$FILES_FOLDER/$ARCHITECTURE/python/encodings/hex_codec.pyc" "$ROOT_FS/usr/lib/python2.7/encodings/hex_codec.pyc"
 
-    # Panel changes
+    # panel changes
     sed -i 's/tetra/nulled/' "$ROOT_FS/pineapple/js/directives.js"
     sed -i 's/tetra/nulled/' "$ROOT_FS/pineapple/modules/ModuleManager/js/module.js"
     sed -i 's/tetra/nulled/' "$ROOT_FS/pineapple/modules/Advanced/module.html"
@@ -219,7 +217,7 @@ tetra_patch () {
 }
 
 universal_patch () {
-    # Panel changes
+    # panel changes
     sed -i 's/tetra/nulled/' "$ROOT_FS/pineapple/js/directives.js"
     sed -i 's/tetra/nulled/' "$ROOT_FS/pineapple/modules/ModuleManager/js/module.js"
     sed -i 's/tetra/nulled/' "$ROOT_FS/pineapple/modules/Advanced/module.html"
