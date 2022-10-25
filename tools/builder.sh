@@ -38,7 +38,7 @@ BUILD_FOLDER="$(realpath $(dirname $0)/../build)"
 
 # steps
 prepare_builder () {
-    echo "Prepare builder"
+    echo "[*] Prepare builder"
     echo "******************************"
 
     PACKAGES_ARQ="${ARCHITECTURE}_24kc"
@@ -53,11 +53,12 @@ prepare_builder () {
         fi
     done
 
+    echo "[*] Builder setup complete"
     echo ""
 }
 
 prepare_build () {
-    echo "Prepare build"
+    echo "[*] Prepare build"
     echo "******************************"
 
     # clean
@@ -90,7 +91,7 @@ prepare_build () {
 }
 
 build () {
-    echo "Build"
+    echo "[*] Build"
     echo "******************************"
 
     # clean
@@ -126,4 +127,7 @@ prepare_builder
 prepare_build
 build "$PROFILE"
 
-echo "Firmware folder: $BUILD_FOLDER/release"
+echo "[*] Firmware folder: $BUILD_FOLDER/release"
+echo "******************************"
+echo $(ls -l "$BUILD_FOLDER/release")
+echo ""

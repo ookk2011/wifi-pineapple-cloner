@@ -14,6 +14,14 @@ if [[ ! -f "$FILE_LIST" || ! -d "$FROM_FOLDER" || "$TO_FOLDER" == "" ]]; then
     exit 1
 fi
 
+
+
+FILE_LIST="$(realpath $FILE_LIST)"
+FROM_FOLDER="$(realpath $FROM_FOLDER)"
+TO_FOLDER="$(realpath $TO_FOLDER)"
+
+echo "Filelist2Copy - by DSR!"
+echo ""
 echo "[*] Start copy loop"
 rm -rf "$TO_FOLDER"
 mkdir "$TO_FOLDER"
@@ -29,14 +37,14 @@ do
 
     # check exist
     if [[ ! -f "$FROM_FOLDER$FILE" ]] && [[ ! -d "$FROM_FOLDER$FILE" ]]; then
-        printf "[!] File does not exist: %s\n" "$FROM_FOLDER$FILE"
+        echo "[!] File does not exist: ${FROM_FOLDER}${FILE}"
         continue
     fi
 
     # check file type
     #TYPE_CHECK=$(file "$FROM_FOLDER$FILE" | grep "ELF")
     #if [[ $TYPE_CHECK != "" ]]; then
-    #    printf "[+] ELF: %s\n" "$FILE"
+    #    echo "[+] ELF: $FILE"
     #    continue
     #fi
 
@@ -53,4 +61,5 @@ do
     fi
 done
 
-printf "[*] Files copied: %d\n" $COUNTER
+echo "[*] Files copied: $COUNTER"
+echo ""
