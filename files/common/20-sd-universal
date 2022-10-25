@@ -36,7 +36,7 @@ devNum=$(echo $device | awk -F "" '{print $4}')
 
             # autoinstall python in universal flavor
             if [[ ! -d "/usr/lib/python2.7" && ! -d "/sd/usr/lib/python2.7" ]]; then
-                /etc/init.d/complete-setup restart
+                /etc/init.d/complete-setup missing_packages
             fi
         }
 

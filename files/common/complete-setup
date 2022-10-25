@@ -8,16 +8,16 @@ to_logger () {
     logger -s -t wpc "$1"
 }
 
-start() {
-    # Correct sd mount
+correct_sd_mount() {
     SD_STATUS=$(/bin/mount | /bin/grep "on /sd" -c)
     SD_COUNT=$(ls /sd | wc -l)
     if [[ -d /sd && $SD_STATUS == "0" && $SD_COUNT == "0" ]]; then
         to_logger "== Fix sd status"
         rm -rf /sd
     fi
+}
 
-    # Install missing packages
+missing_packages() {
     if [[ ! -d "/usr/lib/python2.7" && ! -d "/sd/usr/lib/python2.7" ]]; then
         FREE_SPACE=$(df / | tail -1 | awk '{print $4}')
 
@@ -37,6 +37,11 @@ start() {
             to_logger "== Connect to the internet and run \"/etc/init.d/complete-setup restart\" command!"
         fi
     fi
+}
+
+start() {
+    correct_sd_mount
+    missing_packages
 }
 
 boot() {
