@@ -243,6 +243,7 @@ universal_patch () {
 # implement....
 echo "Universal Wifi pineapple hardware cloner v3"
 echo "by DSR!"
+echo "******************************"
 echo ""
 
 # apply patchs in order
@@ -263,6 +264,5 @@ then
     universal_patch
 fi
 
-echo ""
 echo "[*] Done!"
 echo ""

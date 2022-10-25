@@ -21,7 +21,9 @@ FROM_FOLDER="$(realpath $FROM_FOLDER)"
 TO_FOLDER="$(realpath $TO_FOLDER)"
 
 echo "Filelist2Copy - by DSR!"
+echo "******************************"
 echo ""
+
 echo "[*] Start copy loop"
 rm -rf "$TO_FOLDER"
 mkdir "$TO_FOLDER"
