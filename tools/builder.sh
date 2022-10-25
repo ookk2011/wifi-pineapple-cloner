@@ -38,8 +38,8 @@ BUILD_FOLDER="$(realpath $(dirname $0)/../build)"
 
 # steps
 prepare_builder () {
-    printf "Prepare builder\n"
-    printf "******************************\n"
+    echo "Prepare builder"
+    echo "******************************"
 
     PACKAGES_ARQ="${ARCHITECTURE}_24kc"
     DOWNLOAD_BASE_URL="https://github.com/xchwarze/wifi-pineapple-community/raw/main/packages/experimental"
@@ -57,8 +57,8 @@ prepare_builder () {
 }
 
 prepare_build () {
-    printf "Prepare build\n"
-    printf "******************************\n"
+    echo "Prepare build"
+    echo "******************************"
 
     # clean
     rm -rf _basefw.* basefw.bin
@@ -86,11 +86,12 @@ prepare_build () {
     "$TOOL_FOLDER/fs-patcher.sh" "$ARCHITECTURE" "$FLAVOR" "$BUILD_FOLDER/rootfs"
 
     rm -rf "$BUILD_FOLDER/rootfs-base"
+    echo ""
 }
 
 build () {
-    printf "\nBuild\n"
-    printf "******************************\n"
+    echo "Build"
+    echo "******************************"
 
     # clean
     #make clean
@@ -117,8 +118,9 @@ build () {
 
 
 # implement this shitty logic
-printf "Universal Wifi pineapple hardware cloner - builder\n"
-printf "************************************** by DSR!\n\n"
+echo "Universal Wifi pineapple hardware cloner - builder"
+echo "************************************** by DSR!"
+echo ""
 
 prepare_builder
 prepare_build
