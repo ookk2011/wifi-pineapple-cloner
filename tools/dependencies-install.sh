@@ -32,8 +32,8 @@ install_openwrt_deps () {
     mv "$ORIGINAL_FOLDER_NAME" "$FOLDER_NAME"
 
     # fix imagebuilder problems
-    echo "    [+] Fix missing dependencies"
-    wget -q "https://archive.openwrt.org/releases/$OPENWRT_VERSION/packages/$PACKAGES_ARQ/base/libubus20191227_2019-12-27-041c9d1c-1_$PACKAGES_ARQ.ipk" -O "$FOLDER_NAME/packages/libubus20191227_2019-12-27-041c9d1c-1_$PACKAGES_ARQ.ipk"
+    #echo "    [+] Fix missing dependencies"
+    #wget -q "https://archive.openwrt.org/releases/$OPENWRT_VERSION/packages/$PACKAGES_ARQ/base/libubus20191227_2019-12-27-041c9d1c-1_$PACKAGES_ARQ.ipk" -O "$FOLDER_NAME/packages/libubus20191227_2019-12-27-041c9d1c-1_$PACKAGES_ARQ.ipk"
 
     # correct opkg feeds
     echo "    [+] Correct opkg feeds"

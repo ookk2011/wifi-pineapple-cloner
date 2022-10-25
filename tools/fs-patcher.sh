@@ -15,6 +15,7 @@ if [[ ! -d "$ROOT_FS" ]] || ! grep -q "$ARCHITECTURE" <<< "${ARCHITECTURE_TYPES[
     exit 1
 fi
 
+ROOT_FS="$(realpath $ROOT_FS)"
 FILES_FOLDER="$(realpath $(dirname $0)/../files)"
 
 
