@@ -17,17 +17,16 @@ if [[ ! -d "$IMAGEBUILDER_FOLDER" || "$PROFILE" == "" ]] || ! grep -q "$ARCHITEC
     exit 1
 fi
 
-# for build
 # dependencies installed, uninstalled and the order in which they are installed is for a reason!
-# I would add notes on this but then bastards like @Naqwada_ steal my work to add to their resumes
 # no rtl-sdr, no kmod-usb-net-*, no kmod-rtl8192cu, no kmod-usb-acm
 PACKAGES_NANO="iw at autossh base-files block-mount ca-certificates chat dnsmasq e2fsprogs ethtool firewall hostapd-utils ip6tables iperf3 iwinfo kmod-crypto-manager kmod-fs-ext4 kmod-fs-nfs kmod-fs-vfat kmod-gpio-button-hotplug kmod-ipt-offload kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-netdev kmod-ledtrig-timer kmod-mt76x2u kmod-nf-nathelper kmod-rt2800-usb kmod-rtl8187 kmod-scsi-generic kmod-usb-ohci kmod-usb-storage-extras kmod-usb-uhci kmod-usb2 libbz2-1.0 libcurl4 libelf1 libffi libgmp10 libiconv-full2 libintl libltdl7 libnet-1.2.x libnl200 libreadline8 libustream-mbedtls20150806 libxml2 logd macchanger mtd nano ncat netcat nginx openssh-client openssh-server openssh-sftp-server openssl-util php7-cgi php7-fpm php7-mod-hash php7-mod-json php7-mod-mbstring php7-mod-openssl php7-mod-session php7-mod-sockets php7-mod-sqlite3 ppp ppp-mod-pppoe procps-ng-pkill procps-ng-ps python-logging python-openssl python-sqlite3 ssmtp tcpdump-mini uci uclibcxx uclient-fetch urandom-seed urngd usb-modeswitch usbreset usbutils wget wireless-tools wpad busybox libatomic1 libstdcpp6 -wpad-basic -dropbear -swconfig -odhcpd-ipv6only -odhcp6c"
 
 # no rtl-sdr, no kmod-usb-net-*, no kmod-usb-serial-*, no kmod-rtl8192cu, no kmod-usb-acm, no kmod-usb-wdm, no kmod-lib-crc-itu-t
 PACKAGES_TETRA="iw at autossh base-files bash block-mount ca-certificates chat dnsmasq e2fsprogs ethtool firewall hostapd-utils ip6tables iwinfo kmod-crypto-manager kmod-fs-ext4 kmod-fs-nfs kmod-fs-vfat kmod-gpio-button-hotplug kmod-ipt-offload kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-netdev kmod-ledtrig-timer kmod-mt76x2u kmod-nf-nathelper kmod-rt2800-usb kmod-rtl8187 kmod-scsi-generic kmod-usb-ohci kmod-usb-storage-extras kmod-usb-uhci kmod-usb2 libbz2-1.0 libcurl4 libelf1 libffi libgdbm libgmp10 libiconv-full2 libltdl7 libnet-1.2.x libnl200 libustream-mbedtls20150806 libxml2 logd macchanger mtd nano ncat netcat nginx openssh-client openssh-server openssh-sftp-server openssl-util php7-cgi php7-fpm php7-mod-hash php7-mod-json php7-mod-mbstring php7-mod-openssl php7-mod-session php7-mod-sockets php7-mod-sqlite3 ppp ppp-mod-pppoe procps-ng-pkill procps-ng-ps python-logging python-openssl python-sqlite3 ssmtp tcpdump-mini uci uclibcxx uclient-fetch urandom-seed urngd usb-modeswitch usbreset usbutils wget wireless-tools wpad busybox libatomic1 libstdcpp6 -wpad-basic -dropbear -odhcp6c -odhcpd-ipv6only"
 
+# if you don't install a custom build of busybox you have to install fdisk
 # no rtl-sdr, no kmod-usb-net-*, no kmod-usb-serial-*, no kmod-rtl8192cu, no kmod-usb-acm, no kmod-usb-wdm, no kmod-lib-crc-itu-t, no python-*
-PACKAGES_UNIVERSAL="iw at autossh base-files bash block-mount ca-certificates chat dnsmasq e2fsprogs ethtool fdisk firewall hostapd-utils ip6tables iwinfo kmod-crypto-manager kmod-fs-ext4 kmod-fs-nfs kmod-fs-vfat kmod-gpio-button-hotplug kmod-ipt-offload kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-netdev kmod-ledtrig-timer kmod-mt76x2u kmod-nf-nathelper kmod-rt2800-usb kmod-rtl8187 kmod-scsi-generic kmod-usb-ohci kmod-usb-storage-extras kmod-usb-uhci kmod-usb2 libbz2-1.0 libcurl4 libelf1 libffi libgdbm libgmp10 libiconv-full2 libltdl7 libnet-1.2.x libnl200 libustream-mbedtls20150806 libxml2 logd macchanger mtd nano ncat netcat nginx openssh-client openssh-server openssh-sftp-server openssl-util php7-cgi php7-fpm php7-mod-hash php7-mod-json php7-mod-mbstring php7-mod-openssl php7-mod-session php7-mod-sockets php7-mod-sqlite3 ppp ppp-mod-pppoe procps-ng-pkill procps-ng-ps ssmtp tcpdump-mini uci uclibcxx uclient-fetch urandom-seed urngd usb-modeswitch usbreset usbutils wget wireless-tools wpad busybox libatomic1 libstdcpp6 -wpad-basic -dropbear -odhcpd-ipv6only"
+PACKAGES_UNIVERSAL="iw at autossh base-files bash block-mount ca-certificates chat dnsmasq e2fsprogs ethtool firewall hostapd-utils ip6tables iwinfo kmod-crypto-manager kmod-fs-ext4 kmod-fs-nfs kmod-fs-vfat kmod-gpio-button-hotplug kmod-ipt-offload kmod-leds-gpio kmod-ledtrig-default-on kmod-ledtrig-netdev kmod-ledtrig-timer kmod-mt76x2u kmod-nf-nathelper kmod-rt2800-usb kmod-rtl8187 kmod-scsi-generic kmod-usb-ohci kmod-usb-storage-extras kmod-usb-uhci kmod-usb2 libbz2-1.0 libcurl4 libelf1 libffi libgdbm libgmp10 libiconv-full2 libltdl7 libnet-1.2.x libnl200 libustream-mbedtls20150806 libxml2 logd macchanger mtd nano ncat netcat nginx openssh-client openssh-server openssh-sftp-server openssl-util php7-cgi php7-fpm php7-mod-hash php7-mod-json php7-mod-mbstring php7-mod-openssl php7-mod-session php7-mod-sockets php7-mod-sqlite3 ppp ppp-mod-pppoe procps-ng-pkill procps-ng-ps ssmtp tcpdump-mini uci uclibcxx uclient-fetch urandom-seed urngd usb-modeswitch usbreset usbutils wget wireless-tools wpad busybox libatomic1 libstdcpp6 -wpad-basic -dropbear -odhcpd-ipv6only"
 
 declare -a FORCE_PACKAGES=("libubus20191227_2019-12-27-041c9d1c-1" "busybox_1.30.1-6")
 
@@ -42,17 +41,19 @@ prepare_builder () {
     printf "Prepare builder\n"
     printf "******************************\n"
 
-    PACKAGES_ARQ="{$ARCHITECTURE}_24kc"
+    PACKAGES_ARQ="${ARCHITECTURE}_24kc"
     DOWNLOAD_BASE_URL="https://github.com/xchwarze/wifi-pineapple-community/raw/main/packages/experimental"
 
     for TARGET in ${FORCE_PACKAGES[@]}; do
-        PACKAGE_IPK="{$TARGET}_{$PACKAGES_ARQ}.ipk"
+        PACKAGE_IPK="${TARGET}_${PACKAGES_ARQ}.ipk"
         PACKAGE_PATH="$IMAGEBUILDER_FOLDER/packages/$PACKAGE_IPK"
-        if [ ! -f "$FILE" ]; then
-            printf "\n[*] Install: $TARGET\n"
+        if [ ! -f "$PACKAGE_PATH" ]; then
+            echo "[+] Install: $TARGET"
             wget -q "$DOWNLOAD_BASE_URL/$PACKAGES_ARQ/$PACKAGE_IPK" -O "$PACKAGE_PATH"
         fi
     done
+
+    echo ""
 }
 
 prepare_build () {
