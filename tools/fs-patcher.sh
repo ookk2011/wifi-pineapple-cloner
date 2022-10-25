@@ -113,21 +113,30 @@ common_patch () {
 
     echo "[*] Change root password to: root"
 
-    #sed -i 's/^\(root:\)[^:]*\(:.*\)$/\1$1$3DBtk82B$6EPlkFc9GQrtDwmzKsUn31\2/' "$ROOT_FS/etc/shadow"
     cp "$FILES_FOLDER/common/shadow" "$ROOT_FS/etc/shadow"
 
 
-    echo "[*] Other fixs"
+    echo "[*] Fix uci-defaults"
 
-    # fix uci-defaults
     cp "$FILES_FOLDER/common/92-system.sh" "$ROOT_FS/etc/uci-defaults/92-system.sh"
     cp "$FILES_FOLDER/common/95-network.sh" "$ROOT_FS/etc/uci-defaults/95-network.sh"
     cp "$FILES_FOLDER/common/97-pineapple.sh" "$ROOT_FS/etc/uci-defaults/97-pineapple.sh"
 
-    # fix pendrive hotplug
+
+    echo "[*] Fix pendrive hotplug"
+
     cp "$FILES_FOLDER/common/20-sd-universal" "$ROOT_FS/etc/hotplug.d/block/20-sd-universal"
     rm "$ROOT_FS/etc/hotplug.d/block/20-sd"
     rm "$ROOT_FS/etc/hotplug.d/usb/30-sd"
+
+
+    echo "[*] Add support for reflash"
+
+    mkdir -p "$ROOT_FS/lib/upgrade/keep.d"
+    cp "$FILES_FOLDER/common/pineapple" "$ROOT_FS/lib/upgrade/keep.d/pineapple"
+
+
+    echo "[*] Other fixs"
 
     # add complete-setup script
     cp "$FILES_FOLDER/common/complete-setup" "$ROOT_FS/etc/init.d/complete-setup"
@@ -140,13 +149,8 @@ common_patch () {
     cp "$FILES_FOLDER/common/led" "$ROOT_FS/sbin/led"
     chmod +x "$ROOT_FS/sbin/led"
 
-    # add missing keep.d files
-    mkdir -p "$ROOT_FS/lib/upgrade/keep.d"
-    cp "$FILES_FOLDER/common/pineapple" "$ROOT_FS/lib/upgrade/keep.d/pineapple"
-
-    # fix banner info
-    sed -i 's/\/       /\/ by DSR!/g' "$ROOT_FS/etc/banner"
-    sed -i 's/19.07.2/19.07.7/g' "$ROOT_FS/etc/banner"
+    # add new banner
+    cp "$FILES_FOLDER/common/banner" "$ROOT_FS/etc/banner"
 }
 
 mipsel_patch () {
