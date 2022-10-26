@@ -40,6 +40,7 @@ BUILD_FOLDER="$(realpath $(dirname $0)/../build)"
 prepare_builder () {
     echo "[*] Prepare builder"
     echo "******************************"
+    echo ""
 
     PACKAGES_ARQ="${ARCHITECTURE}_24kc"
     DOWNLOAD_BASE_URL="https://github.com/xchwarze/wifi-pineapple-community/raw/main/packages/experimental"
@@ -60,6 +61,7 @@ prepare_builder () {
 prepare_build () {
     echo "[*] Prepare build"
     echo "******************************"
+    echo ""
 
     # clean
     rm -rf _basefw.* basefw.bin
@@ -69,16 +71,19 @@ prepare_build () {
     # get target firmware
     # this work only with lastest binwalk version!
     if [[ "$FLAVOR" == "tetra" || "$FLAVOR" == "universal" ]]; then
-        wget https://github.com/xchwarze/wifi-pineapple-community/raw/main/firmwares/2.7.0-tetra.bin -O basefw.bin
+        echo "[*] Downloading TETRA firmware..."
+        wget -q https://github.com/xchwarze/wifi-pineapple-community/raw/main/firmwares/2.7.0-tetra.bin -O basefw.bin
         binwalk basefw.bin -e 
         binwalk _basefw.bin.extracted/sysupgrade-pineapple-tetra/root -e --preserve-symlinks
         mv _basefw.bin.extracted/sysupgrade-pineapple-tetra/_root.extracted/squashfs-root/ "$BUILD_FOLDER/rootfs-base"
     else
-        wget https://github.com/xchwarze/wifi-pineapple-community/raw/main/firmwares/2.7.0-nano.bin -O basefw.bin
+        echo "[*] Downloading NANO firmware..."
+        wget -q https://github.com/xchwarze/wifi-pineapple-community/raw/main/firmwares/2.7.0-nano.bin -O basefw.bin
         binwalk basefw.bin -e --preserve-symlinks
         mv _basefw.bin.extracted/squashfs-root/ "$BUILD_FOLDER/rootfs-base"
     fi
 
+    echo "[*] Processing file"
     rm -rf _basefw.* basefw.bin
 
     # copy pineapple files
@@ -93,8 +98,10 @@ prepare_build () {
 build () {
     echo "[*] Build"
     echo "******************************"
+    echo ""
 
     # clean
+    echo "[*] Clean last build data"
     #make clean
     rm -rf "$IMAGEBUILDER_FOLDER/tmp/"
     rm -rf "$IMAGEBUILDER_FOLDER/build_dir/target-*/root*"
@@ -102,6 +109,7 @@ build () {
     rm -rf "$IMAGEBUILDER_FOLDER/bin/targets/*"
 
     # set selected packages
+    echo "[*] Executing make"
     selected_packages="$PACKAGES_UNIVERSAL"
     if [[ "$FLAVOR" == "nano" ]];
     then
@@ -114,6 +122,7 @@ build () {
     # build
     cd "$IMAGEBUILDER_FOLDER"
     make image PROFILE="$1" PACKAGES="$selected_packages" FILES="$BUILD_FOLDER/rootfs" BIN_DIR="$BUILD_FOLDER/release"
+    echo ""
 }
 
 
@@ -129,5 +138,5 @@ build "$PROFILE"
 
 echo "[*] Firmware folder: $BUILD_FOLDER/release"
 echo "******************************"
-echo $(ls -l "$BUILD_FOLDER/release")
+ls -l "$BUILD_FOLDER/release"
 echo ""
