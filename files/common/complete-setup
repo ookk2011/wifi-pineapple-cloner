@@ -2,6 +2,12 @@
 # Copyright (C) 2022 DSR!
 
 START=99
+EXTRA_COMMANDS="correct_sd_mount missing_packages"
+EXTRA_HELP="
+Extra commands:
+        correct_sd_mount Fix ghost pendrive issues
+        missing_packages Install the missing dependencies
+"
 PACKAGES="python-logging python-openssl python-sqlite3 python-codecs"
 
 to_logger() {
