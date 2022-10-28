@@ -149,6 +149,11 @@ common_patch () {
     cp "$FILES_FOLDER/common/led" "$ROOT_FS/sbin/led"
     chmod +x "$ROOT_FS/sbin/led"
 
+    # add setup support for routers that do not have a reset button but do have wps
+    mkdir -p "$ROOT_FS/etc/rc.button"
+    cp "$FILES_FOLDER/common/wps" "$ROOT_FS/etc/rc.button/wps"
+    chmod +x "$ROOT_FS/etc/rc.button/wps"
+
     # add new banner
     cp "$FILES_FOLDER/common/banner" "$ROOT_FS/etc/banner"
 }
