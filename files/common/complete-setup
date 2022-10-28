@@ -4,7 +4,7 @@
 START=99
 PACKAGES="python-logging python-openssl python-sqlite3 python-codecs"
 
-to_logger () {
+to_logger() {
     logger -s -t wpc "$1"
 }
 
@@ -24,17 +24,20 @@ missing_packages() {
         if [[ ! -d /sd && $FREE_SPACE -lt 10240 ]]; then
             to_logger "== There is not enough space to install the packages"
         elif ping -q -c 1 -W 1 google.com >/dev/null; then
-            to_logger "== Install missing packages..."
+            to_logger "== Installing missing packages..."
             INSTALL_ROUTE="--dest sd"
             if [[ $FREE_SPACE -gt 10240 ]]; then
                 INSTALL_ROUTE=""
             fi
 
             opkg update && opkg $INSTALL_ROUTE install $PACKAGES && python -m compileall
-
-            to_logger "== Install Complete!"
+            if [[ ! -d "/usr/lib/python2.7" && ! -d "/sd/usr/lib/python2.7" ]]; then
+                to_logger "== Packages were not installed!"
+            else
+                to_logger "== Install Complete!"
+            fi
         else
-            to_logger "== Connect to the internet and run \"/etc/init.d/complete-setup restart\" command!"
+            to_logger "== Connect to the internet and run \"service complete-setup restart\" command!"
         fi
     fi
 }
