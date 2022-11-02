@@ -3,20 +3,20 @@
 # Universal Wifi pineapple hardware cloner v3
 
 The Pineapple NANO and TETRA were excellent security hardware but in 2020 they reached their end of life.<br>
-So to give a new life to this platform in more modern hardware, I've made these scripts.
+So to give a new life to this platform, I've made these scripts with modern hardware.
 <br>
 
 Sometime between 2019 and 2020 we started using the private beta of this project which we called "Pineapple Termidor".<br>
-When I decided to redo this project and launch a v2 I decided to rescue the original name and logo 🤣
+When I started to redo this project, I launch a v2 and decided to rescue the original name and logo 🤣
 
 
 ## About this project
 
-This project is the result of everything I experienced from 2018 to 2022 to successfully clone the NANO and TETRA.<br>
+This project is the result of everything I've experienced from 2018 to 2022 to successfully clone the NANO and TETRA.<br>
 
-For this I develop:
-* The lists of files to copy and the script to copy them.
-* A script to patch the filesystem so that it works on any hardware.
+For this I've develop:
+* The lists of files to copy and also the script to copy them.
+* A script to patch the filesystem, so it works on any hardware.
 * Completely [updated panel](https://github.com/xchwarze/wifi-pineapple-panel) with fixes and improvements.
 * Completely updated [packages repository](https://github.com/xchwarze/wifi-pineapple-community/tree/main/packages) .
 * New [module repository](https://github.com/xchwarze/wifi-pineapple-community/tree/main/modules).
@@ -38,7 +38,7 @@ There are 211 devices supported by the project. You can see the full [list here]
 Also I made a second repo for [downloads](https://github.com/xchwarze/wifi-pineapple-cloner-builds) where you can find the firmwares already made for the most common devices of the Supported devices list.
 <br>
 
-If you want to collaborate by adding a new device to the list or adding improvements to them, you can do so through a pull request to this repo.
+If you want to collaborate by adding a new device to the list or adding improvements to them, you can do it through a pull request to this repo.
 
 
 ## Install steps
@@ -54,7 +54,7 @@ archer-c7-v5-tetra-sysupgrade.bin                                               
 ```
 <br>
 
-3. Once the image is uploaded execute sysupgrade command to update firmware
+3. Once the image is uploaded, execute sysupgrade command to update firmware
 ```bash
 ssh root@192.168.1.1
 sysupgrade -n -F /tmp/archer-c7-v5-tetra-sysupgrade.bin
@@ -90,6 +90,6 @@ chmod +x /tmp/theme-install.sh && /tmp/theme-install.sh darkmode
 
 ## If you want to collaborate with hardware 
 
-Those who want to help buy testing hardware or just give me a tip can do so by sending donations to my binance account:
+Those who want to help buy testing hardware or just give me a tip, you can do it by sending donations to my binance account:
 
 ![binance-qr](assets/binance-qr.png)
