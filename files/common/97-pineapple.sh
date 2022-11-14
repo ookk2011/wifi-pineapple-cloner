@@ -1,5 +1,5 @@
 # Make SSH banner have the correct version and device
-version=$(cat /etc/pineapple/pineapple_version | head -c 5)
+version=$(cat /pineapple/pineapple_version | head -c 5)
 eval "sed -i s/VERSION/$version/g /etc/banner"
 
 # Configure PATH with SD card directories

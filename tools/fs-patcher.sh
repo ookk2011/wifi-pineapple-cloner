@@ -95,7 +95,6 @@ common_patch () {
     chmod +x "$ROOT_FS/pineapple/modules/Help/files/debug"
     chmod +x "$ROOT_FS/pineapple/modules/PineAP/executable/executable"
     chmod +x "$ROOT_FS/pineapple/modules/Reporting/files/reporting"
-    rm -f "$ROOT_FS/pineapple/fix-executables.sh"
 
     cp "$FILES_FOLDER/common/panel/favicon.ico" "$ROOT_FS/pineapple/img/favicon.ico"
     cp "$FILES_FOLDER/common/panel/favicon-16x16.png" "$ROOT_FS/pineapple/img/favicon-16x16.png"
@@ -133,7 +132,7 @@ common_patch () {
     echo "[*] Add support for reflash"
 
     mkdir -p "$ROOT_FS/lib/upgrade/keep.d"
-    cp "$FILES_FOLDER/common/pineapple" "$ROOT_FS/lib/upgrade/keep.d/pineapple"
+    cp "$FILES_FOLDER/common/pineapple.keep" "$ROOT_FS/lib/upgrade/keep.d/pineapple"
 
 
     echo "[*] Other fixs"
@@ -141,6 +140,10 @@ common_patch () {
     # add complete-setup script
     cp "$FILES_FOLDER/common/complete-setup" "$ROOT_FS/etc/init.d/complete-setup"
     chmod +x "$ROOT_FS/etc/init.d/complete-setup"
+
+    # clean files
+    rm -f "$ROOT_FS/etc/pineapple/changes"
+    rm -f "$ROOT_FS/etc/pineapple/pineapple_version"
 
     # default wifi config
     cp "$FILES_FOLDER/common/mac80211.sh" "$ROOT_FS/lib/wifi/mac80211.sh"
