@@ -1,8 +1,3 @@
-# bin
-/bin/busybox
-
-
-
 # etc
 /etc/config/autossh
 
@@ -28,10 +23,6 @@
 
 /etc/rc.button/BTN_1
 /etc/rc.button/reset
-
-/etc/rc.d/S90resetssids
-/etc/rc.d/S98pineapple
-/etc/rc.d/S99pineapd
 
 /etc/ssh/sshd_config
 /etc/ssl/openssl.cnf
@@ -69,7 +60,6 @@
 
 
 # sbin
-/sbin/fdisk
 /sbin/led
 
 
@@ -78,7 +68,6 @@
 # usr
 /usr/bin/pineapple
 /usr/bin/pineap
-/usr/bin/uuencode
 
 /usr/lib/libwifi.so
 

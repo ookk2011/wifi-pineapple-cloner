@@ -24,10 +24,6 @@
 /etc/rc.button/BTN_1
 /etc/rc.button/reset
 
-/etc/rc.d/S90resetssids
-/etc/rc.d/S98pineapple
-/etc/rc.d/S99pineapd
-
 /etc/ssh/sshd_config
 /etc/ssl/openssl.cnf
 
