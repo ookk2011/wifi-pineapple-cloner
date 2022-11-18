@@ -68,7 +68,6 @@
 # usr
 /usr/bin/pineapple
 /usr/bin/pineap
-/usr/bin/uuencode
 
 /usr/lib/libwifi.so
 
