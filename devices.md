@@ -4,7 +4,7 @@ The list of compatible devices is made with the data provided by OpenWRT. The fi
 
 Knowing this, there are two scenarios:
 1. OpenWRT data may be incorrect for some devices.
-1. If we change the criteria, the devices become many more, more than 500.
+1. If we change the criteria, the devices become many more, more than 500.<br><br>
 
 Brand | Device | Type | CPU (MHz) | Flash (MB) | RAM (MB) | Architecture | Availability |
 -------------|-------------|-----------|-----------|-----------|-----------|-----------|-----------|
