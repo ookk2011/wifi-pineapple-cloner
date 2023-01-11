@@ -61,22 +61,29 @@ sysupgrade -n -F /tmp/archer-c7-v5-tetra-sysupgrade.bin
 Now wait few minutes until the device install the new firmware
 <br>
 
-4. Enter to pineapple panel and enjoy! `http://172.16.42.1:1471/`
+4. Enter to pineapple panel and enjoy! `http://172.16.42.1:1471/` <br>
+At this point you could only have one of two problems:<br>
 
-Note: 
-If you are stuck at the message "The WiFi Pineapple is still booting" don't panic.
-All you have to do is SSH into the AR150 with the username root and password you set originally
+A) You are stuck at the message "The WiFi Pineapple is still booting" don't panic.
+All you have to do is SSH into the router with the username root and password you set originally
 ```bash
 ssh root@172.16.42.1
 jffs2reset -y && reboot
 ```
-(Note the IP address must have change and the default password is root).
+
+B) The live scan mode does not work but the others do.
+This happens because you don't have python installed, it will be installed automatically when you connect the device to the internet and reboot it.
+As long as you have the minimum space needed or a pendrive connected.<br>
+
+In the download repo there are more notes about it that might interest you if you have problems.
+<br>
 
 5. Once installed, you can also change the default theme of the panel if you wish:
 ```bash
 wget https://raw.githubusercontent.com/xchwarze/wifi-pineapple-community/main/themes/install.sh -O /tmp/theme-install.sh
 chmod +x /tmp/theme-install.sh && /tmp/theme-install.sh darkmode
 ```
+<br>
 
 
 ## Recomended setup
