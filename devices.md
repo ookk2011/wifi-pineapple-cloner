@@ -1,3 +1,11 @@
+# Devices list
+
+The list of compatible devices is made with the data provided by OpenWRT. The filtering criteria were that they are supported by OpenWRT 19 and that they have the same capabilities as the original hard.
+
+Knowing this, there are two scenarios:
+1. OpenWRT data may be incorrect for some devices.
+1. If we change the criteria, the devices become many more, more than 500.
+
 Brand | Device | Type | CPU (MHz) | Flash (MB) | RAM (MB) | Architecture | Availability |
 -------------|-------------|-----------|-----------|-----------|-----------|-----------|-----------|
 8devices | Carambola 2  | Single Board Computer | 400 | 16 | 64 | mips_24kc | Available 2019
