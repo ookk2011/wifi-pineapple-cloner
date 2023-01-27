@@ -39,7 +39,7 @@ tools/copier.sh lists/nano.filelist rootfs-base rootfs
 
 # fix files
 chmod +x tools/fs-patcher.sh
-tools/fs-patcher.sh rootfs nano
+tools/fs-patcher.sh mips rootfs nano
 ```
 
 4. Build your custom build

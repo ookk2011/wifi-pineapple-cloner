@@ -6,7 +6,7 @@ The Pineapple NANO and TETRA were excellent security hardware but in 2020 they r
 So to give a new life to this platform in more modern hardware, I've made these scripts.<br>
 
 Sometime between 2019 and 2020 we started using the private beta of this project which we called "Pineapple Termidor".<br>
-When I started to redo this project to launch a v2 I decided to rescue the original name and logo 🤣
+When I started to redo this project to launch a new version I decided to rescue the original name and logo for fun 🤣
 
 
 ## About this project
@@ -16,8 +16,8 @@ This project is the result of everything I've experienced from 2018 to 2022 to s
 For this I've develop:
 * The lists of files to copy and also the script to copy them.
 * A script to patch the filesystem, so it works on any hardware.
-* Completely [updated panel](https://github.com/xchwarze/wifi-pineapple-panel) with fixes and improvements.
-* Completely updated [packages repository](https://github.com/xchwarze/wifi-pineapple-community/tree/main/packages) .
+* Completely updated [panel](https://github.com/xchwarze/wifi-pineapple-panel) with fixes and improvements.
+* Completely updated [packages repository](https://github.com/xchwarze/wifi-pineapple-community/tree/main/packages).
 * New [module repository](https://github.com/xchwarze/wifi-pineapple-community/tree/main/modules).
 * New modules: [PMKIDAttack](https://github.com/xchwarze/wifi-pineapple-community/tree/main/modules/src/PMKIDAttack) and [Terminal](https://github.com/xchwarze/wifi-pineapple-community/tree/main/modules/src/Terminal)
 
@@ -61,30 +61,37 @@ sysupgrade -n -F /tmp/archer-c7-v5-tetra-sysupgrade.bin
 Now wait few minutes until the device install the new firmware
 <br>
 
-4. Enter to pineapple panel and enjoy! `http://172.16.42.1:1471/`
+4. Enter to pineapple panel and enjoy! `http://172.16.42.1:1471/` <br>
+At this point you could only have one of two problems:<br>
 
-Note: 
-If you are stuck at the message "The WiFi Pineapple is still booting" don't panic.
-All you have to do is SSH into the AR150 with the username root and password you set originally
+A) You are stuck at the message "The WiFi Pineapple is still booting" don't panic.
+All you have to do is SSH into the router with the username root and password you set originally
 ```bash
 ssh root@172.16.42.1
 jffs2reset -y && reboot
 ```
-(Note the IP address must have change and the default password is root).
+
+B) The live scan mode does not work but the others do.
+This happens because you don't have python installed, it will be installed automatically when you connect the device to the internet and reboot it.
+As long as you have the minimum space needed or a pendrive connected.<br>
+
+In the download repo there are more notes about it that might interest you if you have problems.
+<br>
 
 5. Once installed, you can also change the default theme of the panel if you wish:
 ```bash
 wget https://raw.githubusercontent.com/xchwarze/wifi-pineapple-community/main/themes/install.sh -O /tmp/theme-install.sh
 chmod +x /tmp/theme-install.sh && /tmp/theme-install.sh darkmode
 ```
+<br>
 
 
 ## Recomended setup
 
 1. [GL-AR150](https://www.gl-inet.com/products/gl-ar150/) or [GL-AR750S](https://www.gl-inet.com/products/gl-ar750s)
 2. USB 2.0 [2 ports hub](https://www.ebay.com/itm/144520475350)
-2. Generic [RT5370 WIFI adapter](https://www.ebay.com/itm/284904442887) or [MT7612U WIFI adapter](https://www.ebay.com/itm/175219205235) **you're really going to need this on hardware that doesn't have two wifi adapters**
-3. Please support Hak5 work and buy the original hardware!
+3. Generic [RT5370 WIFI adapter](https://www.ebay.com/itm/284904442887) or [MT7612U WIFI adapter](https://www.ebay.com/itm/175219205235) **you're really going to need this on hardware that doesn't have two wifi adapters**
+4. Please support Hak5 work and buy the original hardware!
 
 
 ## If you want to collaborate with hardware 
