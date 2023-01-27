@@ -1,0 +1,114 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2022 DSR!
+
+START=99
+EXTRA_COMMANDS="correct_sd_mount missing_packages handle_lost_phys"
+EXTRA_HELP="
+Extra commands:
+        correct_sd_mount Fix ghost pendrive issues
+        missing_packages Install the missing dependencies
+        handle_lost_phys Fix unrecognized wifi interfaces
+"
+PACKAGES="python-logging python-openssl python-sqlite3 python-codecs"
+
+to_logger() {
+    logger -s -t wpc "$1"
+}
+
+correct_sd_mount() {
+    SD_STATUS=$(/bin/mount | /bin/grep "on /sd" -c)
+    SD_COUNT=$(ls /sd | wc -l)
+    if [[ -d /sd && $SD_STATUS == "0" && $SD_COUNT == "0" ]]; then
+        to_logger "== Fix sd status"
+        rm -rf /sd
+    fi
+}
+
+missing_packages() {
+    if [[ ! -d "/usr/lib/python2.7" && ! -d "/sd/usr/lib/python2.7" ]]; then
+        FREE_SPACE=$(df / | tail -1 | awk '{print $4}')
+
+        if [[ ! -d /sd && $FREE_SPACE -lt 10240 ]]; then
+            to_logger "== There is not enough space to install the packages"
+        elif ping -q -c 1 -W 1 google.com >/dev/null; then
+            to_logger "== Installing missing packages..."
+            INSTALL_ROUTE="--dest sd"
+            if [[ $FREE_SPACE -gt 10240 ]]; then
+                INSTALL_ROUTE=""
+                to_logger "== Found available space in the system partition"
+            fi
+
+            opkg update && opkg $INSTALL_ROUTE install $PACKAGES && python -m compileall
+            if [[ ! -d "/usr/lib/python2.7" && ! -d "/sd/usr/lib/python2.7" ]]; then
+                to_logger "== Packages were not installed!"
+            else
+                to_logger "== Install Complete!"
+            fi
+        else
+            to_logger "== Connect to the internet and run \"service wpc-tools restart\" command!"
+        fi
+    fi
+}
+
+# based on airmon-ng code
+handle_lost_phys() {
+    to_logger "== Looking for unrecognized wifi interfaces..."
+    if [ -d /sys/class/ieee80211 ]; then
+        for i in $(ls /sys/class/ieee80211/); do
+            if [ ! -d /sys/class/ieee80211/${i}/device/net ]; then
+                to_logger "== Found ${i} with no interface assigned!"
+                find_free_interface ${i}
+            fi
+        done
+    fi
+}
+
+find_free_interface() {
+    PHYDEV="${1}"
+    target_mode="station"
+    target_type="1"
+
+    for i in $(seq 0 100); do
+        if [ "$i" = "100" ]; then
+            to_logger "== Unable to find a free name between wlan0 and wlan99"
+            return 1
+        fi
+
+        if [ ! -e /sys/class/net/wlan${i} ] && [ ! -e /sys/class/net/wlan${i}mon ]; then
+            to_logger "== Candidate wlan${i} and wlan${i}mon are both clear, creating wlan${i}"
+
+            IW_ERROR="$(iw phy ${PHYDEV} interface add wlan${i} type ${target_mode} 2>&1)"
+            if [ -z "${IW_ERROR}" ]; then
+                if [ -d /sys/class/ieee80211/${PHYDEV}/device/net ]; then
+                    for j in $(ls /sys/class/ieee80211/${PHYDEV}/device/net/); do
+                        if [ "$(cat /sys/class/ieee80211/${PHYDEV}/device/net/${j}/type)" = "${target_type}" ]; then
+                            #here is where we catch udev renaming our interface
+                            k=${j#wlan}
+                            i=${k%mon}
+                        fi
+                    done
+                else
+                    to_logger "== Unable to create wlan${i} and no error received"
+                    return 1
+                fi
+
+                to_logger "== mac80211 ${target_mode} mode vif enabled on [${PHYDEV}]wlan${i}"
+                unset IW_ERROR
+                break
+            else
+                to_logger "== ERROR adding ${target_mode} mode interface: ${IW_ERROR}"
+                break
+            fi
+        fi
+    done
+}
+
+start() {
+    correct_sd_mount
+    missing_packages
+    handle_lost_phys
+}
+
+boot() {
+    start
+}

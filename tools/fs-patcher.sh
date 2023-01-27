@@ -137,9 +137,9 @@ common_patch () {
 
     echo "[*] Other fixs"
 
-    # add complete-setup script
-    cp "$FILES_FOLDER/common/complete-setup" "$ROOT_FS/etc/init.d/complete-setup"
-    chmod +x "$ROOT_FS/etc/init.d/complete-setup"
+    # add wpc-tools script
+    cp "$FILES_FOLDER/common/wpc-tools" "$ROOT_FS/etc/init.d/wpc-tools"
+    chmod +x "$ROOT_FS/etc/init.d/wpc-tools"
 
     # clean files
     rm -f "$ROOT_FS/etc/pineapple/changes"
