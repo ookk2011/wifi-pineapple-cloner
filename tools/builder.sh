@@ -128,7 +128,7 @@ build () {
 
 
 # implement this shitty logic
-echo "Universal Wifi pineapple hardware cloner - builder"
+echo "Wifi Pineapple Cloner - builder"
 echo "************************************** by DSR!"
 echo ""
 
