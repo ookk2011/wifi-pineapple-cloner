@@ -135,11 +135,20 @@ common_patch () {
     cp "$FILES_FOLDER/common/lib/pineapple.keep" "$ROOT_FS/lib/upgrade/keep.d/pineapple"
 
 
-    echo "[*] Other fixs"
+    echo "[*] Fix airmon-ng listInterfaces()"
 
-    # add wpc-tools script
+    mkdir -p "$ROOT_FS/usr/sbin"
+    cp "$FILES_FOLDER/common/usr/airmon-ng" "$ROOT_FS/usr/sbin/airmon-ng"
+    chmod +x "$ROOT_FS/usr/sbin/airmon-ng"
+
+
+    echo "[*] Add wpc-tools and service"
+
     cp "$FILES_FOLDER/common/etc/wpc-tools" "$ROOT_FS/etc/init.d/wpc-tools"
     chmod +x "$ROOT_FS/etc/init.d/wpc-tools"
+
+
+    echo "[*] Other fixs"
 
     # clean files
     rm -f "$ROOT_FS/etc/pineapple/changes"
