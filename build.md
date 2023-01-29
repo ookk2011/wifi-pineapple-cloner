@@ -70,24 +70,26 @@ sysupgrade -n -F /tmp/gl-ar150-pineapple-nano.bin
 ## Important notes
 
 1. The original hardware is designed to have 2 Wi-Fi cards and have at least 2 gigabytes of disk space!
-To meet these requirements you will have to:
-* Add a flash drive
-* In the case of the NANO, add a second Wi-Fi adapter. You can connect both with a usb hub!
+<br>
 
-2. As the tetra is intended to be used on hardware with 32MB of flash it is recommended to use it with a pendrive.
-The steps for this would be:
-* The pendrive has to be formatted from the pineapple panel `Advanced > USB & Storage > Format SD Card`
-* Connect the pinneaple to the internet and restart it
-* When pineapple starts it will run the [20-sd-tetra-fix script](https://github.com/xchwarze/wifi-pineapple-cloner/blob/master/fixs/tetra/20-sd-tetra-fix) and install the missing packages on the pendrive
+To meet these requirements in your hard you will have to:
+* Add a pendrive. The pendrive has to be formatted from the pineapple panel `Advanced > USB & Storage > Format SD Card`
+* In case your hardware does not have a second Wi-Fi adapter you will have to add one of the recommended ones (RT5370 or MT7612U).
+* You can connect both with a usb hub!
+<br>
 
+2. As tetra is made to be used on hardware with 32 MB of flash I had to cut some dependencies from the default installation.
+<br>
 
-This can be done manually by running this command:
-```bash
-opkg update && opkg --dest sd install python-logging python-openssl python-sqlite3 python-codecs && python -m compileall
-```
+These dependencies will be installed automatically when the pinapple is connected to the internet and booting.
+<br>
 
-However this is completely optional because pineapple will work fine without those packages.
-Although we would need the pendrive to be able to install the modules...!
+If you want to manually run this process `service wpc-tools missing_packages`
+<br>
+
+Without these dependencies you will not be able to use the live scan type and some modules.
+However, you will be able to use the timed scans and the rest of the tools.
+<br>
 
 3. The original pineapple binaries are compiled with mips24kc and BE endianness.
 So your target hardware must support the instructionset with this endianness. Check this in the [openwrt list of hardware](https://openwrt.org/docs/techref/instructionset/mips_24kc).
