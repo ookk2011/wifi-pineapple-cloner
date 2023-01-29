@@ -2,11 +2,12 @@
 # Copyright (C) 2022 DSR!
 
 START=99
-EXTRA_COMMANDS="correct_sd_mount missing_packages handle_lost_phys"
+EXTRA_COMMANDS="correct_sd_mount missing_packages theme_install handle_lost_phys"
 EXTRA_HELP="
 Extra commands:
         correct_sd_mount Fix ghost pendrive issues
         missing_packages Install the missing dependencies
+        theme_install    Deploys the tool to change the theme used by the panel
         handle_lost_phys Fix unrecognized wifi interfaces
 "
 PACKAGES="python-logging python-openssl python-sqlite3 python-codecs"
@@ -48,6 +49,14 @@ missing_packages() {
             to_logger "== Connect to the internet and run \"service wpc-tools restart\" command!"
         fi
     fi
+}
+
+theme_install() {
+    to_logger "== Downloading theme manager..."
+    wget "https://raw.githubusercontent.com/xchwarze/wifi-pineapple-community/main/themes/install.sh" -O /tmp/theme-install.sh
+    chmod +x /tmp/theme-install.sh
+    to_logger "== By running /tmp/theme-install.sh you will be able to see the available themes and choose the one you want"
+    /tmp/theme-install.sh
 }
 
 # based on airmon-ng code

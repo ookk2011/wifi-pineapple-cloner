@@ -112,19 +112,19 @@ common_patch () {
 
     echo "[*] Change root password to: root"
 
-    cp "$FILES_FOLDER/common/shadow" "$ROOT_FS/etc/shadow"
+    cp "$FILES_FOLDER/common/etc/shadow" "$ROOT_FS/etc/shadow"
 
 
     echo "[*] Fix uci-defaults"
 
-    cp "$FILES_FOLDER/common/92-system.sh" "$ROOT_FS/etc/uci-defaults/92-system.sh"
-    cp "$FILES_FOLDER/common/95-network.sh" "$ROOT_FS/etc/uci-defaults/95-network.sh"
-    cp "$FILES_FOLDER/common/97-pineapple.sh" "$ROOT_FS/etc/uci-defaults/97-pineapple.sh"
+    cp "$FILES_FOLDER/common/etc/92-system.sh" "$ROOT_FS/etc/uci-defaults/92-system.sh"
+    cp "$FILES_FOLDER/common/etc/95-network.sh" "$ROOT_FS/etc/uci-defaults/95-network.sh"
+    cp "$FILES_FOLDER/common/etc/97-pineapple.sh" "$ROOT_FS/etc/uci-defaults/97-pineapple.sh"
 
 
     echo "[*] Fix pendrive hotplug"
 
-    cp "$FILES_FOLDER/common/20-sd-universal" "$ROOT_FS/etc/hotplug.d/block/20-sd-universal"
+    cp "$FILES_FOLDER/common/etc/20-sd-universal" "$ROOT_FS/etc/hotplug.d/block/20-sd-universal"
     rm "$ROOT_FS/etc/hotplug.d/block/20-sd"
     rm "$ROOT_FS/etc/hotplug.d/usb/30-sd"
 
@@ -132,13 +132,13 @@ common_patch () {
     echo "[*] Add support for reflash"
 
     mkdir -p "$ROOT_FS/lib/upgrade/keep.d"
-    cp "$FILES_FOLDER/common/pineapple.keep" "$ROOT_FS/lib/upgrade/keep.d/pineapple"
+    cp "$FILES_FOLDER/common/lib/pineapple.keep" "$ROOT_FS/lib/upgrade/keep.d/pineapple"
 
 
     echo "[*] Other fixs"
 
     # add wpc-tools script
-    cp "$FILES_FOLDER/common/wpc-tools" "$ROOT_FS/etc/init.d/wpc-tools"
+    cp "$FILES_FOLDER/common/etc/wpc-tools" "$ROOT_FS/etc/init.d/wpc-tools"
     chmod +x "$ROOT_FS/etc/init.d/wpc-tools"
 
     # clean files
@@ -146,19 +146,19 @@ common_patch () {
     rm -f "$ROOT_FS/etc/pineapple/pineapple_version"
 
     # default wifi config
-    cp "$FILES_FOLDER/common/mac80211.sh" "$ROOT_FS/lib/wifi/mac80211.sh"
+    cp "$FILES_FOLDER/common/lib/mac80211.sh" "$ROOT_FS/lib/wifi/mac80211.sh"
 
     # copy clean version of led script
-    cp "$FILES_FOLDER/common/led" "$ROOT_FS/sbin/led"
+    cp "$FILES_FOLDER/common/sbin/led" "$ROOT_FS/sbin/led"
     chmod +x "$ROOT_FS/sbin/led"
 
     # add setup support for routers that do not have a reset button but do have wps
     mkdir -p "$ROOT_FS/etc/rc.button"
-    cp "$FILES_FOLDER/common/wps" "$ROOT_FS/etc/rc.button/wps"
+    cp "$FILES_FOLDER/common/etc/wps" "$ROOT_FS/etc/rc.button/wps"
     chmod +x "$ROOT_FS/etc/rc.button/wps"
 
     # add new banner
-    cp "$FILES_FOLDER/common/banner" "$ROOT_FS/etc/banner"
+    cp "$FILES_FOLDER/common/etc/banner" "$ROOT_FS/etc/banner"
 }
 
 mipsel_patch () {
