@@ -79,7 +79,7 @@ common_patch () {
     chmod +x "$ROOT_FS/usr/sbin/wpad"
 
 
-    echo "[*] Panel fixes and improvements"
+    echo "[*] Install panel fixes and improvements"
 
     # update panel code
     rm -rf "$ROOT_FS/pineapple"
@@ -156,6 +156,9 @@ common_patch () {
 
     # default wifi config
     cp "$FILES_FOLDER/common/lib/mac80211.sh" "$ROOT_FS/lib/wifi/mac80211.sh"
+
+    # fix wifi detection
+    cp "$FILES_FOLDER/common/etc/30-fix_wifi" "$ROOT_FS/etc/hotplug.d/usb/30-fix_wifi"
 
     # copy clean version of led script
     cp "$FILES_FOLDER/common/sbin/led" "$ROOT_FS/sbin/led"
