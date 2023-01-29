@@ -1,6 +1,6 @@
 ![Project Logo](assets/logo.png)
 
-# Universal Wifi pineapple hardware cloner v4
+# Wifi Pineapple Cloner v4
 
 The Pineapple NANO and TETRA are excellent security hardware but in 2020 they reached their end of life.<br>
 So to give a new life to this platform on more modern hardware I developed these scripts to port it to different routers.<br>
@@ -41,10 +41,10 @@ Also I made a second repo for [downloads](https://github.com/xchwarze/wifi-pinea
 
 ## Install steps
 
-1. Install OpenWrt version 19.07.7 on your router
+1. Install OpenWrt version 19.07.7 on your router.
 <br>
 
-2. Use SCP to upload the image in your device
+2. Use SCP to upload the image in your device.
 ```bash
 scp gl-ar750s-universal-sysupgrade.bin root@192.168.1.1:/tmp 
 root@192.168.1.1's password: 
@@ -52,16 +52,15 @@ gl-ar750s-universal-sysupgrade.bin                                              
 ```
 <br>
 
-3. Once the image is uploaded, execute sysupgrade command to update firmware
+3. Once the image is uploaded, execute sysupgrade command to update firmware. Wait few minutes until the device install the new firmware. 
 ```bash
 ssh root@192.168.1.1
 sysupgrade -n -F /tmp/gl-ar750s-universal-sysupgrade.bin
 ```
-Now wait few minutes until the device install the new firmware
 <br>
 
 4. Enter to pineapple panel and enjoy! `http://172.16.42.1:1471/`
-<br>
+
 In the download repo you can find some debugging tips if you have problems.
 The project manages to create hardware that works just like the original, so if you follow the steps and read the documentation you should have no problems.
 <br>
