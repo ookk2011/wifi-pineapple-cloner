@@ -1,12 +1,16 @@
-## Build steps
+## Automatic Build steps
 
-Note: All these steps are automated in `dependencies-install.sh` and `builder.sh`
+All these steps are automated in `dependencies-install.sh` and `builder.sh`
 ```bash
 chmod +x tools/*.sh
 tools/dependencies-install.sh openwrt-deps-mips
 sudo tools/dependencies-install.sh ubuntu-deps
 tools/builder.sh mips universal imagebuilder-19.07.7-ar71xx-generic gl-ar750s
 ```
+<br>
+
+
+## Manual Build steps
 
 1. Unpack firmware for get file system
 ```bash
@@ -65,6 +69,7 @@ scp gl-ar150-pineapple-nano.bin root@192.168.1.1:/tmp
 ssh root@192.168.1.1
 sysupgrade -n -F /tmp/gl-ar150-pineapple-nano.bin
 ```
+<br>
 
 
 ## Important notes
