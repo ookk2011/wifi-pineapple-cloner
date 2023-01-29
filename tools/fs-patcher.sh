@@ -261,7 +261,7 @@ universal_patch () {
 
 
 # implement....
-echo "Universal Wifi pineapple hardware cloner v3"
+echo "Wifi Pineapple Cloner v4"
 echo "by DSR!"
 echo "******************************"
 echo ""
