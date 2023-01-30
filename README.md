@@ -3,7 +3,7 @@
 # Wifi Pineapple Cloner v4
 
 The Pineapple NANO and TETRA are excellent security hardware but in 2020 they reached their end of life.<br>
-So to give a new life to this platform on more modern hardware I developed these scripts to port it to different routers.<br>
+So to give a new life to this platform on modern hardware I developed these scripts to port it to different routers.<br>
 
 Sometime between 2019 and 2020 we started using the private beta of this project which my friends called "Pineapple Termidor".<br>
 So at the time of remaking this project I decided to rescue the original name from oblivion 🤣
@@ -26,7 +26,7 @@ For this I've develop:
 
 ## Builds
 
-You can find the complete steps to build this project in [this document](build.md). I also added several important notes in this matter.
+You can find the complete steps to build this project in [this document](build.md). I also added several important notes about this.
 <br>
 
 
@@ -44,7 +44,7 @@ Also I made a second repo for [downloads](https://github.com/xchwarze/wifi-pinea
 1. Install OpenWrt version 19.07.7 on your router.
 <br>
 
-2. Use SCP to upload the [firmware](https://github.com/xchwarze/wifi-pineapple-cloner-builds) in your device.
+2. Use SCP to upload the [firmware image](https://github.com/xchwarze/wifi-pineapple-cloner-builds) in your device.
 ```bash
 scp gl-ar750s-universal-sysupgrade.bin root@192.168.1.1:/tmp 
 root@192.168.1.1's password: 
@@ -62,7 +62,6 @@ sysupgrade -n -F /tmp/gl-ar750s-universal-sysupgrade.bin
 4. Enter to pineapple panel and enjoy! `http://172.16.42.1:1471/`
 
 In the [download](https://github.com/xchwarze/wifi-pineapple-cloner-builds) repo you can find some debugging tips if you have problems.
-The project manages to create hardware that works just like the original, so if you follow the steps and read the documentation you should have no problems.
 <br>
 
 5. Once installed, the project has a tool that helps us to do several things.
