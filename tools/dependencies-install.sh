@@ -82,7 +82,7 @@ install_openwrt_deps_mipsel () {
 
 
 
-echo "Universal Wifi pineapple hardware - dependencies"
+echo "Wifi Pineapple Cloner - dependencies"
 echo "************************************** by DSR!"
 echo ""
 
