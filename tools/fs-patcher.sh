@@ -96,9 +96,9 @@ common_patch () {
     chmod +x "$ROOT_FS/pineapple/modules/PineAP/executable/executable"
     chmod +x "$ROOT_FS/pineapple/modules/Reporting/files/reporting"
 
-    cp "$FILES_FOLDER/common/panel/favicon.ico" "$ROOT_FS/pineapple/img/favicon.ico"
-    cp "$FILES_FOLDER/common/panel/favicon-16x16.png" "$ROOT_FS/pineapple/img/favicon-16x16.png"
-    cp "$FILES_FOLDER/common/panel/favicon-32x32.png" "$ROOT_FS/pineapple/img/favicon-32x32.png"
+    cp "$FILES_FOLDER/common/pineapple/favicon.ico" "$ROOT_FS/pineapple/img/favicon.ico"
+    cp "$FILES_FOLDER/common/pineapple/favicon-16x16.png" "$ROOT_FS/pineapple/img/favicon-16x16.png"
+    cp "$FILES_FOLDER/common/pineapple/favicon-32x32.png" "$ROOT_FS/pineapple/img/favicon-32x32.png"
 
     # fix docs size
     truncate -s 0 "$ROOT_FS/pineapple/modules/Setup/eula.txt"
@@ -210,7 +210,10 @@ nano_patch () {
     cp "$FILES_FOLDER/$ARCHITECTURE/python/encodings/hex_codec.pyc" "$ROOT_FS/usr/lib/python2.7/encodings/hex_codec.pyc"
 
     # panel changes
-    sed -i "s/\$data = file_get_contents('\/proc\/cpuinfo')/return 'nano'/" "$ROOT_FS/pineapple/api/pineapple.php"
+    # sed -i "s/\$data = file_get_contents('\/proc\/cpuinfo')/return 'nano'/" "$ROOT_FS/pineapple/api/pineapple.php"
+    cp "$FILES_FOLDER/common/pineapple/config.php.nano" "$ROOT_FS/pineapple/config.php"
+
+    # other changes
     sed -i "s/exec(\"cat \/proc\/cpuinfo | grep 'machine'\")/'nano'/" "$ROOT_FS/usr/bin/pineapple/site_survey"
 
     # fix banner info
@@ -226,15 +229,18 @@ tetra_patch () {
     cp "$FILES_FOLDER/$ARCHITECTURE/python/encodings/hex_codec.pyc" "$ROOT_FS/usr/lib/python2.7/encodings/hex_codec.pyc"
 
     # panel changes
-    sed -i 's/tetra/nulled/' "$ROOT_FS/pineapple/js/directives.js"
-    sed -i 's/tetra/nulled/' "$ROOT_FS/pineapple/modules/ModuleManager/js/module.js"
-    sed -i 's/tetra/nulled/' "$ROOT_FS/pineapple/modules/Advanced/module.html"
-    sed -i 's/nano/tetra/' "$ROOT_FS/pineapple/html/install-modal.html"
-    sed -i 's/nano/tetra/' "$ROOT_FS/pineapple/modules/Advanced/module.html"
-    sed -i 's/nano/tetra/' "$ROOT_FS/pineapple/modules/ModuleManager/js/module.js"
-    sed -i 's/nano/tetra/' "$ROOT_FS/pineapple/modules/Reporting/js/module.js"
-    sed -i 's/nano/tetra/' "$ROOT_FS/pineapple/modules/Reporting/api/module.php"
-    sed -i "s/\$data = file_get_contents('\/proc\/cpuinfo')/return 'tetra'/" "$ROOT_FS/pineapple/api/pineapple.php"
+    # sed -i 's/tetra/nulled/' "$ROOT_FS/pineapple/js/directives.js"
+    # sed -i 's/tetra/nulled/' "$ROOT_FS/pineapple/modules/ModuleManager/js/module.js"
+    # sed -i 's/tetra/nulled/' "$ROOT_FS/pineapple/modules/Advanced/module.html"
+    # sed -i 's/nano/tetra/' "$ROOT_FS/pineapple/html/install-modal.html"
+    # sed -i 's/nano/tetra/' "$ROOT_FS/pineapple/modules/Advanced/module.html"
+    # sed -i 's/nano/tetra/' "$ROOT_FS/pineapple/modules/ModuleManager/js/module.js"
+    # sed -i 's/nano/tetra/' "$ROOT_FS/pineapple/modules/Reporting/js/module.js"
+    # sed -i 's/nano/tetra/' "$ROOT_FS/pineapple/modules/Reporting/api/module.php"
+    # sed -i "s/\$data = file_get_contents('\/proc\/cpuinfo')/return 'tetra'/" "$ROOT_FS/pineapple/api/pineapple.php"
+    cp "$FILES_FOLDER/common/pineapple/config.php.tetra" "$ROOT_FS/pineapple/config.php"
+
+    # other changes
     sed -i "s/exec(\"cat \/proc\/cpuinfo | grep 'machine'\")/'tetra'/" "$ROOT_FS/usr/bin/pineapple/site_survey"
 
     # fix banner info
@@ -243,15 +249,9 @@ tetra_patch () {
 
 universal_patch () {
     # panel changes
-    sed -i 's/tetra/nulled/' "$ROOT_FS/pineapple/js/directives.js"
-    sed -i 's/tetra/nulled/' "$ROOT_FS/pineapple/modules/ModuleManager/js/module.js"
-    sed -i 's/tetra/nulled/' "$ROOT_FS/pineapple/modules/Advanced/module.html"
-    sed -i 's/nano/tetra/' "$ROOT_FS/pineapple/html/install-modal.html"
-    sed -i 's/nano/tetra/' "$ROOT_FS/pineapple/modules/Advanced/module.html"
-    sed -i 's/nano/tetra/' "$ROOT_FS/pineapple/modules/ModuleManager/js/module.js"
-    sed -i 's/nano/tetra/' "$ROOT_FS/pineapple/modules/Reporting/js/module.js"
-    sed -i 's/nano/tetra/' "$ROOT_FS/pineapple/modules/Reporting/api/module.php"
-    sed -i "s/\$data = file_get_contents('\/proc\/cpuinfo')/return 'tetra'/" "$ROOT_FS/pineapple/api/pineapple.php"
+    cp "$FILES_FOLDER/common/pineapple/config.php.tetra" "$ROOT_FS/pineapple/config.php"
+
+    # other changes
     sed -i "s/exec(\"cat \/proc\/cpuinfo | grep 'machine'\")/'tetra'/" "$ROOT_FS/usr/bin/pineapple/site_survey"
 
     # fix banner info

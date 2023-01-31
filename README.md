@@ -1,6 +1,6 @@
 ![Project Logo](assets/logo.png)
 
-# Universal Wifi pineapple hardware cloner v4
+# Wifi Pineapple Cloner v4
 
 The Pineapple NANO and TETRA are excellent security hardware but in 2020 they reached their end of life.<br>
 So to give a new life to this platform on more modern hardware I developed these scripts to port it to different routers.<br>
