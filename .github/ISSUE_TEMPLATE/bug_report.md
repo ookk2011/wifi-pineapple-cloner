@@ -2,13 +2,13 @@
 name: 🐛 Report a bug
 about: Create a bug report
 title: ''
-labels: 'bug'
+labels: ''
 assignees: ''
 ---
 
 ### Before you proceed:
 
--This project is completely stable and fully tested with dozens of devices. So if you have any problems, it is most likely:
+- This project is completely stable and fully tested with dozens of devices. So if you have any problems, it is most likely:
   - You are not following the steps correctly.
   - Your hardware is not good enough and you are trying to do things it can't do.
 - Make sure to follow the installation steps and recommendations:
@@ -32,5 +32,6 @@ assignees: ''
 ### What have you tried so far?
 <!-- List down the steps you have tried to fix or identify the issue. -->
 
-### Your device logs
-<!-- Attach  -->
+### Your device logs. Without this, no help can be given.
+<!-- Attach debug log from: Help > Feedback and Support > Download Debug File
+ -->
