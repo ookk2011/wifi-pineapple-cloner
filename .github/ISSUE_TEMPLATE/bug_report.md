@@ -11,11 +11,14 @@ assignees: ''
 - This project is completely stable and fully tested with dozens of devices. So if you have any problems, it is most likely:
   - You are not following the steps correctly.
   - Your hardware is not good enough and you are trying to do things it can't do.
+
 - Make sure to follow the installation steps and recommendations:
   - [Installation steps](https://github.com/xchwarze/wifi-pineapple-cloner/#install-steps)
   - [Recommendations](https://github.com/xchwarze/wifi-pineapple-cloner-builds#supported-devices)
   - [Recomended Setup](https://github.com/xchwarze/wifi-pineapple-cloner-builds#recomended-setup)
+
 - Make sure to check whether there are similar issues in the repository
+
 
 ### Current behaviour
 <!-- Describe your issue in detail -->
