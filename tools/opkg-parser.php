@@ -127,15 +127,24 @@ function isValidPackage($name)
 }
 
 
-// from /usr/lib/opkg/status
+
+echo "\nopkg status parser - by DSR!";
+echo "\n---------------------------------------\n\n";
 $printSep   = (isset($argv[2]) && filter_var($argv[2], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE)) ? "\n" : ' ';
 $statusFile = $argv[1];
-$statusData = processFile($statusFile, false, false);
 
-echo "\nopkg status parser - by DSR!\n\n";
+if (!file_exists($statusFile)) {
+    echo "[!!!] File not found: \"($statusFile)\"\n";
+    return 0;
+}
+
+
+$statusData = processFile($statusFile, false, false);
 
 echo "======== Packages (" . count($statusData) . ") ========\n";
 echo implode($printSep, $statusData);
+echo "\n\n\n";
+
 
 $statusDataEssentials = processFile($statusFile, true, false);
 $essentialPackages = [];
@@ -145,7 +154,6 @@ foreach ($statusDataEssentials as $key) {
     }
 }
 
-echo "\n\n\n\n";
 echo "======== Essentials Packages (" . count($essentialPackages) . ") ========\n";
 echo implode($printSep, $essentialPackages);
-
+echo "\n";
