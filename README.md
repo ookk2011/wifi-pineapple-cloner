@@ -69,7 +69,6 @@ For example you can use it to change the panel theme with this command:
 ```bash
 service wpc-tools theme_install
 ```
-<br>
 
 
 ## Recomended setup
