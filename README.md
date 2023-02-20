@@ -17,7 +17,7 @@ For this I've develop:
 * The lists of files to copy and also the script to copy them.
 * A script to patch the file system to work on any hardware.
 * Completely updated [panel](https://github.com/xchwarze/wifi-pineapple-panel) with fixes and improvements.
-* Completely updated [packages repository](https://github.com/xchwarze/wifi-pineapple-community/tree/main/packages).
+* Completely updated [packages repository](https://github.com/xchwarze/wifi-pineapple-community-packages) ([build](https://github.com/xchwarze/wifi-pineapple-community/tree/main/packages)).
 * New [module repository](https://github.com/xchwarze/wifi-pineapple-community/tree/main/modules).
 * New modules: [PMKIDAttack](https://github.com/xchwarze/wifi-pineapple-community/tree/main/modules/src/PMKIDAttack) and [Terminal](https://github.com/xchwarze/wifi-pineapple-community/tree/main/modules/src/Terminal)
 
