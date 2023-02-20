@@ -72,6 +72,30 @@ sysupgrade -n -F /tmp/gl-ar150-pineapple-nano.bin
 <br>
 
 
+## Original Harware specifications
+
+#### WiFi Pineapple NANO specifications:
+- SoC: Atheros AR9331 (400 MHz)
+- RAM: 64 MB (DDR2)
+- FLASH: 16 MB
+- WiFi: 1T1R AR9331 (built-in), 1T1R AR9271 (built-in via USB bus)
+- Ethernet: 1x FE over USB (ASIX AX88772A)
+- Ports: 2x RP-SMA for antennas, 1x USB 2.0 (host), 1x micro SD
+- Power: USB 5 V, 1.5 A
+- Other: status LED, reset button
+
+#### WiFi Pineapple TETRA specifications:
+- SoC: Atheros AR9344 (533 MHz MIPS 74K)
+- RAM: 64 MB (DDR2)
+- FLASH: 2 GB NAND Flash
+- WiFi: Atheros AR9344 + Atheros AR9580
+- Ethernet: 1 x RJ45 Ethernet, 1x FE over USB (ASIX AX88772A)
+- Ports: 4x RP-SMA Antenna, 1 x USB 2.0 (host)
+- Power: DC Barrel 12V/2A. Accepts power from any combination of sources; DC Barrel Port, USB ETH port, USB UART port.
+- Other: status LED, reset button
+<br>
+
+
 ## Important notes
 
 1. The original hardware is designed to have 2 Wi-Fi cards and have at least 2 gigabytes of disk space!
