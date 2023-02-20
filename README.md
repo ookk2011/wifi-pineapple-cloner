@@ -6,7 +6,7 @@ The Pineapple NANO and TETRA are excellent security hardware but in 2020 they re
 So to give a new life to this platform on modern hardware I developed these scripts to port it to different routers.<br>
 
 Sometime between 2019 and 2020 we started using the private beta of this project which my friends called "Pineapple Termidor".<br>
-So at the time of remaking this project I decided to rescue the original name from oblivion 🤣
+So at the time of redoing this project I decided to rescue the original name from forgotten 🤣
 
 
 ## About this project
