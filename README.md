@@ -39,7 +39,7 @@ Also I made a second repo for [downloads](https://github.com/xchwarze/wifi-pinea
 <br>
 
 
-## What differences are there with other methods using other firmwares that I can download from the internet?
+## What differences are there with other methods using by firmwares that I can download from the internet?
 All firmwares found on the internet were made with [securityaddicted method](https://www.securityaddicted.com/2016/11/17/weaponizing-gl-inet-gl-ar150/) which is to copy the entire original file system. This besides consuming all the space, was often unstable, so I developed this new method.<br>
 I presented this new method as part of my appearances at EkoParty 2020 and DragonJar 2021. You can see the material from those [presentations here](https://github.com/indetectables-net/embedded).<br>
 In 2021 an [idiot named Samy Younsi](https://github.com/xchwarze/wifi-pineapple-cloner/issues/26) first made a post stealing the method I developed and presented at conferences... months later he ported it to python using the Wifi Pineapple Cloner v1 version and kept sharing it as if it was his work.<br>
