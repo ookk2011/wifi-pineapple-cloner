@@ -14,12 +14,12 @@ So at the time of redoing this project I decided to rescue the original name fro
 This project is the result of everything I've experienced from 2018 to 2022 to successfully clone the NANO and TETRA in any hardware.<br>
 
 For this I've develop:
-* The lists of files to copy and also the script to copy them.
+* The method of patching the file system with the minimum to be able to work. For this I created the list of files to copy and the script that copies them.
 * A script to patch the file system to work on any hardware.
 * Completely updated [panel](https://github.com/xchwarze/wifi-pineapple-panel) with fixes and improvements.
 * Completely updated [packages repository](https://github.com/xchwarze/wifi-pineapple-community-packages) ([build](https://github.com/xchwarze/wifi-pineapple-community/tree/main/packages)).
 * New [module repository](https://github.com/xchwarze/wifi-pineapple-community/tree/main/modules).
-* New modules: [PMKIDAttack](https://github.com/xchwarze/wifi-pineapple-community/tree/main/modules/src/PMKIDAttack) and [Terminal](https://github.com/xchwarze/wifi-pineapple-community/tree/main/modules/src/Terminal)
+* And some new modules that are basic to use a device like this nowadays. New modules: [PMKIDAttack](https://github.com/xchwarze/wifi-pineapple-community/tree/main/modules/src/PMKIDAttack) and [Terminal](https://github.com/xchwarze/wifi-pineapple-community/tree/main/modules/src/Terminal)
 
 ![Panel](assets/termidor-mipsel.png)
 
@@ -36,6 +36,14 @@ There are 211 devices supported by the project. You can see the full [list here]
 <br>
 
 Also I made a second repo for [downloads](https://github.com/xchwarze/wifi-pineapple-cloner-builds) where you can find the firmwares already made for the most common devices of the Supported devices list.
+<br>
+
+
+## What differences are there with other methods using other firmwares that I can download from the internet?
+All firmwares found on the internet were made with [securityaddicted method](https://www.securityaddicted.com/2016/11/17/weaponizing-gl-inet-gl-ar150/) which is to copy the entire original file system. This besides consuming all the space, was often unstable, so I developed this new method.<br>
+I presented this method as part of my appearances at EkoParty 2020 and DragonJar 2021. You can see the material from those [presentations here](https://github.com/indetectables-net/embedded).<br>
+In 2021 an [idiot named Samy Younsi](https://github.com/xchwarze/wifi-pineapple-cloner/issues/26) first made a post stealing the method I developed and presented at conferences... months later he ported it to python using the Wifi Pineapple Cloner v1 version and kept sharing it as if it was his work.<br>
+During 2022 I managed to debug the method and how to use it until I was able to port the pineapple to any hardware and have it work and look just like the original.<br>
 <br>
 
 
